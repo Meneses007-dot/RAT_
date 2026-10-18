@@ -986,7 +986,7 @@ internal fun ShelfCard(
     ) {
         when (item.browseId) {
             "local:downloads" -> {
-                val palette = remember { MeshPalette(listOf(Color(0xFF1E3C72), Color(0xFF2A5298))) }
+                val palette = remember { MeshPalette(listOf(Color(0xFF012FDC), Color(0xFF00229E))) }
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -1009,22 +1009,22 @@ internal fun ShelfCard(
                 }
             }
             "local:all" -> ServiceCard(
-                colors = listOf(Color(0xFF134E5E), Color(0xFF71B280)),
+                colors = listOf(Color(0xFF0037E6), Color(0xFF00E5FF)),
                 trackKey = "local:all",
                 icon = Icons.Rounded.LibraryMusic,
             )
             "local:cache" -> ServiceCard(
-                colors = listOf(Color(0xFF42275A), Color(0xFF734B6D)),
+                colors = listOf(Color(0xFFDC0736), Color(0xFF6E0620)),
                 trackKey = "local:cache",
                 icon = Icons.Rounded.Cached,
             )
             "local:webdav" -> ServiceCard(
-                colors = listOf(Color(0xFF3A1C71), Color(0xFFD76D77)),
+                colors = listOf(Color(0xFF00229E), Color(0xFF0037E6)),
                 trackKey = "local:webdav",
                 icon = Icons.Rounded.Folder,
             )
             "local:smb" -> ServiceCard(
-                colors = listOf(Color(0xFF0F2027), Color(0xFF2C5364)),
+                colors = listOf(Color(0xFF080B10), Color(0xFF26323B)),
                 trackKey = "local:smb",
                 icon = Icons.Rounded.Storage,
             )

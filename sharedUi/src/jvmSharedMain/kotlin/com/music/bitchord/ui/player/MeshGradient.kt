@@ -48,11 +48,15 @@ import kotlin.math.cos
 import kotlin.math.min
 import kotlin.math.sin
 
+// DEDSEC // DEFALT: los colores de reserva ya no son el violeta/melocotón de
+// Apple Music, sino la identidad: azul royal y cian sobre negro. Ojo — nada de
+// rojo aquí: el mesh mezcla sus cuatro colores y azul+rojo dan violeta, que no
+// está en la paleta. El rojo Defalt vive en el halo del fondo y en el acento.
 private val FallbackColors = listOf(
-    Color(0xFF3A1C71),
-    Color(0xFFD76D77),
-    Color(0xFF2B5876),
-    Color(0xFFFFAF7B),
+    Color(0xFF0037E6), // azul royal brillante
+    Color(0xFF00E5FF), // cian DedSec
+    Color(0xFF00229E), // azul royal profundo
+    Color(0xFF04080F), // negro profundo
 )
 
 /** The four mesh colours, wrapped so the backdrop can skip recomposition. */
@@ -221,23 +225,31 @@ fun MeshGradientBackground(
 const val MESH_CYCLE_MILLIS = 3_600
 
 /**
- * BitChord's own colours, for the surfaces that have no artwork to take them
- * from: the welcome pages and the sign-in card on Home. Starts on Apple
- * Music's red and wanders off from there.
+ * RAT // PLAYER — Custom Edition.
+ *
+ * Los colores propios de la app, para las superficies que no tienen portada de
+ * la que sacarlos: las páginas de bienvenida y la tarjeta de inicio de sesión de
+ * Inicio. Antes eran el rojo y el violeta de Apple Music; ahora son DEDSEC //
+ * DEFALT.
+ *
+ * Cada paleta se queda dentro de su familia (azules con cian; rojos con rojos)
+ * a propósito: el mesh mezcla los cuatro colores entre sí y azul+rojo dan
+ * violeta, fuera de paleta. El rojo Defalt tiene su propia paleta, así que
+ * aparece solo, como el rombo de la máscara.
  */
 val WelcomeMeshPalettes: List<MeshPalette> = listOf(
-    // Red, violet, ember.
-    MeshPalette(listOf(Color(0xFFFA2D48), Color(0xFF7B2FF7), Color(0xFFFF7A45), Color(0xFF2E1A8A))),
-    // Sunset.
-    MeshPalette(listOf(Color(0xFFFF4E8A), Color(0xFFFF9A3C), Color(0xFFE0245E), Color(0xFF6A1B9A))),
-    // Ocean.
-    MeshPalette(listOf(Color(0xFF1E88E5), Color(0xFF00BFA5), Color(0xFF5E35B1), Color(0xFF0D47A1))),
-    // Aurora.
-    MeshPalette(listOf(Color(0xFF00C853), Color(0xFF00B8D4), Color(0xFF7C4DFF), Color(0xFF1A237E))),
-    // Grape and rose.
-    MeshPalette(listOf(Color(0xFFD500F9), Color(0xFFFF4081), Color(0xFF651FFF), Color(0xFF4A148C))),
-    // Gold.
-    MeshPalette(listOf(Color(0xFFFFB300), Color(0xFFFF5252), Color(0xFFF06292), Color(0xFF6D2E46))),
+    // Azul royal: el relleno del emblema.
+    MeshPalette(listOf(Color(0xFF0037E6), Color(0xFF012FDC), Color(0xFF00229E), Color(0xFF04080F))),
+    // Cian de sistema: DedSec.
+    MeshPalette(listOf(Color(0xFF00E5FF), Color(0xFF0037E6), Color(0xFF00229E), Color(0xFF04080F))),
+    // Sangre: solo el rombo.
+    MeshPalette(listOf(Color(0xFFDC0736), Color(0xFF6E0620), Color(0xFF2A0410), Color(0xFF04080F))),
+    // Azul claro: el brillo de las orejas.
+    MeshPalette(listOf(Color(0xFF89BAED), Color(0xFF0037E6), Color(0xFF00229E), Color(0xFF04080F))),
+    // Terminal: cian sobre azul muy oscuro.
+    MeshPalette(listOf(Color(0xFF00E5FF), Color(0xFF00566B), Color(0xFF004A66), Color(0xFF04080F))),
+    // Casi apagado: azul, panel y negro.
+    MeshPalette(listOf(Color(0xFF00229E), Color(0xFF111820), Color(0xFF04080F), Color(0xFF0037E6))),
 )
 
 /**

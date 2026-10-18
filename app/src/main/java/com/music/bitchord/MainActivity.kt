@@ -323,6 +323,7 @@ import com.music.bitchord.ui.replay.ReplayStories
 import com.music.bitchord.ui.replay.ReplayStoryPage
 import com.music.bitchord.ui.replay.rememberReplayState
 import com.music.bitchord.ui.theme.BitChordTheme
+import com.music.bitchord.ui.theme.drawDefaltBackdrop
 import com.music.bitchord.ui.theme.rememberArtworkPalette
 import com.music.bitchord.data.canvas.AppleArtistArtRepository
 import com.music.bitchord.data.canvas.keyColors
@@ -390,9 +391,12 @@ class MainActivity : AppCompatActivity() {
                 // the floor the pages have always been drawn against, so it is
                 // laid down here too and the recording is opaque like the screen.
                 val windowBackground = MaterialTheme.colorScheme.background
-                val paintBackdrop: ContentDrawScope.() -> Unit = remember(windowBackground) {
+                // DEDSEC // DEFALT: en oscuro, el suelo no es un rectángulo negro
+                // sino el fondo terminal (rejilla + scanlines + halos). Es una sola
+                // capa para toda la app, y la misma que muestrea el cristal.
+                val paintBackdrop: ContentDrawScope.() -> Unit = remember(windowBackground, darkTheme) {
                     {
-                        drawRect(windowBackground)
+                        if (darkTheme) drawDefaltBackdrop(density) else drawRect(windowBackground)
                         drawContent()
                     }
                 }
@@ -2515,10 +2519,17 @@ private fun BitChordApp(
         )
     }
 
+    // DEDSEC // DEFALT: el suelo de la app. Antes era un rectángulo plano del
+    // color de fondo del tema; ahora, en oscuro, es el fondo terminal (rejilla,
+    // scanlines y halos). Es el único sitio que hace falta: ninguna página pinta
+    // su propio fondo, así que todas lo dejan ver.
+    val rootBackground = MaterialTheme.colorScheme.background
     Box(
         Modifier
             .fillMaxSize()
-            .background(MaterialTheme.colorScheme.background),
+            .drawBehind {
+                if (darkTheme) drawDefaltBackdrop(density) else drawRect(rootBackground)
+            },
     ) {
         // A pushed album/artist/playlist page replaces the tab content but
         // leaves the tab bar and mini player in place.

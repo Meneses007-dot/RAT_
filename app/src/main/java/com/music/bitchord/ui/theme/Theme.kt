@@ -18,9 +18,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.music.bitchord.R
 
-// Apple Music's signature red. No longer the primary accent, but kept for the
+// Defalt's signature red. No longer the primary accent, but kept for the
 // spots (Replay's rank badge) that want that specific red regardless of theme.
-val AccentRed = Color(0xFFFA2D48)
+val AccentRed = Color(0xFFDC0736)
 
 // DEDSEC // DEFALT — Custom Edition.
 // Paleta personalizada: cian eléctrico como color de interacción, naranja Defalt
