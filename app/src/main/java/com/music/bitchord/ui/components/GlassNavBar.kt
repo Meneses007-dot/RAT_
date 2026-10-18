@@ -108,7 +108,9 @@ fun GlassNavBar(
     // lambda, which the tab bar sees as a changed argument and recomposes on.
     val pillShape = remember { RoundedCornerShape(percent = 50) }
     val contentColor = glassContentColor()
-    val selectedColor = contentColor
+    // DEDSEC // DEFALT: la pestaña encendida va en el acento (cian en oscuro,
+    // azul royal en claro) en vez de en la misma tinta que las demás.
+    val selectedColor = defaltSelectedColor()
     val unselectedColor = contentColor.copy(alpha = 0.65f)
     val haptics = rememberHaptics()
 
@@ -126,7 +128,11 @@ fun GlassNavBar(
 
     // A factory, not a value — see the note in FloatingTabBar's header. Each of
     // the three surfaces gets its own glass modifier and so its own shape cache.
-    val glassSurface: @Composable () -> Modifier = { Modifier.liquidGlass(shape = pillShape) }
+    // DEDSEC // DEFALT: cada superficie lleva, encima del cristal, el filo cian
+    // de consola (ver [defaltRim]).
+    val glassSurface: @Composable () -> Modifier = {
+        Modifier.liquidGlass(shape = pillShape).defaltRim(pillShape)
+    }
 
     FloatingTabBar(
         selectedTabKey = selectedIndex,
@@ -182,7 +188,8 @@ fun GlassNavBar(
         colors = FloatingTabBarDefaults.colors(
             backgroundColor = Color.Transparent,
             accessoryBackgroundColor = Color.Transparent,
-            indicatorColor = glassIndicatorColor().copy(alpha = 0.5f),
+            // DEDSEC // DEFALT: el indicador de la pestaña activa, en el acento.
+            indicatorColor = defaltSelectColor(),
         ),
         // Flat, because the glass is not. Every surface here already draws its
         // own [Shadow.Default] as part of the backdrop pass, and the library's
@@ -303,6 +310,9 @@ private fun GlassNowPlaying(
     val artSize = if (isInline) 32.dp else 40.dp
     val glyphSlot = if (isInline) 32.dp else 40.dp
     val glyphSize = if (isInline) 24.dp else 32.dp
+    // Una sola forma para el recorte de la carátula y para su filo, para que no
+    // puedan discrepar.
+    val artShape = RoundedCornerShape(if (isInline) 6.dp else 8.dp)
 
     Box(
         // Inline, the accessory is stretched to the row's height by the tab bar
@@ -360,8 +370,10 @@ private fun GlassNowPlaying(
                     // Whichever of the two densities is on screen is the one
                     // the player flies to: only one is composed at rest.
                     .playerDockArt(dock, if (isInline) 6.dp else 8.dp)
-                    .clip(RoundedCornerShape(if (isInline) 6.dp else 8.dp))
-                    .background(MaterialTheme.colorScheme.surfaceVariant),
+                    .clip(artShape)
+                    .background(MaterialTheme.colorScheme.surfaceVariant)
+                    // DEDSEC // DEFALT: la carátula, enmarcada en el filo.
+                    .defaltRim(artShape),
             )
             Spacer(Modifier.width(if (isInline) 8.dp else 10.dp))
             if (isInline) {
@@ -388,6 +400,18 @@ private fun GlassNowPlaying(
                 )
             } else {
                 Column(Modifier.weight(1f)) {
+                    // DEDSEC // DEFALT: la línea de sistema del reproductor —
+                    // ecualizador y rótulo. Solo en la fila ancha: en la
+                    // estrecha el título es lo que tiene que sobrevivir.
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        DefaltEq(
+                            isPlaying = isPlaying,
+                            color = defaltAccentColor(),
+                            height = 9.dp,
+                        )
+                        Spacer(Modifier.width(6.dp))
+                        DefaltStreamTag(color = defaltAccentColor())
+                    }
                     ExplicitSongTitle(
                         song = song,
                         style = MaterialTheme.typography.titleMedium,

@@ -394,7 +394,9 @@ fun MiniPlayer(
                     )
                 },
             )
-            .border(0.5.dp, Color.White.copy(alpha = 0.10f), shape)
+            // DEDSEC // DEFALT: el filo de consola sustituye al borde blanco del
+            // material (mismo grosor, en el acento).
+            .defaltRim(shape)
             // Deliberately silent: the whole bar is the target, so it catches
             // stray taps meant for the page behind it, and the sheet rising is
             // its own confirmation. The glyphs on it still buzz.
@@ -417,6 +419,8 @@ fun MiniPlayer(
                     .playerDockArt(dock, ART_CORNER)
                     .clip(RoundedCornerShape(ART_CORNER))
                     .thumbnailBorder(RoundedCornerShape(ART_CORNER))
+                    // DEDSEC // DEFALT: la carátula, enmarcada en el filo.
+                    .defaltRim(RoundedCornerShape(ART_CORNER))
                     .background(MaterialTheme.colorScheme.surfaceVariant),
             )
             Spacer(Modifier.width(10.dp))
@@ -426,13 +430,27 @@ fun MiniPlayer(
                     style = MaterialTheme.typography.titleMedium,
                     color = MaterialTheme.colorScheme.onBackground,
                 )
-                Text(
-                    text = song.artist,
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis,
-                )
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    // DEDSEC // DEFALT: mientras suena, la línea del artista
+                    // lleva delante el ecualizador. En pausa no ocupa sitio ni
+                    // miente: la fila vuelve a ser la del artista a secas.
+                    if (isPlaying) {
+                        DefaltEq(
+                            isPlaying = true,
+                            color = defaltAccentColor(),
+                            height = 9.dp,
+                        )
+                        Spacer(Modifier.width(6.dp))
+                    }
+                    Text(
+                        text = song.artist,
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
+                        modifier = Modifier.weight(1f),
+                    )
+                }
             }
             if (isLoading) {
                 Box(Modifier.size(GLYPH_SLOT), contentAlignment = Alignment.Center) {
