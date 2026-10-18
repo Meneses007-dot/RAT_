@@ -62,6 +62,7 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
@@ -78,7 +79,6 @@ import com.music.bitchord.ui.icons.BitChordIcons
 import com.music.bitchord.ui.player.MeshGradientBackground
 import com.music.bitchord.ui.player.MESH_CYCLE_MILLIS
 import com.music.bitchord.ui.player.MeshPalette
-import com.music.bitchord.ui.player.WelcomeMeshPalettes
 import com.music.bitchord.ui.player.cyclingMeshPalette
 
 /**
@@ -116,7 +116,7 @@ fun OnboardingScreen(
 
     // The mesh never settles on one palette: each crossfade is as long as the
     // hold, so one runs straight into the next.
-    val palette = cyclingMeshPalette(if (page == PAGE_NAME) WelcomeMeshPalettes else ConnectPalettes)
+    val palette = cyclingMeshPalette(if (page == PAGE_NAME) DedsecNamePalettes else DefaltConnectPalettes)
 
     Box(
         modifier
@@ -134,16 +134,17 @@ fun OnboardingScreen(
             driftMillis = 6_000,
             colorFadeMillis = MESH_CYCLE_MILLIS,
         )
-        // The mesh carries its own light scrim for a player's controls; two
-        // full-width buttons and a paragraph want the foot of it a shade deeper.
+        // El mesh trae su propio velo; aquí lo hundimos más hacia el negro de
+        // DEDSEC (terminal oscuro con brillo de fondo), y aún más en el pie,
+        // donde viven el párrafo y los botones.
         Box(
             Modifier
                 .fillMaxSize()
                 .background(
                     Brush.verticalGradient(
-                        0f to Color.Black.copy(alpha = 0.05f),
-                        0.55f to Color.Transparent,
-                        1f to Color.Black.copy(alpha = 0.45f),
+                        0f to Color.Black.copy(alpha = 0.42f),
+                        0.55f to Color.Black.copy(alpha = 0.30f),
+                        1f to Color.Black.copy(alpha = 0.62f),
                     ),
                 ),
         )
@@ -227,6 +228,7 @@ private fun ColumnScope.NamePage(
         }
     }
     Spacer(Modifier.height(24.dp))
+    TerminalLabel(text = "DEDSEC_NETWORK // INIT")
     Title(stringResource(R.string.onboarding_title))
 
     Spacer(Modifier.weight(1f))
@@ -235,7 +237,7 @@ private fun ColumnScope.NamePage(
         text = stringResource(R.string.onboarding_name_prompt),
         style = MaterialTheme.typography.titleMedium,
         fontSize = 17.sp,
-        color = Color.White.copy(alpha = 0.78f),
+        color = Ivory.copy(alpha = 0.78f),
         modifier = Modifier.padding(start = 4.dp),
     )
     Spacer(Modifier.height(12.dp))
@@ -244,7 +246,7 @@ private fun ColumnScope.NamePage(
     Text(
         text = stringResource(R.string.onboarding_name_footer),
         style = MaterialTheme.typography.bodyMedium,
-        color = Color.White.copy(alpha = 0.55f),
+        color = Ivory.copy(alpha = 0.55f),
         modifier = Modifier.padding(horizontal = 4.dp),
     )
     Spacer(Modifier.height(28.dp))
@@ -266,6 +268,7 @@ private fun ColumnScope.ConnectPage(
     Spacer(Modifier.height(16.dp))
     BackButton(onBack)
     Spacer(Modifier.height(20.dp))
+    TerminalLabel(text = "DEFALT // TRACE_ACTIVE", color = DefaltOrange)
     Title(stringResource(R.string.onboarding_connect_title))
     Spacer(Modifier.height(14.dp))
     Text(
@@ -273,7 +276,7 @@ private fun ColumnScope.ConnectPage(
         style = MaterialTheme.typography.bodyLarge,
         fontSize = 17.sp,
         lineHeight = 23.sp,
-        color = Color.White.copy(alpha = 0.72f),
+        color = Ivory.copy(alpha = 0.72f),
     )
 
     Spacer(Modifier.weight(1f))
@@ -299,6 +302,23 @@ private fun ColumnScope.ConnectPage(
     Spacer(Modifier.height(16.dp))
 }
 
+/**
+ * Etiqueta decorativa estilo terminal. Es puro adorno: no implica ninguna
+ * función de la app (sección 5 del brief). Monoespaciada, con prompt `>`.
+ */
+@Composable
+private fun TerminalLabel(text: String, color: Color = DedsecCyan) {
+    Text(
+        text = "> $text",
+        color = color,
+        fontFamily = FontFamily.Monospace,
+        fontSize = 12.sp,
+        letterSpacing = 2.sp,
+        maxLines = 1,
+        modifier = Modifier.padding(bottom = 10.dp),
+    )
+}
+
 /** Replay's heading, scaled up: the one line each page exists to say. */
 @Composable
 private fun Title(text: String) {
@@ -309,7 +329,7 @@ private fun Title(text: String) {
             lineHeight = 44.sp,
             letterSpacing = (-1.2).sp,
         ),
-        color = Color.White,
+        color = Ivory,
     )
 }
 
@@ -323,14 +343,14 @@ private fun NameField(value: String, onValueChange: (String) -> Unit, onDone: ()
         fontSize = 26.sp,
         lineHeight = 30.sp,
         letterSpacing = (-0.6).sp,
-        color = Color.White,
+        color = Ivory,
     )
     Box(
         Modifier
             .fillMaxWidth()
             .height(64.dp)
             .clip(CircleShape)
-            .background(Color.White.copy(alpha = 0.14f))
+            .background(Color(0xFF080B10).copy(alpha = 0.45f))
             .padding(horizontal = 24.dp),
         contentAlignment = Alignment.CenterStart,
     ) {
@@ -338,7 +358,7 @@ private fun NameField(value: String, onValueChange: (String) -> Unit, onDone: ()
             Text(
                 text = stringResource(R.string.onboarding_name_hint),
                 style = style,
-                color = Color.White.copy(alpha = 0.38f),
+                color = DedsecCyan.copy(alpha = 0.55f),
                 maxLines = 1,
             )
         }
@@ -347,7 +367,7 @@ private fun NameField(value: String, onValueChange: (String) -> Unit, onDone: ()
             onValueChange = onValueChange,
             singleLine = true,
             textStyle = style,
-            cursorBrush = SolidColor(Color.White),
+            cursorBrush = SolidColor(DedsecCyan),
             keyboardOptions = KeyboardOptions(
                 capitalization = KeyboardCapitalization.Words,
                 autoCorrectEnabled = false,
@@ -386,7 +406,7 @@ private fun PillButton(
                 this.alpha = alpha
             }
             .clip(CircleShape)
-            .background(if (primary) Color.White else Color.White.copy(alpha = 0.16f))
+            .background(if (primary) DedsecCyan else DedsecCyan.copy(alpha = 0.14f))
             .clickable(
                 interactionSource = interaction,
                 indication = null,
@@ -405,7 +425,7 @@ private fun PillButton(
             style = MaterialTheme.typography.titleMedium,
             fontSize = 17.sp,
             fontWeight = FontWeight.W700,
-            color = if (primary) Color.Black else Color.White,
+            color = if (primary) Color(0xFF080B10) else DedsecCyan,
             textAlign = TextAlign.Center,
             maxLines = 1,
         )
@@ -418,14 +438,14 @@ private fun BackButton(onClick: () -> Unit) {
         Modifier
             .size(40.dp)
             .clip(CircleShape)
-            .background(Color.White.copy(alpha = 0.16f))
+            .background(DedsecCyan.copy(alpha = 0.18f))
             .clickable(onClick = onClick),
         contentAlignment = Alignment.Center,
     ) {
         Icon(
             imageVector = BitChordIcons.ChevronRight,
             contentDescription = stringResource(R.string.onboarding_back),
-            tint = Color.White,
+            tint = DedsecCyan,
             modifier = Modifier
                 .size(18.dp)
                 .graphicsLayer { scaleX = -1f },
@@ -439,10 +459,21 @@ private const val PAGE_CONNECT = 1
 /** Long enough for a full name; the party server keeps the first 80. */
 private const val NAME_LIMIT = 40
 
-/** The account page keeps leaning into YouTube's red while it moves. */
-private val ConnectPalettes = listOf(
-    MeshPalette(listOf(Color(0xFFFF1E3C), Color(0xFFC2185B), Color(0xFFFF8F3D), Color(0xFF4A1C8C))),
-    MeshPalette(listOf(Color(0xFFE53935), Color(0xFFFF6E40), Color(0xFFAD1457), Color(0xFF311B92))),
-    MeshPalette(listOf(Color(0xFFFF3D00), Color(0xFFD81B60), Color(0xFF8E24AA), Color(0xFFB71C1C))),
-    MeshPalette(listOf(Color(0xFFF50057), Color(0xFFFF9100), Color(0xFFC51162), Color(0xFF4527A0))),
+// ---- DEDSEC // DEFALT — paleta del onboarding ----
+private val DedsecCyan = Color(0xFF00E5FF)
+private val DefaltOrange = Color(0xFFFF4D2E)
+private val Ivory = Color(0xFFF2F5F7)
+
+/** DedSec: terminal oscuro con un foco de cian (página del nombre). */
+private val DedsecNamePalettes = listOf(
+    MeshPalette(listOf(Color(0xFF007A8C), Color(0xFF011A21), Color(0xFF04121A), Color(0xFF00303A))),
+    MeshPalette(listOf(Color(0xFF00303A), Color(0xFF016B7A), Color(0xFF050D12), Color(0xFF012028))),
+    MeshPalette(listOf(Color(0xFF012028), Color(0xFF0090A8), Color(0xFF030A0F), Color(0xFF002830))),
+)
+
+/** Defalt: interferencia naranja sobre un fondo oscuro (página de conexión). */
+private val DefaltConnectPalettes = listOf(
+    MeshPalette(listOf(Color(0xFFC23A15), Color(0xFF04121A), Color(0xFF1E0808), Color(0xFF01303A))),
+    MeshPalette(listOf(Color(0xFFD14A10), Color(0xFF012028), Color(0xFF120505), Color(0xFF005F6E))),
+    MeshPalette(listOf(Color(0xFFE05A00), Color(0xFF0A0A12), Color(0xFF012830), Color(0xFF5A1508))),
 )
