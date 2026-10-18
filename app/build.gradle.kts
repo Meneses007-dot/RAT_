@@ -62,7 +62,7 @@ android {
     compileSdk = 37
 
     defaultConfig {
-        applicationId = "com.music.bitchord"
+        applicationId = "com.ratplayer.app"
         // 26 keeps reach wide; real-time blur (RenderEffect) kicks in on API 31+,
         // Haze falls back to a translucent scrim below that.
         minSdk = 26
@@ -115,8 +115,8 @@ android {
     productFlavors {
         create("dev") {
             dimension = "env"
-            applicationId = "com.dev.bitchord"
-            resValue("string", "app_name", "BitChord Dev")
+            applicationId = "com.dev.ratplayer"
+            resValue("string", "app_name", "RAT // PLAYER")
         }
         create("prod") {
             dimension = "env"

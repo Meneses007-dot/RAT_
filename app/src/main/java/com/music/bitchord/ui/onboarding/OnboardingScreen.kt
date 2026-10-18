@@ -223,7 +223,7 @@ private fun ColumnScope.NamePage(
             Image(
                 painter = painterResource(Res.drawable.ic_logo),
                 contentDescription = null,
-                modifier = Modifier.size(width = 46.dp, height = 30.dp),
+                modifier = Modifier.size(width = 46.dp, height = 53.dp),
             )
         }
     }
@@ -268,7 +268,7 @@ private fun ColumnScope.ConnectPage(
     Spacer(Modifier.height(16.dp))
     BackButton(onBack)
     Spacer(Modifier.height(20.dp))
-    TerminalLabel(text = "DEFALT // TRACE_ACTIVE", color = DefaltOrange)
+    TerminalLabel(text = "DEFALT // TRACE_ACTIVE", color = DefaltRed)
     Title(stringResource(R.string.onboarding_connect_title))
     Spacer(Modifier.height(14.dp))
     Text(
@@ -459,9 +459,10 @@ private const val PAGE_CONNECT = 1
 /** Long enough for a full name; the party server keeps the first 80. */
 private const val NAME_LIMIT = 40
 
-// ---- DEDSEC // DEFALT — paleta del onboarding ----
+// ---- RAT // PLAYER — paleta del onboarding ----
 private val DedsecCyan = Color(0xFF00E5FF)
-private val DefaltOrange = Color(0xFFFF4D2E)
+private val DefaltBlue = Color(0xFF00229E)
+private val DefaltRed = Color(0xFFDC0736)
 private val Ivory = Color(0xFFF2F5F7)
 
 /** DedSec: terminal oscuro con un foco de cian (página del nombre). */
@@ -471,9 +472,9 @@ private val DedsecNamePalettes = listOf(
     MeshPalette(listOf(Color(0xFF012028), Color(0xFF0090A8), Color(0xFF030A0F), Color(0xFF002830))),
 )
 
-/** Defalt: interferencia naranja sobre un fondo oscuro (página de conexión). */
+/** Defalt: azul royal sobre negro, con la interferencia de la máscara (página de conexión). */
 private val DefaltConnectPalettes = listOf(
-    MeshPalette(listOf(Color(0xFFC23A15), Color(0xFF04121A), Color(0xFF1E0808), Color(0xFF01303A))),
-    MeshPalette(listOf(Color(0xFFD14A10), Color(0xFF012028), Color(0xFF120505), Color(0xFF005F6E))),
-    MeshPalette(listOf(Color(0xFFE05A00), Color(0xFF0A0A12), Color(0xFF012830), Color(0xFF5A1508))),
+    MeshPalette(listOf(Color(0xFF00229E), Color(0xFF04070F), Color(0xFF02284A), Color(0xFF000B2E))),
+    MeshPalette(listOf(Color(0xFF012FDC), Color(0xFF04070F), Color(0xFF00154A), Color(0xFF001030))),
+    MeshPalette(listOf(Color(0xFF0A2C8A), Color(0xFF02050A), Color(0xFF01308F), Color(0xFF00163F))),
 )

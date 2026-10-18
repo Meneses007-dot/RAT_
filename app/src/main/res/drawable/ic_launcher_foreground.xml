@@ -1,15 +1,66 @@
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
     android:width="108dp"
     android:height="108dp"
-    android:viewportWidth="1024"
-    android:viewportHeight="1024">
-    <group
-        android:pivotX="512"
-        android:pivotY="512"
-        android:scaleX="0.66"
-        android:scaleY="0.66">
-        <path
-            android:fillColor="#FFFFFFFF"
-            android:pathData="M142.673,587.458C156.137,564.68 185.634,557.171 208.339,570.696H208.363C373.538,668.803 646.056,677.824 803.759,629.96C829.083,622.28 855.863,636.576 863.537,661.9C871.211,687.236 856.927,713.999 831.585,721.698C650.553,776.654 349.61,766.036 159.441,653.143C136.614,639.624 129.148,610.206 142.673,587.458ZM213.749,425.386C225.316,406.567 249.917,400.631 268.705,412.198C406.463,496.89 616.454,521.412 779.396,471.951C800.527,465.569 822.846,477.478 829.26,498.574C835.624,519.705 823.709,541.982 802.614,548.408C616.491,604.882 385.105,577.526 226.906,480.312C208.118,468.745 202.183,444.15 213.749,425.386ZM276.478,285.823C285.657,270.768 305.363,265.994 320.418,275.235C440.747,348.734 592.225,365.381 770.619,324.622C787.81,320.706 804.946,331.476 808.862,348.673C812.797,365.87 802.069,383.005 784.836,386.922C589.612,431.542 422.154,412.32 287.064,329.763C272.01,320.522 267.237,300.877 276.478,285.823Z"/>
-    </group>
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!--
+      RAT // PLAYER - emblema de la rata (Defalt). Recreado en vector a partir de
+      las referencias de DEFALT_REFERENCES/: 9 paneles azules trazados y las 4
+      lineas de la nariz medidas fila a fila. Relleno con degradado azul -> negro
+      (como el original) y, encima, las lineas blancas del emblema.
+    -->
+    <path android:pathData="M34.09,23 L35.17,23.08 L47.93,26.73 L49.73,35.45 L45.37,41.51 L63.1,41.51 L58.59,35.21 L60.38,26.81 L73.37,23.16 L73.99,23.31 L80.84,36.31 L79.6,38.4 L67.07,44.47 L70.19,52.95 L64.03,56.99 L54.16,85 L53.69,84.38 L43.97,56.76 L38.06,53.11 L41.01,44.63 L28.48,38.56 L27.16,36.69 L27.55,35.37 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:startX="54"
+                android:startY="21"
+                android:endX="54"
+                android:endY="87"
+                android:type="linear">
+                <item android:color="#FF0037E6" android:offset="0.0" />
+                <item android:color="#FF04080F" android:offset="1.0" />
+            </gradient>
+        </aapt:attr>
+    </path>
+    <!-- Lineas internas del emblema (blanco). -->
+    <path android:pathData="M50.58,41.9 L61.86,41.9 L58.9,59.1 L57.5,65.94 L57.04,66.25 L50.73,66.25 L45.91,42.14 Z"
+        android:fillColor="#00000000" android:strokeColor="#FFFFFFFF"
+        android:strokeWidth="0.62" android:strokeLineJoin="round" />
+    <path android:pathData="M44.51,26.11 L47.54,26.97 L49.26,34.82 L44.51,41.75 L42.64,41.83 L27.94,36.61 L31.29,34.2 L44.51,26.5 Z"
+        android:fillColor="#00000000" android:strokeColor="#FFFFFFFF"
+        android:strokeWidth="0.62" android:strokeLineJoin="round" />
+    <path android:pathData="M62.17,26.66 L79.75,36.38 L65.59,41.44 L63.65,41.44 L59.06,35.14 L60.77,27.04 Z"
+        android:fillColor="#00000000" android:strokeColor="#FFFFFFFF"
+        android:strokeWidth="0.62" android:strokeLineJoin="round" />
+    <path android:pathData="M62.33,41.9 L65.28,42.06 L66.76,44.78 L69.64,52.64 L59.29,59.25 Z"
+        android:fillColor="#00000000" android:strokeColor="#FFFFFFFF"
+        android:strokeWidth="0.62" android:strokeLineJoin="round" />
+    <path android:pathData="M44.74,42.21 L45.6,42.45 L48.95,59.25 L38.68,52.79 L42.64,42.37 Z"
+        android:fillColor="#00000000" android:strokeColor="#FFFFFFFF"
+        android:strokeWidth="0.62" android:strokeLineJoin="round" />
+    <path android:pathData="M44.59,57.23 L49.1,59.95 L50.27,65.86 L49.96,66.49 L47.78,66.33 Z"
+        android:fillColor="#00000000" android:strokeColor="#FFFFFFFF"
+        android:strokeWidth="0.62" android:strokeLineJoin="round" />
+    <path android:pathData="M63.34,57.38 L60.3,66.25 L58.2,66.1 L57.81,66.56 L59.06,60.03 Z"
+        android:fillColor="#00000000" android:strokeColor="#FFFFFFFF"
+        android:strokeWidth="0.62" android:strokeLineJoin="round" />
+    <path android:pathData="M29.19,37.55 L42.18,42.29 L41.09,44.16 L28.87,38.25 Z"
+        android:fillColor="#00000000" android:strokeColor="#FFFFFFFF"
+        android:strokeWidth="0.62" android:strokeLineJoin="round" />
+    <path android:pathData="M76.09,38.25 L76.79,39.26 L66.99,44 L65.75,41.9 Z"
+        android:fillColor="#00000000" android:strokeColor="#FFFFFFFF"
+        android:strokeWidth="0.62" android:strokeLineJoin="round" />
+    <path android:pathData="M47.47,66.09 L54.08,85"
+        android:fillColor="#00000000" android:strokeColor="#FFFFFFFF"
+        android:strokeWidth="0.62" android:strokeLineJoin="round" />
+    <path android:pathData="M50.5,66.09 L54.08,85"
+        android:fillColor="#00000000" android:strokeColor="#FFFFFFFF"
+        android:strokeWidth="0.62" android:strokeLineJoin="round" />
+    <path android:pathData="M57.65,66.09 L54.08,85"
+        android:fillColor="#00000000" android:strokeColor="#FFFFFFFF"
+        android:strokeWidth="0.62" android:strokeLineJoin="round" />
+    <path android:pathData="M60.61,66.09 L54.08,85"
+        android:fillColor="#00000000" android:strokeColor="#FFFFFFFF"
+        android:strokeWidth="0.62" android:strokeLineJoin="round" />
 </vector>
