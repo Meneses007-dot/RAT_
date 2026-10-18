@@ -37,10 +37,10 @@
     <string name="playlists">Playlists</string>
     <string name="new_playlist">New playlist</string>
     <string name="saved_to_youtube_music">Saved to YouTube Music</string>
-    <string name="sign_in">Sign in</string>
-    <string name="sign_out">Sign out</string>
-    <string name="signed_in">Signed in</string>
-    <string name="not_signed_in">Not signed in</string>
+    <string name="sign_in">Open connection</string>
+    <string name="sign_out">Close connection</string>
+    <string name="signed_in">Connection open</string>
+    <string name="not_signed_in">No connection</string>
     <string name="retry">Retry</string>
     <string name="shuffle">Shuffle</string>
     <string name="more">More</string>
@@ -67,7 +67,7 @@
     <string name="remove_from_library">Remove from library</string>
     <string name="subscribe">Subscribe</string>
     <string name="unsubscribe">Unsubscribe</string>
-    <string name="download_all">Download all</string>
+    <string name="download_all">Grab it all</string>
     <string name="top_songs">Top songs</string>
     <string name="suggested">Suggested</string>
     <string name="song_count">%1$d song</string>
@@ -91,7 +91,7 @@
     <string name="artists">Artists</string>
     <string name="albums">Albums</string>
     <string name="no_album_metadata">None of these tracks say what album they are from.</string>
-    <string name="search_empty">Search millions of songs on YouTube Music.</string>
+    <string name="search_empty">Millions of songs on YouTube Music. Pull the thread.</string>
     <string name="recent_searches">Recent searches</string>
     <string name="clear">Clear</string>
     <string name="search_hint">Artists, Songs, Lyrics and More</string>
@@ -154,7 +154,7 @@
     <string name="open_releases_page">Open Releases Page</string>
     <string name="whats_new">What’s new</string>
     <string name="log_copied">Log copied · %1$d lines</string>
-    <string name="sign_in_youtube_music">Sign in to YouTube Music</string>
+    <string name="sign_in_youtube_music">Connect the party to YT Music</string>
     <string name="choose_a_channel">Choose a channel</string>
     <string name="channel_session_unavailable">No session on this page yet — open YouTube Music first</string>
     <string name="channel_switch_instructions">Switch with the avatar, then tap Use this channel</string>
@@ -179,7 +179,7 @@
     <string name="widget_next">Next</string>
     <string name="widget_previous">Previous</string>
     <string name="widget_artwork">Album art</string>
-    <string name="widget_nothing_played">Nothing played yet</string>
+    <string name="widget_nothing_played">Not a bit played yet</string>
     <string name="widget_open_bitchord">Open RAT</string>
     <string name="widget_preview_title">Song title</string>
     <string name="widget_preview_artist">Artist</string>
@@ -497,7 +497,7 @@
     <string name="wifi_only_download_refusal">Downloads are limited to Wi-Fi. Turn that off in Settings to use mobile data.</string>
     <string name="pinned_playlist_limit">Only %1$d playlists can be pinned</string>
     <string name="downloaded_playlist">Downloaded playlist</string>
-    <string name="library_sign_in_description">Sign in to your Google account to see your liked songs, playlists, and YouTube Music history.</string>
+    <string name="library_sign_in_description">Open your Google account and your songs, playlists and YouTube Music history show up.</string>
     <string name="downloads_progress">Downloads · %1$d%%</string>
     <string name="downloads_finished">Downloads · finished</string>
     <string name="downloading_progress">Downloading · %1$d%%</string>
@@ -514,7 +514,7 @@
     <string name="history_empty">Nothing played yet</string>
     <string name="no_results">Nothing. Not a byte.</string>
     <string name="downloaded_playlist_empty">Nothing from this playlist remains on this device</string>
-    <string name="no_downloaded_tracks">No downloaded tracks</string>
+    <string name="no_downloaded_tracks">Empty for now. 0 bits downloaded.</string>
     <string name="no_local_audio_found">No audio files found on this device</string>
     <string name="no_internet_connection">No internet connection</string>
     <string name="youtube_request_rejected">YouTube Music rejected the request. Try signing in again.</string>
@@ -1142,7 +1142,7 @@
     <string name="song_cache_unlimited_subtitle">No limit. Cached audio can keep growing until your storage is full.</string>
     <string name="clear_song_cache_title">Clear song cache?</string>
     <string name="clear_song_cache_warning">All cached songs will be deleted and the Cached songs folder will be emptied. They will stream again the next time you play them.</string>
-    <string name="import_spotify">Import Spotify</string>
+    <string name="import_spotify">Loot a Spotify playlist</string>
     <string name="import_spotify_subtitle">From a playlist link</string>
     <string name="spotify_import_title">Import Spotify playlist</string>
     <string name="spotify_import_description">Paste a public playlist link. Songs are matched on YouTube Music.</string>
@@ -1165,10 +1165,10 @@
     <string name="onboarding_name_hint">Your name</string>
     <string name="onboarding_name_footer">Friends see this when you Listen Together. You can change it later in Settings.</string>
     <string name="onboarding_next">Next</string>
-    <string name="onboarding_connect_title">Connect your YouTube account</string>
+    <string name="onboarding_connect_title">Plug YouTube into the party</string>
     <string name="onboarding_connect_body">Your library, your playlists, your mixes. A borrowed server and a party.</string>
-    <string name="onboarding_sign_in_google">Sign in with Google</string>
-    <string name="onboarding_skip_sign_in">Skip sign in</string>
+    <string name="onboarding_sign_in_google">Plug in your Google account</string>
+    <string name="onboarding_skip_sign_in">Go in without an account</string>
     <string name="onboarding_back">Back</string>
     <!-- Settings: RAT for Wear OS -->
     <string name="wear_os_section">RAT for Wear OS</string>
