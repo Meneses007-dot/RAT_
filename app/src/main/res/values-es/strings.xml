@@ -343,10 +343,10 @@
     <string name="nothing_downloading">No hay descargas activas</string>
     <string name="nothing_to_explore">No hay nada para explorar ahora</string>
     <string name="no_youtube_music_results">No hay resultados de YouTube Music</string>
-    <string name="library_empty">Tu biblioteca todavía está vacía</string>
+    <string name="library_empty">Aquí todavía no hay nada. Solo polvo y bits.</string>
     <string name="history_sign_in_required">Inicia sesión para ver lo que has escuchado</string>
     <string name="history_empty">Todavía no has reproducido nada</string>
-    <string name="no_results">No hay resultados</string>
+    <string name="no_results">Nada. Ni un byte.</string>
     <string name="downloaded_playlist_empty">Ya no queda ninguna canción de esta playlist en el dispositivo</string>
     <string name="no_local_audio_found">No se encontraron archivos de audio en este dispositivo</string>
     <string name="no_internet_connection">Sin conexión a Internet</string>
@@ -946,7 +946,7 @@
 
     <string name="source_skipped_by_quality">No usado en %1$s · la calidad está establecida en %2$s</string>
 
-    <string name="source_unrecognised">RAT no pudo reconocer ese enlace</string>
+    <string name="source_unrecognised">Ese enlace no me dice nada.</string>
 
     <string name="revert_to_original">Revertir al original</string>
 
@@ -1288,7 +1288,7 @@
     <string name="onboarding_name_footer">Tus amigos lo ven cuando usas Escuchar juntos. Puedes cambiarlo más tarde en Ajustes.</string>
     <string name="onboarding_next">Siguiente</string>
     <string name="onboarding_connect_title">Conecta tu cuenta de YouTube</string>
-    <string name="onboarding_connect_body">Trae contigo tu biblioteca, listas y mixes, y empieza una sesión de Escuchar juntos con tus amigos.</string>
+    <string name="onboarding_connect_body">Tu biblioteca, tus listas, tus mixes. Un servidor prestado y una fiesta.</string>
     <string name="onboarding_sign_in_google">Iniciar sesión con Google</string>
     <string name="onboarding_skip_sign_in">Omitir inicio de sesión</string>
     <string name="onboarding_back">Atrás</string>

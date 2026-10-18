@@ -163,7 +163,7 @@
     <string name="personalized_recommendations">Get personalized recommendations for you</string>
     <string name="play_next">Play next</string>
     <string name="queue">Queue</string>
-    <string name="source_unrecognised">RAT could not tell what that link is</string>
+    <string name="source_unrecognised">That link tells me nothing.</string>
     <string name="source_already_added">Already added as %1$s</string>
     <string name="source_setup_required">Tap to finish setting up</string>
     <string name="source_skipped_by_quality">Not used on %1$s · quality is set to %2$s</string>
@@ -509,10 +509,10 @@
     <string name="nothing_downloading">Nothing downloading</string>
     <string name="nothing_to_explore">Nothing to explore right now</string>
     <string name="no_youtube_music_results">No results from YouTube Music</string>
-    <string name="library_empty">Nothing in your library yet</string>
+    <string name="library_empty">Nothing here yet. Just dust and bits.</string>
     <string name="history_sign_in_required">Sign in to see what you have been listening to</string>
     <string name="history_empty">Nothing played yet</string>
-    <string name="no_results">No results</string>
+    <string name="no_results">Nothing. Not a byte.</string>
     <string name="downloaded_playlist_empty">Nothing from this playlist remains on this device</string>
     <string name="no_local_audio_found">No audio files found on this device</string>
     <string name="no_internet_connection">No internet connection</string>
@@ -1165,7 +1165,7 @@
     <string name="onboarding_name_footer">Friends see this when you Listen Together. You can change it later in Settings.</string>
     <string name="onboarding_next">Next</string>
     <string name="onboarding_connect_title">Connect your YouTube account</string>
-    <string name="onboarding_connect_body">Bring your library, playlists and mixes with you, and start a Listen Together party with friends.</string>
+    <string name="onboarding_connect_body">Your library, your playlists, your mixes. A borrowed server and a party.</string>
     <string name="onboarding_sign_in_google">Sign in with Google</string>
     <string name="onboarding_skip_sign_in">Skip sign in</string>
     <string name="onboarding_back">Back</string>
