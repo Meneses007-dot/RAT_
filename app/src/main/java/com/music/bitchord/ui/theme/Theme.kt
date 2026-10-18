@@ -22,16 +22,21 @@ import com.music.bitchord.R
 // spots (Replay's rank badge) that want that specific red regardless of theme.
 val AccentRed = Color(0xFFFA2D48)
 
+// DEDSEC // DEFALT — Custom Edition.
+// Paleta personalizada: cian eléctrico como color de interacción, naranja Defalt
+// para error/énfasis, y negros/grises técnicos para fondos y superficies.
+// Referencia del proyecto: PROGRESS.md / DEDSEC_DEFALT_BitChord_brief.md.
 private val DarkColors = darkColorScheme(
-    primary = Color.White,
-    onPrimary = Color.Black,
-    background = Color.Black,
-    onBackground = Color.White,
-    surface = Color(0xFF0D0D0F),
-    onSurface = Color.White,
-    surfaceVariant = Color(0xFF1C1C1E),
-    onSurfaceVariant = Color(0xFF8E8E93),
-    outline = Color(0xFF2C2C2E),
+    primary = Color(0xFF00E5FF),          // Cian eléctrico (botones, controles activos)
+    onPrimary = Color(0xFF080B10),        // Texto sobre cian (oscuro = contraste)
+    background = Color(0xFF080B10),       // Negro profundo (fondo principal)
+    onBackground = Color(0xFFFFFFFF),     // Texto principal
+    surface = Color(0xFF111820),          // Tarjetas y paneles
+    onSurface = Color(0xFFFFFFFF),        // Texto sobre tarjetas
+    surfaceVariant = Color(0xFF26323B),   // Separadores y bordes
+    onSurfaceVariant = Color(0xFFA9B6C5), // Gris tecnológico (texto secundario)
+    outline = Color(0xFF26323B),          // Divisiones
+    error = Color(0xFFFF4D2E),            // Naranja Defalt (alertas/énfasis)
 )
 
 private val LightColors = lightColorScheme(
