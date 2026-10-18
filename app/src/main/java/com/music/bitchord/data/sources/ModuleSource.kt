@@ -49,19 +49,19 @@ class ModuleSource(
 
     override suspend fun health(): SourceHealth = withContext(Dispatchers.IO) {
         if (config.baseUrl.isBlank()) {
-            return@withContext SourceHealth.Rejected("A module index URL is required")
+            return@withContext SourceHealth.Rejected("Hace falta una URL de índice de módulos")
         }
         try {
             val modules = manager.fetchIndex(config.baseUrl).getOrThrow()
             when {
                 modules.isEmpty() -> SourceHealth.Rejected(
-                    "The index answered but listed no modules — check the URL"
+                    "El índice respondió pero no listó ningún módulo: revisa la URL"
                 )
-                else -> SourceHealth.Ok("${modules.size} module${if (modules.size == 1) "" else "s"}")
+                else -> SourceHealth.Ok("${modules.size} ${if (modules.size == 1) "módulo" else "módulos"}")
             }
         } catch (e: Exception) {
             TrackLog.w(TAG, "module index fetch failed for ${config.displayName}: ${e.message}")
-            SourceHealth.Unreachable(e.message ?: "Could not reach the module index")
+            SourceHealth.Unreachable(e.message ?: "No se pudo conectar con el índice de módulos")
         }
     }
 

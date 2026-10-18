@@ -79,7 +79,7 @@ object SourceFormats {
         val url = rawUrl.trim().trimEnd('/')
         if (url.toHttpUrlOrNull() == null) {
             return@withContext Result.success(
-                DetectedFormat.Unsupported("That is not a web address RAT can open"),
+                DetectedFormat.Unsupported("Esa no es una dirección web que RAT pueda abrir"),
             )
         }
 
@@ -118,7 +118,7 @@ object SourceFormats {
         // Report what was actually found over the transport error from a URL
         // the user never typed.
         firstUnsupported?.let { return@withContext Result.success(it) }
-        Result.failure(lastFailure ?: AddonUnavailable("Nothing answered at that address"))
+        Result.failure(lastFailure ?: AddonUnavailable("No respondió nada en esa dirección"))
     }
 
     /**
@@ -131,11 +131,11 @@ object SourceFormats {
      */
     fun detect(body: String, url: String = ""): DetectedFormat {
         val root = runCatching { json.parseToJsonElement(body) }.getOrNull()
-            ?: return DetectedFormat.Unsupported("That address did not return JSON")
+            ?: return DetectedFormat.Unsupported("Esa dirección no devolvió JSON")
 
         val obj = root as? JsonObject
             ?: return DetectedFormat.Unsupported(
-                "That JSON is a list, and every format RAT reads is an object",
+                "Ese JSON es una lista, y todos los formatos que RAT lee son objetos",
             )
 
         // 1. A module index: JS plugins filed under "category:*" keys. First
@@ -145,7 +145,7 @@ object SourceFormats {
                 com.music.bitchord.data.sources.module.ModuleIndex.parseModules(json, body)
             }.getOrDefault(emptyList())
             return if (modules.isEmpty()) {
-                DetectedFormat.Unsupported("That module index listed no modules")
+                DetectedFormat.Unsupported("Ese índice de módulos no listó ningún módulo")
             } else {
                 DetectedFormat.ModuleIndex(modules.size, url)
             }
@@ -160,7 +160,7 @@ object SourceFormats {
         if (looksLikeManifest) {
             val manifest = runCatching { json.decodeFromJsonElement(AddonManifest.serializer(), obj) }
                 .getOrNull()
-                ?: return DetectedFormat.Unsupported("That looks like an addon manifest, but it could not be read")
+                ?: return DetectedFormat.Unsupported("Eso parece un manifiesto de complemento, pero no se pudo leer")
 
             // The one thing genuinely required. Everything this app does with
             // an addon starts by asking it for a track by name, so an addon
@@ -171,7 +171,7 @@ object SourceFormats {
             if (manifest.resources.isNotEmpty() && !manifest.declares("search")) {
                 val declared = manifest.resources.joinToString(", ")
                 return DetectedFormat.Unsupported(
-                    "This addon declares $declared — RAT needs search",
+                    "Este complemento declara $declared — RAT necesita «search»",
                 )
             }
             return DetectedFormat.Addon(manifest, AddonClient.normalizeBase(url))
@@ -185,12 +185,12 @@ object SourceFormats {
             .firstOrNull { it.value is JsonArray && (it.value as JsonArray).isNotEmpty() }?.key
         if (listKey != null) {
             return DetectedFormat.Unsupported(
-                "That JSON lists \"$listKey\", which is not a format RAT reads",
+                "Ese JSON lista \"$listKey\", que no es un formato que RAT lea",
             )
         }
 
         val keys = obj.keys.take(4).joinToString(", ").ifBlank { "nothing" }
-        return DetectedFormat.Unsupported("Unrecognised JSON — it holds $keys")
+        return DetectedFormat.Unsupported("JSON no reconocido: contiene $keys")
     }
 
     /**
@@ -210,7 +210,7 @@ object SourceFormats {
     private suspend fun fetch(url: String): Result<String> = runCatching {
         val request = Request.Builder().url(url)
             .header("Accept", "application/json")
-            .header("User-Agent", "BitChord/v${com.music.bitchord.BuildConfig.VERSION_NAME}")
+            .header("User-Agent", "RAT/v${com.music.bitchord.BuildConfig.VERSION_NAME}")
             .build()
         Http.client.newCall(request).execute().use { response ->
             if (!response.isSuccessful) {

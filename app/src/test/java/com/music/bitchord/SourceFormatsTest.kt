@@ -95,7 +95,7 @@ class SourceFormatsTest {
         val reason = reason(SourceFormats.detect(body))
 
         assertTrue(reason, reason.contains("stream, catalog"))
-        assertTrue(reason, reason.contains("needs search"))
+        assertTrue(reason, reason.contains("necesita «search»"))
     }
 
     /**
@@ -114,7 +114,7 @@ class SourceFormatsTest {
     @Test
     fun `a module index listing nothing is refused`() {
         val reason = reason(SourceFormats.detect("""{"category:music":[]}"""))
-        assertTrue(reason, reason.contains("listed no modules"))
+        assertTrue(reason, reason.contains("no listó ningún módulo"))
     }
 
     // ── Unrecognised ──────────────────────────────────────────────────────
@@ -122,7 +122,7 @@ class SourceFormatsTest {
     @Test
     fun `a page that is not JSON says so`() {
         val reason = reason(SourceFormats.detect("<!doctype html><html><body>Not found</body></html>"))
-        assertTrue(reason, reason.contains("did not return JSON"))
+        assertTrue(reason, reason.contains("no devolvió JSON"))
     }
 
     @Test
@@ -155,7 +155,7 @@ class SourceFormatsTest {
         val reason = reason(SourceFormats.detect(body, "https://host/registry.json"))
 
         assertTrue(reason, reason.contains("extensions"))
-        assertTrue(reason, reason.contains("not a format RAT reads"))
+        assertTrue(reason, reason.contains("no es un formato que RAT lea"))
     }
 
     @Test

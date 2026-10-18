@@ -42,6 +42,14 @@ object AppUpdateChecker {
 
     private const val CACHE_SUBDIR = "updates"
 
+    // RAT does not publish releases of its own. The endpoint below still points
+    // at the upstream BitChord repository, so polling it would only ever offer
+    // to install the *original* app over this one. Kept as a switch rather than
+    // deleted so the whole notice/download flow stays intact: flip it to true
+    // (and repoint LATEST_RELEASE_URL / BuildConfig.UPDATE_APK_PREFIX at RAT's
+    // own releases) if a release channel is ever set up.
+    private const val ENABLED = false
+
     private const val LATEST_RELEASE_URL =
         "https://api.github.com/repos/kushagrasinghx/BitChord/releases/latest"
 
@@ -66,6 +74,7 @@ object AppUpdateChecker {
     private var downloadCancelled = false
 
     suspend fun check() = withContext(Dispatchers.IO) {
+        if (!ENABLED) return@withContext
         runCatching {
             val request = Request.Builder().url(LATEST_RELEASE_URL).build()
             val body = Http.client.newCall(request).execute().use { response ->

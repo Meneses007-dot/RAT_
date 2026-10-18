@@ -70,10 +70,10 @@ enum class SourceKind(
      * anything the app fell back to.
      */
     ADDON(
-        label = "Addon",
-        detail = "An addon server you host or were given a link to. Searched and streamed over " +
-            "plain HTTP — no code is downloaded or run.",
-        labels = listOf("FLAC", "Lossless", "Hi-Res"),
+        label = "Complemento",
+        detail = "Un servidor de complementos que alojas tú o para el que te dieron un enlace. Se busca y se reproduce por " +
+            "HTTP simple: no se descarga ni se ejecuta código.",
+        labels = listOf("FLAC", "Sin pérdida", "Hi-Res"),
         needsServer = true,
         canServeLossless = true,
         // Literal, not [USER_ADDED]: an enum entry is constructed before
@@ -90,9 +90,9 @@ enum class SourceKind(
      * one — same protocol as [MODULE], served by the same [ModuleSource].
      */
     CUSTOM_MODULE(
-        label = "Custom module",
-        detail = "Your own compatible module index. Tried before the built-in one.",
-        labels = listOf("FLAC", "Lossless", "Hi-Res", "Plugins"),
+        label = "Módulo propio",
+        detail = "Tu propio índice de módulos compatible. Se prueba antes que el que trae la app.",
+        labels = listOf("FLAC", "Sin pérdida", "Hi-Res", "Plugins"),
         needsServer = true,
         canServeLossless = true,
         // Literal, not [USER_ADDED]: an enum entry is constructed before
@@ -118,10 +118,10 @@ enum class SourceKind(
      * which loses an entry whose kind it cannot resolve.
      */
     MODULE(
-        label = "Module source",
-        detail = "A URL to a compatible module index. Modules are JS plugins that " +
-            "can search and stream from services like Tidal, Qobuz, Apple Music and more.",
-        labels = listOf("FLAC", "Lossless", "Hi-Res", "Plugins"),
+        label = "Índice de módulos",
+        detail = "Una URL a un índice de módulos compatible. Los módulos son plugins JS que " +
+            "pueden buscar y reproducir desde servicios como Tidal, Qobuz, Apple Music y más.",
+        labels = listOf("FLAC", "Sin pérdida", "Hi-Res", "Plugins"),
         needsServer = true,
         canServeLossless = true,
         rank = 1,
@@ -129,8 +129,8 @@ enum class SourceKind(
 
     JIOSAAVN(
         label = "JioSaavn",
-        detail = "Optional JioSaavn streams up to 320kbps AAC/MP4. Catalogue matching can select the wrong song.",
-        labels = listOf("High Quality", "320kbps"),
+        detail = "Streams opcionales de JioSaavn hasta 320 kbps AAC/MP4. El emparejamiento de catálogo puede elegir la canción equivocada.",
+        labels = listOf("Alta calidad", "320kbps"),
         needsServer = false,
         canServeLossless = false,
         worthPrefetching = true,
@@ -145,9 +145,9 @@ enum class SourceKind(
      */
     YOUTUBE(
         label = "YouTube Music",
-        detail = "The full catalogue, at Opus up to about 171 kbps. Lossy — there is no " +
-            "lossless rendition to ask for.",
-        labels = listOf("Lossy", "Full catalogue", "Radio"),
+        detail = "El catálogo completo, en Opus hasta unos 171 kbps. Con pérdida: no hay " +
+            "ninguna versión sin pérdida que pedir.",
+        labels = listOf("Con pérdida", "Catálogo completo", "Radio"),
         needsServer = false,
         canServeLossless = false,
         rank = 3,

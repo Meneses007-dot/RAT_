@@ -133,7 +133,7 @@ class AddonSourceTest {
         // No search endpoint either, so the behavioural fallback cannot save it.
         val health = source().health()
         assertTrue("expected Rejected, got $health", health is SourceHealth.Rejected)
-        assertTrue((health as SourceHealth.Rejected).reason.contains("needs search"))
+        assertTrue((health as SourceHealth.Rejected).reason.contains("necesita «search»"))
     }
 
     /**
@@ -159,7 +159,7 @@ class AddonSourceTest {
         val health = source().health()
 
         assertTrue("expected Ok, got $health", health is SourceHealth.Ok)
-        assertEquals("No manifest · search works", (health as SourceHealth.Ok).detail)
+        assertEquals("Sin manifiesto · la búsqueda funciona", (health as SourceHealth.Ok).detail)
     }
 
     @Test
