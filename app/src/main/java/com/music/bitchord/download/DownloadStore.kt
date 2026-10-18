@@ -56,7 +56,7 @@ object DownloadStore {
     private const val TAG = "BitChord"
 
     /** The subfolder of Music that everything lands in. */
-    const val FOLDER = "BitChord"
+    const val FOLDER = "RAT"
 
     private val relativePath = "${Environment.DIRECTORY_MUSIC}/$FOLDER"
 
@@ -164,7 +164,7 @@ object DownloadStore {
             arrayOf(MediaStore.MediaColumns._ID),
             "${MediaStore.MediaColumns.DISPLAY_NAME} = ? AND " +
                 "${MediaStore.MediaColumns.RELATIVE_PATH} LIKE ?",
-            arrayOf(name, "%$FOLDER%"),
+            arrayOf(name, "%/$FOLDER/%"),
             null,
         )?.use { cursor ->
             if (!cursor.moveToFirst()) return@use null
