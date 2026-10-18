@@ -93,7 +93,7 @@
     <string name="account_scrobbling">Cuenta y registro de reproducciones</string>
     <string name="rich_presence">Presencia enriquecida</string>
     <string name="scrobbling">Registro de reproducciones</string>
-    <string name="now_playing">Reproduciendo</string>
+    <string name="now_playing">Sonando ahora</string>
     <string name="selected">Seleccionado</string>
     <string name="password">Contraseña</string>
     <string name="username">Nombre de usuario</string>
@@ -163,7 +163,7 @@
     <string name="cancel_all">Cancelar todo</string>
     <string name="language">Idioma</string>
     <string name="app_language">Idioma de la aplicación</string>
-    <string name="app_language_description">Elige el idioma que usa RAT.</string>
+    <string name="app_language_description">Elige en qué idioma habla RAT.</string>
     <string name="english">Inglés</string>
     <string name="spanish">Español</string>
     <string name="french">Francés</string>
@@ -190,7 +190,7 @@
     <string name="playback">Reproducción</string>
     <string name="appearance">Apariencia</string>
     <string name="storage">Almacenamiento</string>
-    <string name="your_data">Tus datos</string>
+    <string name="your_data">Lo tuyo</string>
     <string name="miscellaneous">Varios</string>
     <string name="lossless_hq_audio">Audio sin pérdida / alta calidad</string>
     <string name="on_wifi">Con Wi-Fi</string>
@@ -401,14 +401,14 @@
         <item quantity="other">Registro copiado · %1$d líneas</item>
     </plurals>
     <string name="integrate_spotify_canvas">Configurar Spotify Canvas</string>
-    <string name="lastfm_login">Inicio de sesión en Last.fm</string>
-    <string name="lastfm_login_description">Inicia sesión con tu cuenta de Last.fm para activar el scrobbling.</string>
+    <string name="lastfm_login">Entrar en Last.fm</string>
+    <string name="lastfm_login_description">Entra con tu cuenta de Last.fm y empieza a registrar.</string>
     <string name="lastfm_now_playing_subtitle">Actualiza Last.fm con lo que estás escuchando</string>
     <string name="lead_with_song">Mostrar primero la canción</string>
     <string name="lead_with_song_subtitle">Coloca el título en la línea destacada en vez del artista</string>
     <string name="like">Me gusta</string>
     <string name="listenbrainz_token">Token de ListenBrainz</string>
-    <string name="listenbrainz_token_description">Pega tu token de usuario de ListenBrainz para activar el scrobbling.</string>
+    <string name="listenbrainz_token_description">Pega tu token de ListenBrainz y a registrar.</string>
     <string name="listening_history">Historial de reproducción</string>
     <string name="lyrics_sources_order">Las fuentes se prueban en este orden. Arrástralas para reordenarlas. Se usa la primera que encuentre una letra, salvo que priorices letras por sílabas.</string>
     <string name="max_delay">Retraso máximo</string>
@@ -687,7 +687,7 @@
     <string name="current_account">Cuenta actual</string>
     <string name="current_profile">Perfil actual</string>
     <string name="selected_account">Cuenta seleccionada</string>
-    <string name="listen_as">Escuchar como</string>
+    <string name="listen_as">Entrar como</string>
     <string name="default_youtube_profile">Perfil predeterminado de YouTube Music</string>
     <string name="account_profiles_help">Una cuenta de Google puede tener perfiles Personal y de marca. Cada uno tiene su propia biblioteca, Me gusta e historial.</string>
     <string name="choose_profile">Elegir un perfil</string>
@@ -697,7 +697,7 @@
 
     <!-- Listen together -->
     <string name="listen_together">Escuchar juntos</string>
-    <string name="listen_together_subtitle">Comparte un código para escuchar la misma música al mismo tiempo</string>
+    <string name="listen_together_subtitle">Un código y todos sonando lo mismo a la vez</string>
     <string name="listen_together_in_party">En una fiesta · %1$s</string>
     <string name="listen_together_sign_in_footer">Escuchar juntos requiere una cuenta, para que todos en la fiesta vean quién más está.</string>
     <string name="listen_together_server">Servidor de la fiesta</string>
@@ -712,16 +712,16 @@
     <string name="listen_together_remove_server">Quitar servidor</string>
     <string name="listen_together_switched_to_default">Se cambió al servidor predeterminado</string>
     <string name="listen_together_custom_server_saved">Servidor personalizado guardado</string>
-    <string name="listen_together_create">Crear una fiesta</string>
-    <string name="listen_together_create_subtitle">Consigue un código para compartir con tus amigos</string>
+    <string name="listen_together_create">Montar una fiesta</string>
+    <string name="listen_together_create_subtitle">Saca un código y pásalo</string>
     <string name="listen_together_create_footer">Recibes un código de seis caracteres. Cualquiera que lo tenga puede unirse, hasta %1$d dispositivos incluido el tuyo.</string>
     <string name="listen_together_profile">Tu perfil en la fiesta</string>
     <string name="listen_together_nickname_hint">Apodo para esta fiesta</string>
-    <string name="listen_together_party_size">Tamaño de la fiesta</string>
+    <string name="listen_together_party_size">Cuántos cabemos</string>
     <string name="listen_together_party_size_subtitle">Elige de 2 a 10 oyentes</string>
     <string name="listen_together_host_controls">Solo tú puedes cambiar la capacidad o quitar oyentes</string>
     <string name="listen_together_remove">Quitar</string>
-    <string name="listen_together_activity">Actividad reciente</string>
+    <string name="listen_together_activity">Lo que ha pasado</string>
     <string name="listen_together_activity_footer">Solo esta sesión · lo más reciente primero · hasta 100 acciones</string>
     <string name="listen_together_activity_played">Inició la reproducción</string>
     <string name="listen_together_activity_paused">Pausó la reproducción</string>
@@ -735,20 +735,20 @@
     <string name="listen_together_activity_removed_member">Quitó a un oyente</string>
     <string name="listen_together_activity_changed_size">Cambió el tamaño de la fiesta</string>
     <string name="listen_together_activity_updated">Actualizó la fiesta</string>
-    <string name="listen_together_join">Unirse a una fiesta</string>
-    <string name="listen_together_join_action">Unirse</string>
+    <string name="listen_together_join">Meterse en una fiesta</string>
+    <string name="listen_together_join_action">Entrar</string>
     <string name="listen_together_code_hint">Seis letras o números</string>
     <string name="listen_together_code">Código de la fiesta</string>
     <string name="listen_together_code_footer">Dilo en voz alta o envíalo. La O y la I no se usan, así que una «o» siempre es un cero.</string>
     <string name="copy_code">Copiar código</string>
     <string name="listen_together_share_text">Entra en la fiesta. Código: %1$s</string>
     <string name="listen_together_now_playing">Reproduciendo</string>
-    <string name="listen_together_nothing_playing">Todavía no suena nada</string>
+    <string name="listen_together_nothing_playing">Aquí todavía no suena nada</string>
     <string name="listen_together_listening">Escuchando · %1$d de %2$d</string>
     <string name="listen_together_members_footer">Una fiesta admite %1$d dispositivos. Cualquiera que esté en ella puede controlar la música.</string>
     <string name="listen_together_you">Tú</string>
     <string name="listen_together_host">Anfitrión</string>
-    <string name="listen_together_away">Ausente — su plaza está reservada</string>
+    <string name="listen_together_away">Ausente — su plaza sigue reservada</string>
     <string name="listen_together_landing_title">Inicia una fiesta</string>
     <string name="listen_together_landing_subtitle">Porque la música suena mejor en compañía. Invita a tus amigos a escuchar y agregar canciones en tiempo real, estén donde estén.</string>
     <string name="listen_together_create_action">Crear una fiesta</string>
@@ -986,7 +986,7 @@
     <string name="playlist_action">Lista de reproducción</string>
 
 
-    <string name="lyrics_offset">Desfase de letras</string>
+    <string name="lyrics_offset">Desfase de la letra</string>
 
 
 
@@ -1129,7 +1129,7 @@
 
 
 
-    <string name="audio_pipeline">Cadena de audio</string>
+    <string name="audio_pipeline">Ruta de audio</string>
     <string name="cast_dialog_title">Emitir</string>
     <string name="cast_dialog_subtitle">Reproduce en un Chromecast o altavoz Google Cast</string>
     <string name="cast_searching">Buscando dispositivos…</string>

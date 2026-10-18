@@ -112,7 +112,7 @@ fun AccountChannelDialog(
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 Text(
-                    text = "Listen as",
+                    text = "Entrar como",
                     style = MaterialTheme.typography.bodyLarge.copy(
                         fontSize = 17.sp,
                         fontWeight = FontWeight.W600,
@@ -122,13 +122,13 @@ fun AccountChannelDialog(
                 )
                 Text(
                     text = when {
-                        loading && channels.isEmpty() -> "Looking up your channels…"
+                        loading && channels.isEmpty() -> "Buscando tus canales…"
                         channels.isEmpty() ->
-                            "Couldn't list this account's channels. You can still pick " +
-                                "one in YouTube Music itself."
+                            "No se pudieron listar los canales de esta cuenta. Aún puedes " +
+                                "elegir uno en el propio YouTube Music."
                         else ->
-                            "Your library, likes and history come from the channel " +
-                                "you pick here."
+                            "Tu biblioteca, tus Me gusta y tu historial salen del canal " +
+                                "que elijas aquí."
                     },
                     modifier = Modifier.padding(top = 4.dp),
                     style = MaterialTheme.typography.bodyMedium.copy(
@@ -166,12 +166,12 @@ fun AccountChannelDialog(
             // and picking there means the session is read from a page already
             // showing the chosen channel rather than assembled from ids.
             AlertAction(
-                label = "Choose in YouTube Music",
+                label = "Elegir en YouTube Music",
                 emphasised = channels.isEmpty(),
                 onClick = onChooseInYouTube,
             )
             AlertRule()
-            AlertAction(label = "Close", emphasised = false, onClick = onDismiss)
+            AlertAction(label = "Cerrar", emphasised = false, onClick = onDismiss)
         }
     }
 }
@@ -233,10 +233,10 @@ private fun ChannelRow(channel: AccountChannel, selected: Boolean, onClick: () -
             // The handle when there is one; otherwise what kind of channel it
             // is, which is the part a listener with two of them is choosing by.
             val subtitle = channel.subtitle.ifBlank {
-                if (channel.pageId != null) "Brand channel" else "Your channel"
+                if (channel.pageId != null) "Canal de marca" else "Tu canal"
             }
             Text(
-                text = if (channel.activeOnWeb) "$subtitle · default" else subtitle,
+                text = if (channel.activeOnWeb) "$subtitle · predeterminado" else subtitle,
                 style = MaterialTheme.typography.bodyMedium.copy(fontSize = 12.sp),
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 maxLines = 1,
