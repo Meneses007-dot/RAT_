@@ -61,6 +61,7 @@ import com.music.bitchord.ui.components.floatingtabbar.FloatingTabBarScrollConne
 import com.music.bitchord.ui.haptics.Haptic
 import com.music.bitchord.ui.haptics.rememberHaptics
 import com.music.bitchord.ui.player.PlayerDock
+import com.music.bitchord.ui.theme.TabLabelStyle
 
 /**
  * The liquid glass navigation bar: the iOS 26 shape where the now playing
@@ -251,7 +252,7 @@ fun GlassNavBar(
                     title = {
                         Text(
                             text = tab.label,
-                            style = MaterialTheme.typography.labelSmall,
+                            style = TabLabelStyle,
                             color = tint,
                             maxLines = 1,
                             overflow = TextOverflow.Ellipsis,

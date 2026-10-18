@@ -52,33 +52,70 @@ private val LightColors = lightColorScheme(
 )
 
 /**
- * SF Pro Display, the face Apple Music itself is set in. Only the weights the
- * type scale actually asks for are bundled; Compose synthesises nothing, so a
- * missing weight would silently fall back to the nearest one shipped.
+ * RAT // PLAYER — Custom Edition: la voz tipográfica de la identidad.
+ *
+ * Dos familias, una por papel (ver DEDSEC_DEFALT_DESIGN.md):
+ *
+ * - [ChakraPetch] — titulares, cuerpo y botones. Cuadrada, con las esquinas
+ *   cortadas: la cara de las interfaces técnicas que persigue esta edición, y
+ *   la que sustituye a **SF Pro Display** (la de Apple Music) con la que venía
+ *   la app.
+ * - [JetBrainsMono] — rótulos, datos y todo lo que va en mayúsculas: tiempos,
+ *   cabeceras de sección, chips, etiquetas de la barra. Es el "terminal".
+ *
+ * Ambas son **SIL Open Font License 1.1**: se pueden incluir y redistribuir con
+ * la app, y esto hace de aviso de atribución. SF Pro no lo permitía; se retiró
+ * junto con ella (y de paso se fueron 11 MB del APK).
  */
-val SFProDisplay = FontFamily(
-    Font(R.font.sf_pro_display_regular, FontWeight.W400),
-    Font(R.font.sf_pro_display_medium, FontWeight.W500),
-    Font(R.font.sf_pro_display_semibold, FontWeight.W600),
-    Font(R.font.sf_pro_display_bold, FontWeight.W700),
-    Font(R.font.sf_pro_display_heavy, FontWeight.W800),
+val ChakraPetch = FontFamily(
+    Font(R.font.chakra_petch_regular, FontWeight.W400),
+    Font(R.font.chakra_petch_medium, FontWeight.W500),
+    Font(R.font.chakra_petch_semibold, FontWeight.W600),
+    Font(R.font.chakra_petch_bold, FontWeight.W700),
+)
+
+val JetBrainsMono = FontFamily(
+    Font(R.font.jetbrains_mono_regular, FontWeight.W400),
+    Font(R.font.jetbrains_mono_medium, FontWeight.W500),
+    Font(R.font.jetbrains_mono_semibold, FontWeight.W600),
+    Font(R.font.jetbrains_mono_bold, FontWeight.W700),
+)
+
+/**
+ * El estilo de las etiquetas de la barra de pestañas.
+ *
+ * Monoespaciado como el resto de los rótulos, pero **más pequeño y sin
+ * interletraje**: en monoespaciada una palabra como "Biblioteca" no entra en un
+ * cuarto de barra a los 11sp de `labelSmall` con su tracking, y salía cortada.
+ * La barra mantiene la voz de terminal, solo que apretada.
+ */
+val TabLabelStyle = TextStyle(
+    fontFamily = JetBrainsMono,
+    fontWeight = FontWeight.W500,
+    fontSize = 10.sp,
 )
 
 // Heavy, tight typography — the backbone of the Apple Music look.
+// Ahora con Chakra Petch, que no lleva el apretado negativo de SF Pro: sus
+// trazos son rectos y con tracking negativo se pegan unos a otros. Cero, y los
+// rótulos (en monoespaciada) un pelo abiertos para que se lean como etiquetas.
 private val BitChordTypography = Typography(
-    displayLarge = TextStyle(fontWeight = FontWeight.W800, fontSize = 34.sp, letterSpacing = (-0.8).sp),
-    headlineLarge = TextStyle(fontWeight = FontWeight.W800, fontSize = 30.sp, letterSpacing = (-0.7).sp),
-    headlineMedium = TextStyle(fontWeight = FontWeight.W700, fontSize = 22.sp, letterSpacing = (-0.4).sp),
-    titleLarge = TextStyle(fontWeight = FontWeight.W700, fontSize = 20.sp, letterSpacing = (-0.3).sp),
-    titleMedium = TextStyle(fontWeight = FontWeight.W600, fontSize = 16.sp, letterSpacing = (-0.2).sp),
+    displayLarge = TextStyle(fontWeight = FontWeight.W700, fontSize = 34.sp),
+    headlineLarge = TextStyle(fontWeight = FontWeight.W700, fontSize = 30.sp),
+    headlineMedium = TextStyle(fontWeight = FontWeight.W700, fontSize = 22.sp),
+    titleLarge = TextStyle(fontWeight = FontWeight.W600, fontSize = 20.sp),
+    titleMedium = TextStyle(fontWeight = FontWeight.W600, fontSize = 16.sp),
     bodyLarge = TextStyle(fontWeight = FontWeight.W400, fontSize = 16.sp),
     bodyMedium = TextStyle(fontWeight = FontWeight.W400, fontSize = 14.sp),
-    labelMedium = TextStyle(fontWeight = FontWeight.W600, fontSize = 12.sp),
-    labelSmall = TextStyle(fontWeight = FontWeight.W600, fontSize = 11.sp),
-).withFamily(SFProDisplay)
+    labelMedium = TextStyle(fontWeight = FontWeight.W500, fontSize = 12.sp, letterSpacing = 0.6.sp),
+    labelSmall = TextStyle(fontWeight = FontWeight.W500, fontSize = 11.sp, letterSpacing = 0.8.sp),
+).withFamily(ChakraPetch, JetBrainsMono)
 
-/** Applies [family] to every style in the scale, so nothing is left on Roboto. */
-private fun Typography.withFamily(family: FontFamily) = Typography(
+/**
+ * Applies [family] to every style in the scale, so nothing is left on Roboto,
+ * and [mono] to the two label tiers — the ones that carry data rather than prose.
+ */
+private fun Typography.withFamily(family: FontFamily, mono: FontFamily) = Typography(
     displayLarge = displayLarge.copy(fontFamily = family),
     displayMedium = displayMedium.copy(fontFamily = family),
     displaySmall = displaySmall.copy(fontFamily = family),
@@ -92,8 +129,8 @@ private fun Typography.withFamily(family: FontFamily) = Typography(
     bodyMedium = bodyMedium.copy(fontFamily = family),
     bodySmall = bodySmall.copy(fontFamily = family),
     labelLarge = labelLarge.copy(fontFamily = family),
-    labelMedium = labelMedium.copy(fontFamily = family),
-    labelSmall = labelSmall.copy(fontFamily = family),
+    labelMedium = labelMedium.copy(fontFamily = mono),
+    labelSmall = labelSmall.copy(fontFamily = mono),
 )
 
 @Composable

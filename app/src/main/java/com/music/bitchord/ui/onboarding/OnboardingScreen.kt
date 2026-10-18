@@ -62,7 +62,6 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
@@ -80,6 +79,7 @@ import com.music.bitchord.ui.player.MeshGradientBackground
 import com.music.bitchord.ui.player.MESH_CYCLE_MILLIS
 import com.music.bitchord.ui.player.MeshPalette
 import com.music.bitchord.ui.player.cyclingMeshPalette
+import com.music.bitchord.ui.theme.JetBrainsMono
 
 /**
  * The two welcome pages: a name for Listen Together, then the YouTube sign-in.
@@ -311,7 +311,7 @@ private fun TerminalLabel(text: String, color: Color = DedsecCyan) {
     Text(
         text = "> $text",
         color = color,
-        fontFamily = FontFamily.Monospace,
+        fontFamily = JetBrainsMono,
         fontSize = 12.sp,
         letterSpacing = 2.sp,
         maxLines = 1,

@@ -33,11 +33,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.luminance
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.music.bitchord.ui.theme.JetBrainsMono
 
 /** El grosor del filo de consola: un hilo, no un marco. */
 private val RIM_WIDTH = 1.dp
@@ -187,7 +187,7 @@ internal fun DefaltStreamTag(color: Color, modifier: Modifier = Modifier) {
         text = "AUDIO_STREAM",
         modifier = modifier,
         style = MaterialTheme.typography.labelSmall,
-        fontFamily = FontFamily.Monospace,
+        fontFamily = JetBrainsMono,
         fontWeight = FontWeight.Medium,
         fontSize = 9.sp,
         letterSpacing = 1.4.sp,

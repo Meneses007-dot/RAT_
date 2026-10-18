@@ -728,9 +728,12 @@ internal fun ellipsised(text: String, paint: Paint, width: Float): String {
  * share button.
  */
 internal class Fonts(context: Context) {
-    private val heavy = font(context, R.font.sf_pro_display_heavy) ?: Typeface.DEFAULT_BOLD
-    private val semibold = font(context, R.font.sf_pro_display_semibold) ?: Typeface.DEFAULT_BOLD
-    private val regular = font(context, R.font.sf_pro_display_regular) ?: Typeface.DEFAULT
+    private val heavy = font(context, R.font.chakra_petch_bold) ?: Typeface.DEFAULT_BOLD
+    private val semibold = font(context, R.font.chakra_petch_semibold) ?: Typeface.DEFAULT_BOLD
+    private val regular = font(context, R.font.chakra_petch_regular) ?: Typeface.DEFAULT
+    // Los rótulos del póster van en la monoespaciada de la app, los mismos que
+    // la interfaz ya usa para los suyos (ver `JetBrainsMono` en Theme.kt).
+    private val mono = font(context, R.font.jetbrains_mono_medium) ?: Typeface.MONOSPACE
 
     fun heading(size: Float, color: Int) = paint(heavy, size, color)
 
@@ -738,7 +741,7 @@ internal class Fonts(context: Context) {
         paint(if (bold) semibold else regular, size, color)
 
     fun label(size: Float, color: Int, tracking: Float = 0.10f) =
-        paint(semibold, size, color).apply { letterSpacing = tracking }
+        paint(mono, size, color).apply { letterSpacing = tracking }
 
     private fun paint(face: Typeface, size: Float, color: Int) =
         Paint(Paint.ANTI_ALIAS_FLAG).apply {
