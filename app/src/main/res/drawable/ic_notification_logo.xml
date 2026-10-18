@@ -1,17 +1,10 @@
-<!--
-  RAT // PLAYER — variante para la barra de estado / notificaciones.
-
-  Los iconos pequeños de notificación se dibujan como silueta: el sistema
-  descarta el color y conserva solo el canal alfa, así que el relleno tiene que
-  ser blanco opaco. Es el mismo emblema de la rata, encajado en el cuadro de
-  22x22 que Android espera dentro de un lienzo de 24x24.
--->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="24dp"
     android:height="24dp"
     android:viewportWidth="24"
     android:viewportHeight="24">
+    <!-- RAT // PLAYER - silueta del emblema para avisos (blanca; Android la tinta). -->
     <path
         android:fillColor="#FFFFFFFF"
-        android:pathData="M4.93,1 L5.32,1.03 L9.85,2.32 L10.48,5.42 L8.94,7.57 L15.23,7.57 L13.63,5.33 L14.26,2.35 L18.87,1.05 L19.09,1.11 L21.52,5.72 L21.08,6.46 L16.64,8.62 L17.74,11.63 L15.56,13.06 L12.06,23 L11.89,22.78 L8.44,12.98 L6.34,11.68 L7.39,8.67 L2.95,6.52 L2.48,5.86 L2.62,5.39 Z" />
+        android:pathData="M4.93,1 L9.82,2.33 L10.45,5.42 L8.94,7.6 L15.23,7.57 L13.66,5.33 L14.29,2.35 L18.93,1.06 L19.07,1.08 L21.5,5.75 L21.11,6.44 L16.64,8.62 L17.71,11.66 L15.56,13.04 L12.06,22.97 L11.84,22.59 L8.44,12.98 L6.34,11.68 L7.42,8.67 L2.92,6.49 L2.5,5.86 L2.5,5.64 Z" />
 </vector>
