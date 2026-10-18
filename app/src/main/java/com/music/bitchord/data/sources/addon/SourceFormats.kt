@@ -79,7 +79,7 @@ object SourceFormats {
         val url = rawUrl.trim().trimEnd('/')
         if (url.toHttpUrlOrNull() == null) {
             return@withContext Result.success(
-                DetectedFormat.Unsupported("That is not a web address BitChord can open"),
+                DetectedFormat.Unsupported("That is not a web address RAT can open"),
             )
         }
 
@@ -135,7 +135,7 @@ object SourceFormats {
 
         val obj = root as? JsonObject
             ?: return DetectedFormat.Unsupported(
-                "That JSON is a list, and every format BitChord reads is an object",
+                "That JSON is a list, and every format RAT reads is an object",
             )
 
         // 1. A module index: JS plugins filed under "category:*" keys. First
@@ -171,7 +171,7 @@ object SourceFormats {
             if (manifest.resources.isNotEmpty() && !manifest.declares("search")) {
                 val declared = manifest.resources.joinToString(", ")
                 return DetectedFormat.Unsupported(
-                    "This addon declares $declared — BitChord needs search",
+                    "This addon declares $declared — RAT needs search",
                 )
             }
             return DetectedFormat.Addon(manifest, AddonClient.normalizeBase(url))

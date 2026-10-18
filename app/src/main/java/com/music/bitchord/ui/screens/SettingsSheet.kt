@@ -1559,7 +1559,7 @@ fun SettingsScreen(
         if (searchQuery.isBlank()) {
         Text(
             text = buildAnnotatedString {
-                append("bitchord $version  ")
+                append("RAT $version  ")
                 val linkStyles = TextLinkStyles(
                     style = SpanStyle(
                         color = MaterialTheme.colorScheme.primary,

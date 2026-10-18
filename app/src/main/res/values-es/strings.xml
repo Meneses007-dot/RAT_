@@ -348,6 +348,7 @@
     <string name="history_empty">Todavía no has reproducido nada</string>
     <string name="no_results">Nada. Ni un byte.</string>
     <string name="downloaded_playlist_empty">Ya no queda ninguna canción de esta playlist en el dispositivo</string>
+    <string name="no_downloaded_tracks">No hay canciones descargadas</string>
     <string name="no_local_audio_found">No se encontraron archivos de audio en este dispositivo</string>
     <string name="no_internet_connection">Sin conexión a Internet</string>
     <string name="youtube_request_rejected">YouTube Music rechazó la solicitud. Intenta iniciar sesión de nuevo.</string>
