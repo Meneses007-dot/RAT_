@@ -5,14 +5,24 @@ import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.StrokeJoin
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.graphics.vector.PathBuilder
 import androidx.compose.ui.graphics.vector.addPathNodes
 import androidx.compose.ui.graphics.vector.path
 import androidx.compose.ui.unit.dp
 
 /**
- * Thick-stroke, round-capped icons in the spirit of Telegram's modern icon set.
- * Drawn as strokes so the 2.2px weight + round joins read as a single polished
- * family. Tint is applied by [androidx.compose.material3.Icon].
+ * DEDSEC // DEFALT — the icon family: cut corners, square ends, and flat edges
+ * where a circle used to be.
+ *
+ * Drawn as strokes at 2.2 with [StrokeCap.Square] and [StrokeJoin.Miter]. A
+ * round cap on a 2.2px line is a smudge at 24dp, and this set has to read as
+ * *drawn* — cut, not poured. The same reasoning runs through the geometry: every
+ * circle in the family (the magnifier's lens, the compass dial, the clock face,
+ * the pin's head) is an [octagon], every rounded corner a [chamferedRect], and
+ * every bullet a [block]. At this size the alternative is a fillet nobody can
+ * see, which is a shape nobody can name.
+ *
+ * Tint is applied by [androidx.compose.material3.Icon].
  *
  * [Home] is the exception and says why it is one.
  */
@@ -21,25 +31,64 @@ object BitChordIcons {
     private const val STROKE = 2.2f
     private val stroke = SolidColor(Color.Black)
 
+    /**
+     * A rectangle with its corners cut off flat, the way a stencil makes one.
+     */
+    private fun PathBuilder.chamferedRect(x: Float, y: Float, w: Float, h: Float, cut: Float) {
+        moveTo(x + cut, y)
+        lineTo(x + w - cut, y)
+        lineTo(x + w, y + cut)
+        lineTo(x + w, y + h - cut)
+        lineTo(x + w - cut, y + h)
+        lineTo(x + cut, y + h)
+        lineTo(x, y + h - cut)
+        lineTo(x, y + cut)
+        close()
+    }
+
+    /**
+     * A regular octagon, flat edge against flat edge: top, bottom and both sides
+     * are straight, so it still reads as a circle at 24dp while answering to the
+     * rest of the family.
+     */
+    private fun PathBuilder.octagon(cx: Float, cy: Float, r: Float) {
+        val a = r * 0.92388f // cos 22.5°
+        val b = r * 0.38268f // sin 22.5°
+        moveTo(cx + a, cy - b)
+        lineTo(cx + a, cy + b)
+        lineTo(cx + b, cy + a)
+        lineTo(cx - b, cy + a)
+        lineTo(cx - a, cy + b)
+        lineTo(cx - a, cy - b)
+        lineTo(cx - b, cy - a)
+        lineTo(cx + b, cy - a)
+        close()
+    }
+
+    /** A small solid block: the family's bullet, where a dot would be round. */
+    private fun PathBuilder.block(cx: Float, cy: Float, size: Float = 1.9f) {
+        val h = size / 2f
+        moveTo(cx - h, cy - h)
+        lineTo(cx + h, cy - h)
+        lineTo(cx + h, cy + h)
+        lineTo(cx - h, cy + h)
+        close()
+    }
+
     /** Compact list and quotation-bubble shapes used by the player controls. */
     val Queue: ImageVector by lazy {
         ImageVector.Builder(
             name = "bc_queue", defaultWidth = 24.dp, defaultHeight = 24.dp,
             viewportWidth = 24f, viewportHeight = 24f,
         ).apply {
-            path(stroke = stroke, strokeLineWidth = 2f, strokeLineCap = StrokeCap.Round) {
+            path(stroke = stroke, strokeLineWidth = 2f, strokeLineCap = StrokeCap.Square) {
                 for (y in listOf(6f, 12f, 18f)) {
                     moveTo(8f, y)
                     lineTo(21f, y)
                 }
             }
             path(fill = stroke) {
-                for (y in listOf(6f, 12f, 18f)) {
-                    moveTo(4.35f, y)
-                    arcToRelative(1.25f, 1.25f, 0f, true, true, -2.5f, 0f)
-                    arcToRelative(1.25f, 1.25f, 0f, true, true, 2.5f, 0f)
-                    close()
-                }
+                for (y in listOf(6f, 12f, 18f)) block(3.3f, y, 2.5f)
             }
         }.build()
     }
@@ -51,30 +100,31 @@ object BitChordIcons {
         ).apply {
             path(
                 stroke = stroke, strokeLineWidth = 2f,
-                strokeLineCap = StrokeCap.Round, strokeLineJoin = StrokeJoin.Round,
+                strokeLineCap = StrokeCap.Square, strokeLineJoin = StrokeJoin.Miter,
             ) {
-                moveTo(6f, 3.5f)
-                lineTo(18f, 3.5f)
-                quadTo(21f, 3.5f, 21f, 6.5f)
-                lineTo(21f, 15f)
-                quadTo(21f, 18f, 18f, 18f)
-                lineTo(10f, 18f)
+                moveTo(5.4f, 3.5f)
+                lineTo(18.6f, 3.5f)
+                lineTo(21f, 5.9f)
+                lineTo(21f, 15.1f)
+                lineTo(18.6f, 17.5f)
+                lineTo(10f, 17.5f)
                 lineTo(6f, 21f)
-                lineTo(6f, 18f)
-                quadTo(3f, 18f, 3f, 15f)
-                lineTo(3f, 6.5f)
-                quadTo(3f, 3.5f, 6f, 3.5f)
+                lineTo(6f, 17.5f)
+                lineTo(5.4f, 17.5f)
+                lineTo(3f, 15.1f)
+                lineTo(3f, 5.9f)
                 close()
             }
             path(fill = stroke) {
+                // Quotation marks with square shoulders — a pair of sixes, cut.
                 for (x in listOf(7.6f, 12.8f)) {
                     moveTo(x, 8f)
                     lineTo(x + 3f, 8f)
                     lineTo(x + 3f, 11.1f)
-                    quadTo(x + 3f, 13.2f, x + 0.5f, 13.7f)
-                    lineTo(x + 0.5f, 12.3f)
-                    quadTo(x + 1.7f, 12f, x + 1.7f, 11f)
-                    lineTo(x, 11f)
+                    lineTo(x + 1.05f, 13.7f)
+                    lineTo(x + 0.05f, 13.7f)
+                    lineTo(x + 1.05f, 11.1f)
+                    lineTo(x, 11.1f)
                     close()
                 }
             }
@@ -90,8 +140,8 @@ object BitChordIcons {
             path(
                 stroke = stroke,
                 strokeLineWidth = STROKE,
-                strokeLineCap = StrokeCap.Round,
-                strokeLineJoin = StrokeJoin.Round,
+                strokeLineCap = StrokeCap.Square,
+                strokeLineJoin = StrokeJoin.Miter,
                 fill = stroke,
             ) {
                 moveTo(6.8f, 4.8f)
@@ -112,11 +162,11 @@ object BitChordIcons {
      *
      * Filled *and* stroked, with the same path. The outline of a house is all
      * corners — an apex, two shoulders, two door jambs — and stroking the fill
-     * with a round-joined pen is what rounds every one of them at once, for a
-     * geometry that stays nine straight lines. The numbers below are therefore
-     * inset by half the stroke: the pen puts back what they give up, and the
-     * door notch is drawn oversized for the same reason, since the pen closes
-     * in on it from both jambs.
+     * with a mitred pen is what puts a point back on every one of them at once,
+     * for a geometry that stays nine straight lines. The numbers below are
+     * therefore inset by half the stroke: the pen puts back what they give up,
+     * and the door notch is drawn oversized for the same reason, since the pen
+     * closes in on it from both jambs.
      */
     val Home: ImageVector by lazy {
         ImageVector.Builder(
@@ -128,8 +178,8 @@ object BitChordIcons {
                 fill = stroke,
                 stroke = stroke,
                 strokeLineWidth = 1.7f,
-                strokeLineCap = StrokeCap.Round,
-                strokeLineJoin = StrokeJoin.Round,
+                strokeLineCap = StrokeCap.Square,
+                strokeLineJoin = StrokeJoin.Miter,
             ) {
                 // Roof, flush with the walls rather than overhanging them: an
                 // eave narrower than the pen it is drawn with comes out as a
@@ -161,18 +211,24 @@ object BitChordIcons {
      * box is the viewport, the baseline sits at the font's ascent share of
      * it, and the advance is centred. So they keep the font's own optical
      * size and weight against one another at any icon size.
+     *
+     * DEDSEC // DEFALT: the font rounds every one of its corners with a `Q`
+     * curve whose control point *is* the corner. Rewriting each `Q` as an `L`
+     * through that same control point keeps every coordinate the font chose and
+     * makes the corner square — which is the whole of what this family wanted
+     * from these three. Named after the font's glyphs, not the app's.
      */
     val TabExplore: ImageVector by lazy {
         fontGlyph(
             "bc_tab_explore",
-            "M99.5 230.24Q58.5 230.24 58.5 188.24V93.24Q58.5 51.24 99.5 51.24H197.5Q238.5 51.24 238.5 93.24V188.24Q238.5 230.24 197.5 230.24Z" +
-                "M314.5 230.24Q273.5 230.24 273.5 188.24V93.24Q273.5 51.24 314.5 51.24H412.5Q453.5 51.24 453.5 93.24V188.24Q453.5 230.24 412.5 230.24Z" +
-                "M99.5 200.24H196.5Q207.5 200.24 207.5 188.24V93.24Q207.5 81.24 196.5 81.24H99.5Q88.5 81.24 88.5 93.24V188.24Q88.5 200.24 99.5 200.24Z" +
-                "M314.5 200.24H411.5Q422.5 200.24 422.5 188.24V93.24Q422.5 81.24 411.5 81.24H314.5Q303.5 81.24 303.5 93.24V188.24Q303.5 200.24 314.5 200.24Z" +
-                "M99.5 445.24Q58.5 445.24 58.5 403.24V307.24Q58.5 266.24 99.5 266.24H197.5Q238.5 266.24 238.5 307.24V403.24Q238.5 445.24 197.5 445.24Z" +
-                "M314.5 445.24Q273.5 445.24 273.5 403.24V307.24Q273.5 266.24 314.5 266.24H412.5Q453.5 266.24 453.5 307.24V403.24Q453.5 445.24 412.5 445.24Z" +
-                "M99.5 415.24H196.5Q207.5 415.24 207.5 403.24V308.24Q207.5 296.24 196.5 296.24H99.5Q88.5 296.24 88.5 308.24V403.24Q88.5 415.24 99.5 415.24Z" +
-                "M314.5 415.24H411.5Q422.5 415.24 422.5 403.24V308.24Q422.5 296.24 411.5 296.24H314.5Q303.5 296.24 303.5 308.24V403.24Q303.5 415.24 314.5 415.24Z",
+            "M99.5 230.24L58.5 230.24 58.5 188.24V93.24L58.5 51.24 99.5 51.24H197.5L238.5 51.24 238.5 93.24V188.24L238.5 230.24 197.5 230.24Z" +
+                "M314.5 230.24L273.5 230.24 273.5 188.24V93.24L273.5 51.24 314.5 51.24H412.5L453.5 51.24 453.5 93.24V188.24L453.5 230.24 412.5 230.24Z" +
+                "M99.5 200.24H196.5L207.5 200.24 207.5 188.24V93.24L207.5 81.24 196.5 81.24H99.5L88.5 81.24 88.5 93.24V188.24L88.5 200.24 99.5 200.24Z" +
+                "M314.5 200.24H411.5L422.5 200.24 422.5 188.24V93.24L422.5 81.24 411.5 81.24H314.5L303.5 81.24 303.5 93.24V188.24L303.5 200.24 314.5 200.24Z" +
+                "M99.5 445.24L58.5 445.24 58.5 403.24V307.24L58.5 266.24 99.5 266.24H197.5L238.5 266.24 238.5 307.24V403.24L238.5 445.24 197.5 445.24Z" +
+                "M314.5 445.24L273.5 445.24 273.5 403.24V307.24L273.5 266.24 314.5 266.24H412.5L453.5 266.24 453.5 307.24V403.24L453.5 445.24 412.5 445.24Z" +
+                "M99.5 415.24H196.5L207.5 415.24 207.5 403.24V308.24L207.5 296.24 196.5 296.24H99.5L88.5 296.24 88.5 308.24V403.24L88.5 415.24 99.5 415.24Z" +
+                "M314.5 415.24H411.5L422.5 415.24 422.5 403.24V308.24L422.5 296.24 411.5 296.24H314.5L303.5 296.24 303.5 308.24V403.24L303.5 415.24 314.5 415.24Z",
         )
     }
 
@@ -183,17 +239,17 @@ object BitChordIcons {
     val TabLibrary: ImageVector by lazy {
         fontGlyph(
             "bc_tab_library",
-            "M154 27.24Q156 0.24 185 0.24H322Q352 0.24 353 27.24Z" +
-                "M116 87.24Q121 56.24 150 56.24H356Q385 56.24 390 87.24Z" +
-                "M133 500.24Q66 500.24 66 434.24V187.24Q66 121.24 133 121.24H378Q446 121.24 446 187.24V434.24Q446 500.24 385 500.24Z",
+            "M154 27.24L156 0.24 185 0.24H322L352 0.24 353 27.24Z" +
+                "M116 87.24L121 56.24 150 56.24H356L385 56.24 390 87.24Z" +
+                "M133 500.24L66 500.24 66 434.24V187.24L66 121.24 133 121.24H378L446 121.24 446 187.24V434.24L446 500.24 385 500.24Z",
         )
     }
 
     val TabSearch: ImageVector by lazy {
         fontGlyph(
             "bc_tab_search",
-            "M219 374.24Q151 374.24 102.5 325.74Q54 277.24 54 209.24Q54 141.24 102.5 92.74Q151 44.24 219 44.24Q287 44.24 335.5 92.74Q384 141.24 384 209.24Q384 264.24 350 309.24L451 410.24Q458 417.24 458 427.24Q458 438.24 451 445.24Q444 452.24 434 452.24Q423 452.24 416 445.24L315 343.24Q271 374.24 219 374.24Z" +
-                "M128 300.24Q166 338.24 219 338.24Q272 338.24 310 300.24Q348 262.24 348 209.24Q348 156.24 310 118.24Q272 80.24 219 80.24Q166 80.24 128 118.24Q90 156.24 90 209.24Q90 262.24 128 300.24Z",
+            "M219 374.24L151 374.24 102.5 325.74L54 277.24 54 209.24L54 141.24 102.5 92.74L151 44.24 219 44.24L287 44.24 335.5 92.74L384 141.24 384 209.24L384 264.24 350 309.24L451 410.24L458 417.24 458 427.24L458 438.24 451 445.24L444 452.24 434 452.24L423 452.24 416 445.24L315 343.24L271 374.24 219 374.24Z" +
+                "M128 300.24L166 338.24 219 338.24L272 338.24 310 300.24L348 262.24 348 209.24L348 156.24 310 118.24L272 80.24 219 80.24L166 80.24 128 118.24L90 156.24 90 209.24L90 262.24 128 300.24Z",
         )
     }
 
@@ -214,16 +270,14 @@ object BitChordIcons {
             path(
                 stroke = stroke,
                 strokeLineWidth = STROKE,
-                strokeLineCap = StrokeCap.Round,
-                strokeLineJoin = StrokeJoin.Round,
+                strokeLineCap = StrokeCap.Square,
+                strokeLineJoin = StrokeJoin.Miter,
             ) {
-                // Lens (full circle from two arcs)
-                moveTo(4.6f, 11f)
-                arcToRelative(6.4f, 6.4f, 0f, isMoreThanHalf = true, isPositiveArc = true, 12.8f, 0f)
-                arcToRelative(6.4f, 6.4f, 0f, isMoreThanHalf = true, isPositiveArc = true, -12.8f, 0f)
-                // Handle
-                moveTo(15.9f, 15.9f)
-                lineTo(20.4f, 20.4f)
+                // Octagonal lens, flat side against the handle.
+                octagon(10.7f, 10.7f, 6.6f)
+                // Handle, squared to the lens's lower-right edge.
+                moveTo(15.0f, 15.0f)
+                lineTo(20.3f, 20.3f)
             }
         }.build()
     }
@@ -237,13 +291,11 @@ object BitChordIcons {
             path(
                 stroke = stroke,
                 strokeLineWidth = STROKE,
-                strokeLineCap = StrokeCap.Round,
-                strokeLineJoin = StrokeJoin.Round,
+                strokeLineCap = StrokeCap.Square,
+                strokeLineJoin = StrokeJoin.Miter,
             ) {
-                // Compass dial
-                moveTo(3.4f, 12f)
-                arcToRelative(8.6f, 8.6f, 0f, isMoreThanHalf = true, isPositiveArc = true, 17.2f, 0f)
-                arcToRelative(8.6f, 8.6f, 0f, isMoreThanHalf = true, isPositiveArc = true, -17.2f, 0f)
+                // Compass dial, octagonal
+                octagon(12f, 12f, 8.6f)
                 // Needle
                 moveTo(15.4f, 8.6f)
                 lineTo(13.6f, 13.6f)
@@ -263,8 +315,8 @@ object BitChordIcons {
             path(
                 stroke = stroke,
                 strokeLineWidth = STROKE,
-                strokeLineCap = StrokeCap.Round,
-                strokeLineJoin = StrokeJoin.Round,
+                strokeLineCap = StrokeCap.Square,
+                strokeLineJoin = StrokeJoin.Miter,
             ) {
                 // Strand that crosses downwards, with its arrow head
                 moveTo(3.4f, 7.4f); lineTo(7f, 7.4f); lineTo(16.6f, 16.6f); lineTo(20.6f, 16.6f)
@@ -293,8 +345,8 @@ object BitChordIcons {
             path(
                 stroke = stroke,
                 strokeLineWidth = STROKE,
-                strokeLineCap = StrokeCap.Round,
-                strokeLineJoin = StrokeJoin.Round,
+                strokeLineCap = StrokeCap.Square,
+                strokeLineJoin = StrokeJoin.Miter,
             ) {
                 moveTo(8.6f, 7.6f)
                 lineTo(15.4f, 7.6f)
@@ -318,8 +370,8 @@ object BitChordIcons {
             path(
                 stroke = stroke,
                 strokeLineWidth = STROKE,
-                strokeLineCap = StrokeCap.Round,
-                strokeLineJoin = StrokeJoin.Round,
+                strokeLineCap = StrokeCap.Square,
+                strokeLineJoin = StrokeJoin.Miter,
             ) {
                 moveTo(12f, 12f)
                 curveTo(10.1f, 9.1f, 8.7f, 8f, 7.1f, 8f)
@@ -339,22 +391,16 @@ object BitChordIcons {
             defaultWidth = 24.dp, defaultHeight = 24.dp,
             viewportWidth = 24f, viewportHeight = 24f,
         ).apply {
-            // Heads are solid; stems and beam keep the family's stroke weight.
+            // Heads are solid blocks; stems and beam keep the family's stroke weight.
             path(fill = stroke) {
-                moveTo(4.2f, 17.7f)
-                arcToRelative(2.9f, 2.5f, 0f, isMoreThanHalf = true, isPositiveArc = true, 5.8f, 0f)
-                arcToRelative(2.9f, 2.5f, 0f, isMoreThanHalf = true, isPositiveArc = true, -5.8f, 0f)
-                close()
-                moveTo(14.2f, 15.9f)
-                arcToRelative(2.9f, 2.5f, 0f, isMoreThanHalf = true, isPositiveArc = true, 5.8f, 0f)
-                arcToRelative(2.9f, 2.5f, 0f, isMoreThanHalf = true, isPositiveArc = true, -5.8f, 0f)
-                close()
+                block(7.1f, 17.7f, 5.8f)
+                block(17.1f, 15.9f, 5.8f)
             }
             path(
                 stroke = stroke,
                 strokeLineWidth = STROKE,
-                strokeLineCap = StrokeCap.Round,
-                strokeLineJoin = StrokeJoin.Round,
+                strokeLineCap = StrokeCap.Square,
+                strokeLineJoin = StrokeJoin.Miter,
             ) {
                 moveTo(10f, 17.7f); lineTo(10f, 6.7f)
                 moveTo(20f, 15.9f); lineTo(20f, 4.9f)
@@ -373,21 +419,20 @@ object BitChordIcons {
             path(
                 stroke = stroke,
                 strokeLineWidth = STROKE,
-                strokeLineCap = StrokeCap.Round,
-                strokeLineJoin = StrokeJoin.Round,
+                strokeLineCap = StrokeCap.Square,
+                strokeLineJoin = StrokeJoin.Miter,
             ) {
                 moveTo(6.2f, 4.6f)
                 lineTo(17.8f, 4.6f)
-                arcToRelative(2.8f, 2.8f, 0f, isMoreThanHalf = false, isPositiveArc = true, 2.8f, 2.8f)
+                lineTo(20.6f, 7.4f)
                 lineTo(20.6f, 13.6f)
-                arcToRelative(2.8f, 2.8f, 0f, isMoreThanHalf = false, isPositiveArc = true, -2.8f, 2.8f)
+                lineTo(17.8f, 16.4f)
                 lineTo(10.6f, 16.4f)
                 lineTo(6.8f, 19.6f)
                 lineTo(6.8f, 16.4f)
                 lineTo(6.2f, 16.4f)
-                arcToRelative(2.8f, 2.8f, 0f, isMoreThanHalf = false, isPositiveArc = true, -2.8f, -2.8f)
+                lineTo(3.4f, 13.6f)
                 lineTo(3.4f, 7.4f)
-                arcToRelative(2.8f, 2.8f, 0f, isMoreThanHalf = false, isPositiveArc = true, 2.8f, -2.8f)
                 close()
                 moveTo(7.6f, 9f); lineTo(16.4f, 9f)
                 moveTo(7.6f, 12.1f); lineTo(13.2f, 12.1f)
@@ -405,8 +450,8 @@ object BitChordIcons {
             path(
                 stroke = stroke,
                 strokeLineWidth = STROKE,
-                strokeLineCap = StrokeCap.Round,
-                strokeLineJoin = StrokeJoin.Round,
+                strokeLineCap = StrokeCap.Square,
+                strokeLineJoin = StrokeJoin.Miter,
             ) {
                 moveTo(9.5f, 6.2f)
                 lineTo(15.3f, 12f)
@@ -435,8 +480,8 @@ object BitChordIcons {
             path(
                 stroke = stroke,
                 strokeLineWidth = STROKE,
-                strokeLineCap = StrokeCap.Round,
-                strokeLineJoin = StrokeJoin.Round,
+                strokeLineCap = StrokeCap.Square,
+                strokeLineJoin = StrokeJoin.Miter,
                 fill = if (filled) stroke else null,
             ) {
                 // Two lobes meeting at the top notch, falling to a single point.
@@ -459,8 +504,8 @@ object BitChordIcons {
             path(
                 stroke = stroke,
                 strokeLineWidth = STROKE,
-                strokeLineCap = StrokeCap.Round,
-                strokeLineJoin = StrokeJoin.Round,
+                strokeLineCap = StrokeCap.Square,
+                strokeLineJoin = StrokeJoin.Miter,
             ) {
                 moveTo(12f, 5f); lineTo(12f, 19f)
                 moveTo(5f, 12f); lineTo(19f, 12f)
@@ -482,8 +527,8 @@ object BitChordIcons {
             path(
                 stroke = stroke,
                 strokeLineWidth = STROKE,
-                strokeLineCap = StrokeCap.Round,
-                strokeLineJoin = StrokeJoin.Round,
+                strokeLineCap = StrokeCap.Square,
+                strokeLineJoin = StrokeJoin.Miter,
             ) {
                 moveTo(5f, 12.8f); lineTo(9.6f, 17.4f); lineTo(19f, 6.9f)
             }
@@ -500,8 +545,8 @@ object BitChordIcons {
             path(
                 stroke = stroke,
                 strokeLineWidth = STROKE,
-                strokeLineCap = StrokeCap.Round,
-                strokeLineJoin = StrokeJoin.Round,
+                strokeLineCap = StrokeCap.Square,
+                strokeLineJoin = StrokeJoin.Miter,
             ) {
                 // Vertical stem
                 moveTo(12f, 4.5f); lineTo(12f, 15.5f)
@@ -519,7 +564,7 @@ object BitChordIcons {
      * The dial is the same 8.6 radius as [Explore]'s, so the two sit at the same
      * optical weight when they appear in the same row of header buttons. The
      * hands are one polyline through the centre rather than two strokes: the
-     * round join is then the pivot, which is what stops the middle reading as a
+     * mitre is then the pivot, which is what stops the middle reading as a
      * pair of lines that happen to cross.
      */
     val Clock: ImageVector by lazy {
@@ -531,13 +576,11 @@ object BitChordIcons {
             path(
                 stroke = stroke,
                 strokeLineWidth = STROKE,
-                strokeLineCap = StrokeCap.Round,
-                strokeLineJoin = StrokeJoin.Round,
+                strokeLineCap = StrokeCap.Square,
+                strokeLineJoin = StrokeJoin.Miter,
             ) {
-                // Dial (full circle from two arcs)
-                moveTo(3.4f, 12f)
-                arcToRelative(8.6f, 8.6f, 0f, isMoreThanHalf = true, isPositiveArc = true, 17.2f, 0f)
-                arcToRelative(8.6f, 8.6f, 0f, isMoreThanHalf = true, isPositiveArc = true, -17.2f, 0f)
+                // Dial, octagonal
+                octagon(12f, 12f, 8.6f)
                 // Minute hand up, hour hand down to the right
                 moveTo(12f, 7.4f); lineTo(12f, 12f); lineTo(15.4f, 13.8f)
             }
@@ -545,7 +588,7 @@ object BitChordIcons {
     }
 
     /**
-     * A pushpin, not a map marker: a round head with a straight needle
+     * A pushpin, not a map marker: an octagonal head with a straight needle
      * kicked out to one side, the way it sits once it's stuck into something.
      * A teardrop reads as "location" the moment it's this small — the two
      * disjoint strokes here are what keep it read as "pinned" instead.
@@ -559,15 +602,13 @@ object BitChordIcons {
             path(
                 stroke = stroke,
                 strokeLineWidth = STROKE,
-                strokeLineCap = StrokeCap.Round,
-                strokeLineJoin = StrokeJoin.Round,
+                strokeLineCap = StrokeCap.Square,
+                strokeLineJoin = StrokeJoin.Miter,
             ) {
-                // Round head.
-                moveTo(9.6f, 8.4f)
-                arcToRelative(3.4f, 3.4f, 0f, isMoreThanHalf = true, isPositiveArc = true, 6.8f, 0f)
-                arcToRelative(3.4f, 3.4f, 0f, isMoreThanHalf = true, isPositiveArc = true, -6.8f, 0f)
+                // Octagonal head.
+                octagon(13f, 8.4f, 3.5f)
                 // Needle, kicked out from the underside of the head to a point.
-                moveTo(10.8f, 10.8f)
+                moveTo(10.7f, 10.7f)
                 lineTo(5.6f, 19.6f)
             }
         }.build()
@@ -583,18 +624,20 @@ object BitChordIcons {
             path(
                 stroke = stroke,
                 strokeLineWidth = STROKE,
-                strokeLineCap = StrokeCap.Round,
-                strokeLineJoin = StrokeJoin.Round,
+                strokeLineCap = StrokeCap.Square,
+                strokeLineJoin = StrokeJoin.Miter,
             ) {
-                // Open gauge, leaving room for the base line.
+                // Arched frame with its shoulders cut, open along the bottom.
                 moveTo(4.1f, 16.8f)
-                arcToRelative(8.4f, 8.4f, 0f, isMoreThanHalf = true, isPositiveArc = true, 15.8f, 0f)
+                lineTo(4.1f, 11.9f)
+                lineTo(6.2f, 9.3f)
+                lineTo(17.8f, 9.3f)
+                lineTo(19.9f, 11.9f)
+                lineTo(19.9f, 16.8f)
                 // Needle and hub.
                 moveTo(12f, 15.8f)
                 lineTo(16.7f, 9.3f)
-                moveTo(10.9f, 16.9f)
-                arcToRelative(1.1f, 1.1f, 0f, isMoreThanHalf = true, isPositiveArc = true, 2.2f, 0f)
-                arcToRelative(1.1f, 1.1f, 0f, isMoreThanHalf = true, isPositiveArc = true, -2.2f, 0f)
+                block(12f, 15.8f, 2.6f)
                 // Stable baseline.
                 moveTo(5.4f, 19.5f)
                 lineTo(18.6f, 19.5f)
@@ -612,7 +655,7 @@ object BitChordIcons {
             path(
                 stroke = stroke,
                 strokeLineWidth = STROKE,
-                strokeLineCap = StrokeCap.Round,
+                strokeLineCap = StrokeCap.Square,
             ) {
                 moveTo(5f, 15.5f); lineTo(5f, 8.5f)
                 moveTo(9.7f, 18.5f); lineTo(9.7f, 5.5f)
@@ -631,8 +674,8 @@ object BitChordIcons {
             path(
                 stroke = stroke,
                 strokeLineWidth = STROKE,
-                strokeLineCap = StrokeCap.Round,
-                strokeLineJoin = StrokeJoin.Round,
+                strokeLineCap = StrokeCap.Square,
+                strokeLineJoin = StrokeJoin.Miter,
             ) {
                 // Three upright spines + one leaning — Apple Music's library glyph, thickened
                 moveTo(4.6f, 4.8f); lineTo(4.6f, 19.2f)
@@ -653,56 +696,14 @@ object BitChordIcons {
             path(
                 stroke = stroke,
                 strokeLineWidth = STROKE,
-                strokeLineCap = StrokeCap.Round,
-                strokeLineJoin = StrokeJoin.Round,
+                strokeLineCap = StrokeCap.Square,
+                strokeLineJoin = StrokeJoin.Miter,
             ) {
-                // Top-left
-                moveTo(6.5f, 4.5f)
-                lineTo(8.5f, 4.5f)
-                arcToRelative(2f, 2f, 0f, isMoreThanHalf = false, isPositiveArc = true, 2f, 2f)
-                lineTo(10.5f, 8.5f)
-                arcToRelative(2f, 2f, 0f, isMoreThanHalf = false, isPositiveArc = true, -2f, 2f)
-                lineTo(6.5f, 10.5f)
-                arcToRelative(2f, 2f, 0f, isMoreThanHalf = false, isPositiveArc = true, -2f, -2f)
-                lineTo(4.5f, 6.5f)
-                arcToRelative(2f, 2f, 0f, isMoreThanHalf = false, isPositiveArc = true, 2f, -2f)
-                close()
-
-                // Top-right
-                moveTo(15.5f, 4.5f)
-                lineTo(17.5f, 4.5f)
-                arcToRelative(2f, 2f, 0f, isMoreThanHalf = false, isPositiveArc = true, 2f, 2f)
-                lineTo(19.5f, 8.5f)
-                arcToRelative(2f, 2f, 0f, isMoreThanHalf = false, isPositiveArc = true, -2f, 2f)
-                lineTo(15.5f, 10.5f)
-                arcToRelative(2f, 2f, 0f, isMoreThanHalf = false, isPositiveArc = true, -2f, -2f)
-                lineTo(13.5f, 6.5f)
-                arcToRelative(2f, 2f, 0f, isMoreThanHalf = false, isPositiveArc = true, 2f, -2f)
-                close()
-
-                // Bottom-left
-                moveTo(6.5f, 13.5f)
-                lineTo(8.5f, 13.5f)
-                arcToRelative(2f, 2f, 0f, isMoreThanHalf = false, isPositiveArc = true, 2f, 2f)
-                lineTo(10.5f, 17.5f)
-                arcToRelative(2f, 2f, 0f, isMoreThanHalf = false, isPositiveArc = true, -2f, 2f)
-                lineTo(6.5f, 19.5f)
-                arcToRelative(2f, 2f, 0f, isMoreThanHalf = false, isPositiveArc = true, -2f, -2f)
-                lineTo(4.5f, 15.5f)
-                arcToRelative(2f, 2f, 0f, isMoreThanHalf = false, isPositiveArc = true, 2f, -2f)
-                close()
-
-                // Bottom-right
-                moveTo(15.5f, 13.5f)
-                lineTo(17.5f, 13.5f)
-                arcToRelative(2f, 2f, 0f, isMoreThanHalf = false, isPositiveArc = true, 2f, 2f)
-                lineTo(19.5f, 17.5f)
-                arcToRelative(2f, 2f, 0f, isMoreThanHalf = false, isPositiveArc = true, -2f, 2f)
-                lineTo(15.5f, 19.5f)
-                arcToRelative(2f, 2f, 0f, isMoreThanHalf = false, isPositiveArc = true, -2f, -2f)
-                lineTo(13.5f, 15.5f)
-                arcToRelative(2f, 2f, 0f, isMoreThanHalf = false, isPositiveArc = true, 2f, -2f)
-                close()
+                // Four cut squares
+                chamferedRect(4.5f, 4.5f, 6f, 6f, 1.7f)
+                chamferedRect(13.5f, 4.5f, 6f, 6f, 1.7f)
+                chamferedRect(4.5f, 13.5f, 6f, 6f, 1.7f)
+                chamferedRect(13.5f, 13.5f, 6f, 6f, 1.7f)
             }
         }.build()
     }
@@ -717,18 +718,15 @@ object BitChordIcons {
             path(
                 stroke = stroke,
                 strokeLineWidth = STROKE,
-                strokeLineCap = StrokeCap.Round,
-                strokeLineJoin = StrokeJoin.Round,
+                strokeLineCap = StrokeCap.Square,
+                strokeLineJoin = StrokeJoin.Miter,
             ) {
-                // Three horizontal lines with bullet markers
-                moveTo(4.5f, 6.5f); lineTo(5.5f, 6.5f)
-                moveTo(9.5f, 6.5f); lineTo(19.5f, 6.5f)
-
-                moveTo(4.5f, 12f); lineTo(5.5f, 12f)
-                moveTo(9.5f, 12f); lineTo(19.5f, 12f)
-
-                moveTo(4.5f, 17.5f); lineTo(5.5f, 17.5f)
-                moveTo(9.5f, 17.5f); lineTo(19.5f, 17.5f)
+                // Three rows, each with its solid block in the gutter
+                for (y in listOf(6.5f, 12f, 17.5f)) {
+                    block(5.1f, y, 2.2f)
+                    moveTo(9.5f, y)
+                    lineTo(19.5f, y)
+                }
             }
         }.build()
     }
