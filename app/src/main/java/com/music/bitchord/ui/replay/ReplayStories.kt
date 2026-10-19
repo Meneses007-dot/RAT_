@@ -30,8 +30,8 @@ import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.sharp.Close
-import androidx.compose.material.icons.sharp.IosShare
+import androidx.compose.material.icons.outlined.Close
+import androidx.compose.material.icons.outlined.IosShare
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -373,7 +373,7 @@ private fun StoryChrome(
     Column(Modifier.fillMaxWidth().padding(horizontal = 20.dp)) {
         Row(Modifier.fillMaxWidth().padding(top = 10.dp), horizontalArrangement = Arrangement.End) {
             Icon(
-                imageVector = Icons.Sharp.Close,
+                imageVector = Icons.Outlined.Close,
                 contentDescription = stringResource(R.string.close_replay),
                 tint = Color.White,
                 modifier = Modifier
@@ -495,7 +495,7 @@ private fun StoryPage(
                 contentAlignment = Alignment.Center,
             ) {
                 Icon(
-                    imageVector = Icons.Sharp.IosShare,
+                    imageVector = Icons.Outlined.IosShare,
                     contentDescription = stringResource(R.string.share_my_replay),
                     tint = Color.White,
                     modifier = Modifier.size(20.dp),

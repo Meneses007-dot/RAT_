@@ -21,15 +21,15 @@ import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.sharp.QueueMusic
-import androidx.compose.material.icons.sharp.Album
-import androidx.compose.material.icons.sharp.Check
-import androidx.compose.material.icons.sharp.CheckCircle
-import androidx.compose.material.icons.sharp.Delete
-import androidx.compose.material.icons.sharp.FileUpload
-import androidx.compose.material.icons.sharp.GraphicEq
-import androidx.compose.material.icons.sharp.MusicNote
-import androidx.compose.material.icons.sharp.Person
+import androidx.compose.material.icons.automirrored.outlined.QueueMusic
+import androidx.compose.material.icons.outlined.Album
+import androidx.compose.material.icons.outlined.Check
+import androidx.compose.material.icons.outlined.CheckCircle
+import androidx.compose.material.icons.outlined.Delete
+import androidx.compose.material.icons.outlined.FileUpload
+import androidx.compose.material.icons.outlined.GraphicEq
+import androidx.compose.material.icons.outlined.MusicNote
+import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -408,7 +408,7 @@ private fun SongGridCard(
                 .thumbnailBorder(CARD_SHAPE),
             contentAlignment = Alignment.Center,
         ) {
-            CoverPlaceholder(Icons.Sharp.MusicNote, Modifier.fillMaxSize())
+            CoverPlaceholder(Icons.Outlined.MusicNote, Modifier.fillMaxSize())
             if (song.thumbnailUrl != null) {
                 AsyncImage(
                     model = song.thumbnailUrl.artworkAt(CARD_ART_PX),
@@ -421,7 +421,7 @@ private fun SongGridCard(
                 SearchPlayingBars(Modifier.align(Alignment.Center))
             } else if (isCurrent) {
                 Icon(
-                    Icons.Sharp.GraphicEq,
+                    Icons.Outlined.GraphicEq,
                     contentDescription = stringResource(R.string.now_playing),
                     tint = palette.accent,
                     modifier = Modifier.size(28.dp),
@@ -449,7 +449,7 @@ private fun SongGridCard(
 private fun ArtistAvatar(group: LocalGroup, modifier: Modifier) {
     val art = remember(group.songs) { group.songs.firstNotNullOfOrNull { it.thumbnailUrl } }
     Box(modifier.clip(CircleShape).thumbnailBorder(CircleShape)) {
-        CoverPlaceholder(Icons.Sharp.Person, Modifier.fillMaxSize(), iconFraction = 0.5f)
+        CoverPlaceholder(Icons.Outlined.Person, Modifier.fillMaxSize(), iconFraction = 0.5f)
         if (art != null) {
             AsyncImage(
                 model = art.artworkAt(CARD_ART_PX),
@@ -550,7 +550,7 @@ private fun LocalGroup.coverArt(): String? {
 }
 
 private fun LocalGroup.placeholderIcon(): ImageVector =
-    if (type == BrowseType.PLAYLIST) Icons.AutoMirrored.Sharp.QueueMusic else Icons.Sharp.Album
+    if (type == BrowseType.PLAYLIST) Icons.AutoMirrored.Outlined.QueueMusic else Icons.Outlined.Album
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -671,7 +671,7 @@ private fun GroupLabels(title: String, subtitle: String, palette: ArtworkPalette
 @Composable
 private fun TrailingGlyph(selected: Boolean, palette: ArtworkPalette) {
     Icon(
-        imageVector = if (selected) Icons.Sharp.CheckCircle else BitChordIcons.ChevronRight,
+        imageVector = if (selected) Icons.Outlined.CheckCircle else BitChordIcons.ChevronRight,
         contentDescription = if (selected) stringResource(R.string.selected) else null,
         tint = if (selected) MaterialTheme.colorScheme.primary else palette.onBackgroundVariant,
         modifier = Modifier.size(if (selected) 22.dp else 16.dp),
@@ -707,7 +707,7 @@ internal fun LocalFolderSelectionBar(
     ) {
         IconButton(onClick = { state.selectAll(songs) }, enabled = !allSelected) {
             Icon(
-                Icons.Sharp.Check,
+                Icons.Outlined.Check,
                 contentDescription = stringResource(R.string.select_all),
                 tint = if (dark) Color.White else MaterialTheme.colorScheme.primary,
                 modifier = Modifier.size(20.dp),
@@ -721,7 +721,7 @@ internal fun LocalFolderSelectionBar(
         )
         folder.onUpload?.let { upload ->
             SelectionAction(
-                icon = Icons.Sharp.FileUpload,
+                icon = Icons.Outlined.FileUpload,
                 label = stringResource(R.string.upload_to_webdav),
                 color = MaterialTheme.colorScheme.primary,
                 enabled = count > 0,
@@ -730,7 +730,7 @@ internal fun LocalFolderSelectionBar(
         }
         folder.onDelete?.let { delete ->
             SelectionAction(
-                icon = Icons.Sharp.Delete,
+                icon = Icons.Outlined.Delete,
                 label = stringResource(R.string.delete),
                 color = DESTRUCTIVE,
                 enabled = count > 0,

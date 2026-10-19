@@ -27,13 +27,13 @@ import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.keyframes
 import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.sharp.DownloadDone
-import androidx.compose.material.icons.sharp.CheckCircle
-import androidx.compose.material.icons.sharp.GraphicEq
-import androidx.compose.material.icons.sharp.MoreVert
-import androidx.compose.material.icons.sharp.PlayArrow
-import androidx.compose.material.icons.sharp.PlaylistAdd
-import androidx.compose.material.icons.sharp.PlaylistPlay
+import androidx.compose.material.icons.outlined.DownloadDone
+import androidx.compose.material.icons.outlined.CheckCircle
+import androidx.compose.material.icons.outlined.GraphicEq
+import androidx.compose.material.icons.outlined.MoreVert
+import androidx.compose.material.icons.outlined.PlayArrow
+import androidx.compose.material.icons.outlined.PlaylistAdd
+import androidx.compose.material.icons.outlined.PlaylistPlay
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.SwipeToDismissBox
@@ -461,7 +461,7 @@ private fun QueueSwipeBackground(swipeState: SwipeToDismissBoxState) {
 private fun QueueSwipeLabel(playNext: Boolean) {
     Row(verticalAlignment = Alignment.CenterVertically) {
         Icon(
-            if (playNext) Icons.Sharp.PlaylistPlay else Icons.Sharp.PlaylistAdd,
+            if (playNext) Icons.Outlined.PlaylistPlay else Icons.Outlined.PlaylistAdd,
             contentDescription = null,
             tint = MaterialTheme.colorScheme.primary,
             modifier = Modifier.size(20.dp),
@@ -527,7 +527,7 @@ private fun SongRowContent(
                     SearchPlayingBars()
                 } else if (isCurrent) {
                     Icon(
-                        imageVector = if (isPlaying) Icons.Sharp.GraphicEq else Icons.Sharp.PlayArrow,
+                        imageVector = if (isPlaying) Icons.Outlined.GraphicEq else Icons.Outlined.PlayArrow,
                         contentDescription = stringResource(Res.string.now_playing),
                         tint = activeTint,
                         modifier = Modifier.size(22.dp),
@@ -596,7 +596,7 @@ private fun SongRowContent(
         if (selected) {
             Spacer(Modifier.width(8.dp))
             Icon(
-                Icons.Sharp.CheckCircle,
+                Icons.Outlined.CheckCircle,
                 contentDescription = stringResource(Res.string.selected),
                 tint = activeTint,
                 modifier = Modifier.size(20.dp),
@@ -605,7 +605,7 @@ private fun SongRowContent(
         if (isCurrent && trackNumber == null && !(searchPlayingStyle && isPlaying)) {
             Spacer(Modifier.width(8.dp))
             Icon(
-                imageVector = if (isPlaying) Icons.Sharp.GraphicEq else Icons.Sharp.PlayArrow,
+                imageVector = if (isPlaying) Icons.Outlined.GraphicEq else Icons.Outlined.PlayArrow,
                 contentDescription = stringResource(Res.string.now_playing),
                 tint = activeTint,
                 modifier = Modifier.size(20.dp),
@@ -657,7 +657,7 @@ fun RowMoreButton(
         contentAlignment = Alignment.Center,
     ) {
         Icon(
-            Icons.Sharp.MoreVert,
+            Icons.Outlined.MoreVert,
             contentDescription = stringResource(Res.string.more),
             tint = tint,
             modifier = Modifier.size(iconSize),
@@ -746,7 +746,7 @@ fun DownloadedBadge(videoId: String, tint: Color, modifier: Modifier = Modifier)
     if (videoId !in AppUi.host.downloadedIds()) return
     Spacer(Modifier.width(8.dp))
     Icon(
-        Icons.Sharp.DownloadDone,
+        Icons.Outlined.DownloadDone,
         contentDescription = stringResource(Res.string.downloaded),
         tint = tint,
         modifier = modifier.size(16.dp),

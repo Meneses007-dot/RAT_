@@ -21,12 +21,12 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.sharp.Label
-import androidx.compose.material.icons.sharp.GraphicEq
-import androidx.compose.material.icons.sharp.Key
-import androidx.compose.material.icons.sharp.RadioButtonChecked
-import androidx.compose.material.icons.sharp.SmartButton
-import androidx.compose.material.icons.sharp.Tune
+import androidx.compose.material.icons.automirrored.outlined.Label
+import androidx.compose.material.icons.outlined.GraphicEq
+import androidx.compose.material.icons.outlined.Key
+import androidx.compose.material.icons.outlined.RadioButtonChecked
+import androidx.compose.material.icons.outlined.SmartButton
+import androidx.compose.material.icons.outlined.Tune
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Switch
@@ -233,7 +233,7 @@ fun DiscordScreen(
                 footer = stringResource(R.string.discord_sign_in_footer),
             ) {
                 SettingsRow(
-                    icon = Icons.Sharp.Key,
+                    icon = Icons.Outlined.Key,
                     title = stringResource(R.string.enter_token_instead),
                     subtitle = stringResource(R.string.enter_token_instead_subtitle),
                     onClick = { onOpenDialog(DiscordDialog.TOKEN) },
@@ -272,7 +272,7 @@ fun DiscordScreen(
             )
             RowDivider()
             SettingsRow(
-                icon = Icons.AutoMirrored.Sharp.Label,
+                icon = Icons.AutoMirrored.Outlined.Label,
                 title = stringResource(R.string.lead_with_song),
                 subtitle = stringResource(R.string.lead_with_song_subtitle),
                 enabled = connected && rpcEnabled,
@@ -291,7 +291,7 @@ fun DiscordScreen(
             )
             RowDivider()
             SettingsRow(
-                icon = Icons.Sharp.GraphicEq,
+                icon = Icons.Outlined.GraphicEq,
                 title = stringResource(R.string.discord_show_audio_quality),
                 subtitle = stringResource(R.string.discord_show_audio_quality_subtitle),
                 enabled = connected && rpcEnabled,
@@ -310,7 +310,7 @@ fun DiscordScreen(
             )
             RowDivider()
             SettingsRow(
-                icon = Icons.Sharp.Tune,
+                icon = Icons.Outlined.Tune,
                 title = stringResource(R.string.customize_card),
                 subtitle = stringResource(R.string.customize_card_subtitle),
                 enabled = connected && rpcEnabled,
@@ -333,21 +333,21 @@ fun DiscordScreen(
             Column(Modifier.fillMaxWidth()) {
                 SettingsGroup(header = stringResource(R.string.presence)) {
                     SettingsRow(
-                        icon = Icons.Sharp.RadioButtonChecked,
+                        icon = Icons.Outlined.RadioButtonChecked,
                         title = stringResource(R.string.status),
                         value = statusOf(status).localizedLabel(),
                         onClick = { onOpenDialog(DiscordDialog.STATUS) },
                     )
                     RowDivider()
                     SettingsRow(
-                        icon = Icons.Sharp.Tune,
+                        icon = Icons.Outlined.Tune,
                         title = stringResource(R.string.activity),
                         value = kindOf(activityType).localizedLabel(),
                         onClick = { onOpenDialog(DiscordDialog.ACTIVITY_TYPE) },
                     )
                     RowDivider()
                     SettingsRow(
-                        icon = Icons.AutoMirrored.Sharp.Label,
+                        icon = Icons.AutoMirrored.Outlined.Label,
                         title = stringResource(R.string.name),
                         subtitle = activityName.ifEmpty { appName() },
                         onClick = { onOpenDialog(DiscordDialog.ACTIVITY_NAME) },
@@ -359,7 +359,7 @@ fun DiscordScreen(
                     footer = stringResource(R.string.discord_buttons_footer),
                 ) {
                     SettingsRow(
-                        icon = Icons.Sharp.SmartButton,
+                        icon = Icons.Outlined.SmartButton,
                         title = stringResource(R.string.first_button),
                         subtitle = button1Text.ifEmpty { DiscordRPC.DEFAULT_BUTTON_1 },
                         trailing = {
@@ -376,7 +376,7 @@ fun DiscordScreen(
                     )
                     RowDivider()
                     SettingsRow(
-                        icon = Icons.Sharp.SmartButton,
+                        icon = Icons.Outlined.SmartButton,
                         title = stringResource(R.string.second_button),
                         subtitle = button2Text.ifEmpty { DiscordRPC.DEFAULT_BUTTON_2 },
                         trailing = {

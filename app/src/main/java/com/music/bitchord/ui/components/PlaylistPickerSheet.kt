@@ -22,13 +22,13 @@ import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.sharp.ArrowBack
-import androidx.compose.material.icons.sharp.CheckCircle
-import androidx.compose.material.icons.sharp.Close
-import androidx.compose.material.icons.sharp.Link
-import androidx.compose.material.icons.sharp.Lock
-import androidx.compose.material.icons.sharp.Public
-import androidx.compose.material.icons.sharp.RadioButtonUnchecked
+import androidx.compose.material.icons.automirrored.outlined.ArrowBack
+import androidx.compose.material.icons.outlined.CheckCircle
+import androidx.compose.material.icons.outlined.Close
+import androidx.compose.material.icons.outlined.Link
+import androidx.compose.material.icons.outlined.Lock
+import androidx.compose.material.icons.outlined.Public
+import androidx.compose.material.icons.outlined.RadioButtonUnchecked
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.HorizontalDivider
@@ -228,7 +228,7 @@ private fun PlaylistRow(playlist: UserPlaylist, selected: Boolean, onClick: () -
         }
         Spacer(Modifier.width(12.dp))
         Icon(
-            imageVector = if (selected) Icons.Sharp.CheckCircle else Icons.Sharp.RadioButtonUnchecked,
+            imageVector = if (selected) Icons.Outlined.CheckCircle else Icons.Outlined.RadioButtonUnchecked,
             contentDescription = null,
             tint = if (selected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant,
             modifier = Modifier.size(24.dp),
@@ -278,7 +278,7 @@ private fun NewPlaylistForm(
             onBack?.let {
                 IconButton(onClick = it) {
                     Icon(
-                        Icons.AutoMirrored.Sharp.ArrowBack,
+                        Icons.AutoMirrored.Outlined.ArrowBack,
                         contentDescription = stringResource(R.string.back),
                         tint = MaterialTheme.colorScheme.onBackground,
                     )
@@ -339,7 +339,7 @@ private fun NewPlaylistForm(
                     contentAlignment = Alignment.Center,
                 ) {
                     Icon(
-                        Icons.Sharp.Close,
+                        Icons.Outlined.Close,
                         contentDescription = stringResource(R.string.clear_name),
                         tint = MaterialTheme.colorScheme.onSurfaceVariant,
                         modifier = Modifier.size(18.dp),
@@ -419,7 +419,7 @@ internal fun RenamePlaylistForm(
         ) {
             IconButton(onClick = onBack) {
                 Icon(
-                    Icons.AutoMirrored.Sharp.ArrowBack,
+                    Icons.AutoMirrored.Outlined.ArrowBack,
                     contentDescription = stringResource(R.string.back),
                     tint = MaterialTheme.colorScheme.onBackground,
                 )
@@ -476,9 +476,9 @@ internal fun RenamePlaylistForm(
  */
 private val PlaylistPrivacy.icon: ImageVector
     get() = when (this) {
-        PlaylistPrivacy.PRIVATE -> Icons.Sharp.Lock
-        PlaylistPrivacy.UNLISTED -> Icons.Sharp.Link
-        PlaylistPrivacy.PUBLIC -> Icons.Sharp.Public
+        PlaylistPrivacy.PRIVATE -> Icons.Outlined.Lock
+        PlaylistPrivacy.UNLISTED -> Icons.Outlined.Link
+        PlaylistPrivacy.PUBLIC -> Icons.Outlined.Public
     }
 
 /** The search filters' pill, carrying an icon ahead of its label. */

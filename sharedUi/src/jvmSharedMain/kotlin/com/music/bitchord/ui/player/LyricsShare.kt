@@ -13,8 +13,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.sharp.Close
-import androidx.compose.material.icons.sharp.IosShare
+import androidx.compose.material.icons.outlined.Close
+import androidx.compose.material.icons.outlined.IosShare
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -316,7 +316,7 @@ internal fun LyricsPickBar(
     ) {
         PickAction(
             label = stringResource(Res.string.cancel),
-            icon = Icons.Sharp.Close,
+            icon = Icons.Outlined.Close,
             accent = false,
             enabled = true,
             modifier = Modifier.weight(1f),
@@ -327,7 +327,7 @@ internal fun LyricsPickBar(
         )
         PickAction(
             label = stringResource(Res.string.share),
-            icon = Icons.Sharp.IosShare,
+            icon = Icons.Outlined.IosShare,
             accent = true,
             enabled = shareEnabled,
             modifier = Modifier.weight(1f),

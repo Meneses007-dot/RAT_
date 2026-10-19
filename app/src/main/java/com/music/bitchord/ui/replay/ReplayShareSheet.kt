@@ -28,9 +28,9 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.sharp.Check
-import androidx.compose.material.icons.sharp.Download
-import androidx.compose.material.icons.sharp.IosShare
+import androidx.compose.material.icons.outlined.Check
+import androidx.compose.material.icons.outlined.Download
+import androidx.compose.material.icons.outlined.IosShare
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -170,7 +170,7 @@ fun ReplayShareSheet(
         Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
             ShareAction(
                 label = if (saved) stringResource(R.string.saved) else stringResource(R.string.save),
-                icon = Icons.Sharp.Download,
+                icon = Icons.Outlined.Download,
                 accent = false,
                 enabled = ready && !saved,
                 modifier = Modifier.weight(1f),
@@ -180,7 +180,7 @@ fun ReplayShareSheet(
             }
             ShareAction(
                 label = stringResource(R.string.share),
-                icon = Icons.Sharp.IosShare,
+                icon = Icons.Outlined.IosShare,
                 accent = true,
                 enabled = ready,
                 modifier = Modifier.weight(1f),
@@ -244,7 +244,7 @@ internal fun ShareAction(
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 Icon(
-                    imageVector = if (isSaved) Icons.Sharp.Check else icon,
+                    imageVector = if (isSaved) Icons.Outlined.Check else icon,
                     contentDescription = null,
                     tint = foreground,
                     modifier = Modifier.size(19.dp),

@@ -28,7 +28,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.sharp.IosShare
+import androidx.compose.material.icons.outlined.IosShare
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -238,7 +238,7 @@ fun ReplayScreen(
                     item("habits") { Habits(summary, dark) }
                     item("share") {
                         ReplayActionRow(
-                            Icons.Sharp.IosShare,
+                            Icons.Outlined.IosShare,
                             stringResource(R.string.share_my_replay),
                             dark,
                             onShare,

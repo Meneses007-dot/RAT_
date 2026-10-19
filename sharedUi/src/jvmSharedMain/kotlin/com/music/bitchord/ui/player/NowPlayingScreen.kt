@@ -61,12 +61,12 @@ import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.sharp.Undo
-import androidx.compose.material.icons.sharp.FastForward
-import androidx.compose.material.icons.sharp.FastRewind
-import androidx.compose.material.icons.sharp.Close
-import androidx.compose.material.icons.sharp.IosShare
-import androidx.compose.material.icons.sharp.MoreHoriz
+import androidx.compose.material.icons.automirrored.outlined.Undo
+import androidx.compose.material.icons.outlined.FastForward
+import androidx.compose.material.icons.outlined.FastRewind
+import androidx.compose.material.icons.outlined.Close
+import androidx.compose.material.icons.outlined.IosShare
+import androidx.compose.material.icons.outlined.MoreHoriz
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -3153,7 +3153,7 @@ fun NowPlayingScreen(
                             val enabled = if (showNext) hasNext else hasPrevious
                             val hintAlpha = if (enabled) 0.85f else 0.3f
                             Icon(
-                                imageVector = if (showNext) Icons.Sharp.FastForward else Icons.Sharp.FastRewind,
+                                imageVector = if (showNext) Icons.Outlined.FastForward else Icons.Outlined.FastRewind,
                                 contentDescription = null,
                                 tint = Color.White,
                                 modifier = Modifier
@@ -3326,10 +3326,10 @@ fun NowPlayingScreen(
                                 !lyrics.isNullOrEmpty() && (!lyricsControlsOpen || lyricPicker.picking)
                             CircleGlyph(
                                 icon = when {
-                                    showRevertCue -> Icons.AutoMirrored.Sharp.Undo
-                                    lyricsShareGlyphVisible && lyricPicker.picking -> Icons.Sharp.Close
-                                    lyricsShareGlyphVisible -> Icons.Sharp.IosShare
-                                    else -> Icons.Sharp.MoreHoriz
+                                    showRevertCue -> Icons.AutoMirrored.Outlined.Undo
+                                    lyricsShareGlyphVisible && lyricPicker.picking -> Icons.Outlined.Close
+                                    lyricsShareGlyphVisible -> Icons.Outlined.IosShare
+                                    else -> Icons.Outlined.MoreHoriz
                                 },
                                 contentDescription = stringResource(
                                     when {

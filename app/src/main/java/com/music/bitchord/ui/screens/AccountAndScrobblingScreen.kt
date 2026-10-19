@@ -14,12 +14,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.sharp.Cloud
-import androidx.compose.material.icons.sharp.GraphicEq
-import androidx.compose.material.icons.sharp.History
-import androidx.compose.material.icons.sharp.LibraryMusic
-import androidx.compose.material.icons.sharp.SwitchAccount
-import androidx.compose.material.icons.sharp.Tune
+import androidx.compose.material.icons.outlined.Cloud
+import androidx.compose.material.icons.outlined.GraphicEq
+import androidx.compose.material.icons.outlined.History
+import androidx.compose.material.icons.outlined.LibraryMusic
+import androidx.compose.material.icons.outlined.SwitchAccount
+import androidx.compose.material.icons.outlined.Tune
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchDefaults
@@ -98,7 +98,7 @@ fun AccountAndScrobblingScreen(
             if (signedIn) {
                 FullWidthDivider()
                 SettingsRow(
-                    icon = Icons.Sharp.SwitchAccount,
+                    icon = Icons.Outlined.SwitchAccount,
                     title = stringResource(R.string.listen_as),
                     subtitle = channelName ?: stringResource(R.string.default_youtube_profile),
                     onClick = onSwitchChannel,
@@ -155,7 +155,7 @@ fun AccountAndScrobblingScreen(
                 footer = stringResource(R.string.scrobbling_footer),
             ) {
                 SettingsRow(
-                    icon = Icons.Sharp.Cloud,
+                    icon = Icons.Outlined.Cloud,
                     title = "ListenBrainz",
                     subtitle = if (listenBrainzEnabled && listenBrainzToken.isNotBlank()) {
                         stringResource(R.string.connected)
@@ -183,7 +183,7 @@ fun AccountAndScrobblingScreen(
                 if (listenBrainzEnabled && listenBrainzToken.isNotBlank()) {
                     RowDivider()
                     SettingsRow(
-                        icon = Icons.Sharp.GraphicEq,
+                        icon = Icons.Outlined.GraphicEq,
                         title = stringResource(R.string.scrobble_primary_artist_only),
                         subtitle = stringResource(R.string.scrobble_primary_artist_only_subtitle),
                         trailing = {
@@ -201,7 +201,7 @@ fun AccountAndScrobblingScreen(
                 }
                 RowDivider()
                 SettingsRow(
-                    icon = Icons.Sharp.History,
+                    icon = Icons.Outlined.History,
                     title = "Last.fm",
                     subtitle = if (lastfmSessionKey.isNotBlank()) {
                         stringResource(R.string.signed_in_as, lastfmUsername)
@@ -239,7 +239,7 @@ fun AccountAndScrobblingScreen(
                 if (lastfmEnabled && lastfmSessionKey.isNotBlank()) {
                     RowDivider()
                     SettingsRow(
-                        icon = Icons.Sharp.GraphicEq,
+                        icon = Icons.Outlined.GraphicEq,
                         title = stringResource(R.string.scrobble_tracks),
                         subtitle = stringResource(R.string.scrobble_tracks_subtitle),
                         trailing = {
@@ -256,7 +256,7 @@ fun AccountAndScrobblingScreen(
                     )
                     RowDivider()
                     SettingsRow(
-                        icon = Icons.Sharp.GraphicEq,
+                        icon = Icons.Outlined.GraphicEq,
                         title = stringResource(R.string.scrobble_primary_artist_only),
                         subtitle = stringResource(R.string.scrobble_primary_artist_only_subtitle),
                         trailing = {
@@ -273,7 +273,7 @@ fun AccountAndScrobblingScreen(
                     )
                     RowDivider()
                     SettingsRow(
-                        icon = Icons.Sharp.GraphicEq,
+                        icon = Icons.Outlined.GraphicEq,
                         title = stringResource(R.string.now_playing),
                         subtitle = stringResource(R.string.lastfm_now_playing_subtitle),
                         trailing = {
@@ -294,7 +294,7 @@ fun AccountAndScrobblingScreen(
             if (lastfmEnabled && lastfmSessionKey.isNotBlank()) {
                 SettingsGroup(header = stringResource(R.string.scrobble_timing)) {
                     SliderRow(
-                        icon = Icons.Sharp.Tune,
+                        icon = Icons.Outlined.Tune,
                         title = stringResource(R.string.min_song_duration),
                         subtitle = stringResource(R.string.min_song_duration_subtitle),
                         value = "${scrobbleMinDuration}s",
@@ -305,7 +305,7 @@ fun AccountAndScrobblingScreen(
                     )
                     RowDivider()
                     SliderRow(
-                        icon = Icons.Sharp.Tune,
+                        icon = Icons.Outlined.Tune,
                         title = stringResource(R.string.scrobble_delay),
                         subtitle = stringResource(R.string.scrobble_delay_subtitle),
                         value = "${(scrobbleDelayPercent * 100).roundToInt()}%",
@@ -316,7 +316,7 @@ fun AccountAndScrobblingScreen(
                     )
                     RowDivider()
                     SliderRow(
-                        icon = Icons.Sharp.Tune,
+                        icon = Icons.Outlined.Tune,
                         title = stringResource(R.string.max_delay),
                         subtitle = stringResource(R.string.max_delay_subtitle),
                         value = "${scrobbleDelaySeconds}s",
@@ -336,14 +336,14 @@ fun AccountAndScrobblingScreen(
                 footer = stringResource(R.string.scrobbling_paused_footer),
             ) {
                 SettingsRow(
-                    icon = Icons.Sharp.Cloud,
+                    icon = Icons.Outlined.Cloud,
                     title = "ListenBrainz",
                     subtitle = stringResource(R.string.back_in_future_version),
                     enabled = false,
                 )
                 RowDivider()
                 SettingsRow(
-                    icon = Icons.Sharp.History,
+                    icon = Icons.Outlined.History,
                     title = "Last.fm",
                     subtitle = stringResource(R.string.back_in_future_version),
                     enabled = false,

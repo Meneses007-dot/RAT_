@@ -59,10 +59,10 @@ import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.sharp.VolumeDown
-import androidx.compose.material.icons.automirrored.sharp.VolumeUp
-import androidx.compose.material.icons.sharp.Headphones
-import androidx.compose.material.icons.sharp.Person
+import androidx.compose.material.icons.automirrored.outlined.VolumeDown
+import androidx.compose.material.icons.automirrored.outlined.VolumeUp
+import androidx.compose.material.icons.outlined.Headphones
+import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -525,7 +525,7 @@ internal fun VolumeRow(
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Icon(
-            Icons.AutoMirrored.Sharp.VolumeDown,
+            Icons.AutoMirrored.Outlined.VolumeDown,
             contentDescription = null,
             tint = LocalPlayerTint.current.copy(alpha = 0.5f),
             modifier = Modifier.size(20.dp),
@@ -541,7 +541,7 @@ internal fun VolumeRow(
         )
         Spacer(Modifier.width(10.dp))
         Icon(
-            Icons.AutoMirrored.Sharp.VolumeUp,
+            Icons.AutoMirrored.Outlined.VolumeUp,
             contentDescription = null,
             tint = LocalPlayerTint.current.copy(alpha = 0.5f),
             modifier = Modifier.size(20.dp),
@@ -903,7 +903,7 @@ private fun OutputPartyPill(
     val badge = rememberPartyBadge()
     Pill {
         PillSegment(
-            icon = Icons.Sharp.Headphones,
+            icon = Icons.Outlined.Headphones,
             iconSize = PILL_HEADPHONES_SIZE,
             contentDescription = stringResource(Res.string.audio_output),
             onClick = onOutput,
@@ -913,7 +913,7 @@ private fun OutputPartyPill(
             // Person rather than Groups: the three-person glyph is drawn half
             // the height of Headphones and wider than the segment holding it,
             // so the two halves of the capsule never looked like a pair.
-            icon = Icons.Sharp.Person,
+            icon = Icons.Outlined.Person,
             iconSize = PILL_PARTY_SIZE,
             // The count is here and nowhere else: spoken, it is the whole
             // point of the control; drawn, it would cost the capsule its
@@ -1603,7 +1603,7 @@ private fun LosslessOrStats(
         nerdStats?.isHiQuality == true -> LosslessLabel(
             text = stringResource(Res.string.high_quality),
             animated = false,
-            iconPainter = rememberVectorPainter(Icons.Sharp.Headphones),
+            iconPainter = rememberVectorPainter(Icons.Outlined.Headphones),
             // A Material glyph's own size is 24dp; the badge's are drawn small.
             iconSize = 13.dp,
             modifier = modifier,

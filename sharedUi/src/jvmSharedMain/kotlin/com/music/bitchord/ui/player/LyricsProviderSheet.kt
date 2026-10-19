@@ -14,9 +14,9 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.sharp.Check
-import androidx.compose.material.icons.sharp.Close
-import androidx.compose.material.icons.sharp.Search
+import androidx.compose.material.icons.outlined.Check
+import androidx.compose.material.icons.outlined.Close
+import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -143,19 +143,19 @@ private fun LyricsProviderRow(
                     modifier = Modifier.size(20.dp),
                 )
                 current || state == LyricsProviderState.FOUND -> Icon(
-                    imageVector = Icons.Sharp.Check,
+                    imageVector = Icons.Outlined.Check,
                     contentDescription = null,
                     tint = Color.White.copy(alpha = if (current) 1f else 0.75f),
                     modifier = Modifier.size(21.dp),
                 )
                 state == LyricsProviderState.NOT_FOUND -> Icon(
-                    imageVector = Icons.Sharp.Close,
+                    imageVector = Icons.Outlined.Close,
                     contentDescription = null,
                     tint = Color.White.copy(alpha = 0.4f),
                     modifier = Modifier.size(20.dp),
                 )
                 else -> Icon(
-                    imageVector = Icons.Sharp.Search,
+                    imageVector = Icons.Outlined.Search,
                     contentDescription = null,
                     tint = Color.White.copy(alpha = 0.7f),
                     modifier = Modifier.size(20.dp),

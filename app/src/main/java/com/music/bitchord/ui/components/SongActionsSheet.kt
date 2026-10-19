@@ -21,32 +21,32 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.sharp.ArrowBack
-import androidx.compose.material.icons.automirrored.sharp.PlaylistAdd
-import androidx.compose.material.icons.automirrored.sharp.PlaylistPlay
-import androidx.compose.material.icons.automirrored.sharp.QueueMusic
-import androidx.compose.material.icons.automirrored.sharp.Undo
-import androidx.compose.material.icons.sharp.Album
-import androidx.compose.material.icons.sharp.Bedtime
-import androidx.compose.material.icons.sharp.BugReport
-import androidx.compose.material.icons.sharp.Check
-import androidx.compose.material.icons.sharp.Close
-import androidx.compose.material.icons.sharp.Download
-import androidx.compose.material.icons.sharp.DownloadDone
-import androidx.compose.material.icons.sharp.Downloading
-import androidx.compose.material.icons.sharp.ErrorOutline
-import androidx.compose.material.icons.sharp.Favorite
-import androidx.compose.material.icons.sharp.FavoriteBorder
-import androidx.compose.material.icons.sharp.FileUpload
-import androidx.compose.material.icons.sharp.HighQuality
-import androidx.compose.material.icons.sharp.Person
-import androidx.compose.material.icons.sharp.Radio
-import androidx.compose.material.icons.sharp.PlaylistRemove
-import androidx.compose.material.icons.sharp.Share
-import androidx.compose.material.icons.sharp.ThumbDown
-import androidx.compose.material.icons.sharp.ThumbDownOffAlt
-import androidx.compose.material.icons.sharp.Tune
-import androidx.compose.material.icons.sharp.Videocam
+import androidx.compose.material.icons.automirrored.outlined.ArrowBack
+import androidx.compose.material.icons.automirrored.outlined.PlaylistAdd
+import androidx.compose.material.icons.automirrored.outlined.PlaylistPlay
+import androidx.compose.material.icons.automirrored.outlined.QueueMusic
+import androidx.compose.material.icons.automirrored.outlined.Undo
+import androidx.compose.material.icons.outlined.Album
+import androidx.compose.material.icons.outlined.Bedtime
+import androidx.compose.material.icons.outlined.BugReport
+import androidx.compose.material.icons.outlined.Check
+import androidx.compose.material.icons.outlined.Close
+import androidx.compose.material.icons.outlined.Download
+import androidx.compose.material.icons.outlined.DownloadDone
+import androidx.compose.material.icons.outlined.Downloading
+import androidx.compose.material.icons.outlined.ErrorOutline
+import androidx.compose.material.icons.outlined.Favorite
+import androidx.compose.material.icons.outlined.FavoriteBorder
+import androidx.compose.material.icons.outlined.FileUpload
+import androidx.compose.material.icons.outlined.HighQuality
+import androidx.compose.material.icons.outlined.Person
+import androidx.compose.material.icons.outlined.Radio
+import androidx.compose.material.icons.outlined.PlaylistRemove
+import androidx.compose.material.icons.outlined.Share
+import androidx.compose.material.icons.outlined.ThumbDown
+import androidx.compose.material.icons.outlined.ThumbDownOffAlt
+import androidx.compose.material.icons.outlined.Tune
+import androidx.compose.material.icons.outlined.Videocam
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
@@ -230,9 +230,9 @@ fun SongActionsSheet(
             (onRollbackToOriginal ?: onUpgradeQuality)?.let {
                 ActionRow(
                     icon = if (onRollbackToOriginal != null) {
-                        Icons.AutoMirrored.Sharp.Undo
+                        Icons.AutoMirrored.Outlined.Undo
                     } else {
-                        Icons.Sharp.HighQuality
+                        Icons.Outlined.HighQuality
                     },
                     label = stringResource(
                         if (onRollbackToOriginal != null) {
@@ -251,7 +251,7 @@ fun SongActionsSheet(
             // into it, but still ahead of the divider both share.
             onToggleAudioVersion?.let {
                 ActionRow(
-                    icon = if (isAudioVersion) Icons.Sharp.Videocam else BitChordIcons.MusicNote,
+                    icon = if (isAudioVersion) Icons.Outlined.Videocam else BitChordIcons.MusicNote,
                     label = stringResource(
                         if (isAudioVersion) R.string.convert_to_video else R.string.convert_to_audio,
                     ),
@@ -264,28 +264,28 @@ fun SongActionsSheet(
 
         if (signedIn && !isOffline) {
             ActionRow(
-                icon = if (liked) Icons.Sharp.Favorite else Icons.Sharp.FavoriteBorder,
+                icon = if (liked) Icons.Outlined.Favorite else Icons.Outlined.FavoriteBorder,
                 label = if (liked) stringResource(R.string.remove_from_liked) else stringResource(R.string.like),
                 tint = if (liked) palette.accent else null,
                 accent = palette.accent,
                 onClick = onToggleLike,
             )
             ActionRow(
-                icon = if (disliked) Icons.Sharp.ThumbDown else Icons.Sharp.ThumbDownOffAlt,
+                icon = if (disliked) Icons.Outlined.ThumbDown else Icons.Outlined.ThumbDownOffAlt,
                 label = if (disliked) stringResource(R.string.undo_dislike) else stringResource(R.string.dislike),
                 tint = if (disliked) palette.accent else null,
                 accent = palette.accent,
                 onClick = onToggleDislike,
             )
             ActionRow(
-                icon = Icons.AutoMirrored.Sharp.PlaylistAdd,
+                icon = Icons.AutoMirrored.Outlined.PlaylistAdd,
                 label = stringResource(R.string.add_to_playlist),
                 accent = palette.accent,
                 onClick = onAddToPlaylist,
             )
             onRemoveFromPlaylist?.let {
                 ActionRow(
-                    icon = Icons.Sharp.PlaylistRemove,
+                    icon = Icons.Outlined.PlaylistRemove,
                     label = stringResource(R.string.remove_from_playlist),
                     accent = palette.accent,
                     onClick = it,
@@ -297,46 +297,46 @@ fun SongActionsSheet(
         DownloadRow(song, palette, isOffline, onDownload)
         WebDavUploadRow(song, palette, isOffline, onUploadToWebDav)
         ActionRow(
-            icon = Icons.Sharp.Radio,
+            icon = Icons.Outlined.Radio,
             label = stringResource(R.string.start_radio),
             accent = palette.accent,
             onClick = onStartRadio,
         )
         ActionRow(
-            icon = Icons.AutoMirrored.Sharp.PlaylistPlay,
+            icon = Icons.AutoMirrored.Outlined.PlaylistPlay,
             label = stringResource(R.string.play_next),
             accent = palette.accent,
             onClick = onPlayNext,
         )
         ActionRow(
-            icon = Icons.AutoMirrored.Sharp.QueueMusic,
+            icon = Icons.AutoMirrored.Outlined.QueueMusic,
             label = stringResource(R.string.add_to_queue),
             accent = palette.accent,
             onClick = onAddToQueue,
         )
         when (val id = song.albumId) {
             null -> if (resolvingLinks) {
-                LoadingActionRow(Icons.Sharp.Album, stringResource(R.string.open_album), palette)
+                LoadingActionRow(Icons.Outlined.Album, stringResource(R.string.open_album), palette)
             }
             else -> ActionRow(
-                Icons.Sharp.Album,
+                Icons.Outlined.Album,
                 stringResource(R.string.open_album),
                 accent = palette.accent,
             ) { onOpenAlbum(id) }
         }
         when (val id = song.artistId) {
             null -> if (resolvingLinks) {
-                LoadingActionRow(Icons.Sharp.Person, stringResource(R.string.open_artist), palette)
+                LoadingActionRow(Icons.Outlined.Person, stringResource(R.string.open_artist), palette)
             }
             else -> ActionRow(
-                Icons.Sharp.Person,
+                Icons.Outlined.Person,
                 stringResource(R.string.open_artist),
                 accent = palette.accent,
             ) { onOpenArtist(id) }
         }
         if (showSleepTimer) {
             ActionRow(
-                icon = Icons.Sharp.Bedtime,
+                icon = Icons.Outlined.Bedtime,
                 label = stringResource(R.string.sleep_timer),
                 value = sleepTimerStatus(),
                 accent = palette.accent,
@@ -348,7 +348,7 @@ fun SongActionsSheet(
         // streamed songs do.
         onLyricsOffset?.let {
             ActionRow(
-                icon = Icons.Sharp.Tune,
+                icon = Icons.Outlined.Tune,
                 label = stringResource(R.string.lyrics_offset),
                 accent = palette.accent,
                 onClick = it,
@@ -356,14 +356,14 @@ fun SongActionsSheet(
         }
         if (!isOffline) {
             onShare?.let {
-                ActionRow(Icons.Sharp.Share, stringResource(R.string.share), accent = palette.accent, onClick = it)
+                ActionRow(Icons.Outlined.Share, stringResource(R.string.share), accent = palette.accent, onClick = it)
             }
         }
         // Last, and only from the player: it is about the track playing right
         // now rather than about the song as a thing in a library, and it is
         // the one row here nobody reaches for by accident.
         onCopyLog?.let {
-            ActionRow(Icons.Sharp.BugReport, stringResource(R.string.copy_log), accent = palette.accent, onClick = it)
+            ActionRow(Icons.Outlined.BugReport, stringResource(R.string.copy_log), accent = palette.accent, onClick = it)
         }
     }
 
@@ -551,14 +551,14 @@ private fun DownloadRow(song: Song, palette: ArtworkPalette, isOffline: Boolean,
 
     when (val state = active[song.videoId]) {
         is DownloadState.Queued -> ActionRow(
-            icon = Icons.Sharp.Downloading,
+            icon = Icons.Outlined.Downloading,
             label = stringResource(R.string.queued),
             value = stringResource(R.string.cancel),
             accent = palette.accent,
         ) { Downloads.cancel(song.videoId) }
 
         is DownloadState.Running -> ActionRow(
-            icon = Icons.Sharp.Downloading,
+            icon = Icons.Outlined.Downloading,
             label = stringResource(R.string.download_notification_title),
             // Indeterminate until the first response names a length; a
             // stuck "0%" reads as broken where a bare label reads as starting.
@@ -568,7 +568,7 @@ private fun DownloadRow(song: Song, palette: ArtworkPalette, isOffline: Boolean,
         ) { Downloads.cancel(song.videoId) }
 
         is DownloadState.Failed -> ActionRow(
-            icon = Icons.Sharp.ErrorOutline,
+            icon = Icons.Outlined.ErrorOutline,
             label = state.reason,
             value = stringResource(R.string.retry),
             // Not the artwork's colour: a failure has to stay legible as a
@@ -580,7 +580,7 @@ private fun DownloadRow(song: Song, palette: ArtworkPalette, isOffline: Boolean,
 
         null -> if (file != null) {
             ActionRow(
-                icon = Icons.Sharp.DownloadDone,
+                icon = Icons.Outlined.DownloadDone,
                 label = stringResource(R.string.saved_to_downloads),
                 value = stringResource(R.string.delete),
                 tint = palette.accent,
@@ -588,7 +588,7 @@ private fun DownloadRow(song: Song, palette: ArtworkPalette, isOffline: Boolean,
             ) { scope.launch { Downloads.delete(context, song.videoId) } }
         } else if (!isOffline) {
             ActionRow(
-                icon = Icons.Sharp.Download,
+                icon = Icons.Outlined.Download,
                 label = stringResource(R.string.download),
                 accent = palette.accent,
                 onClick = onDownload,
@@ -618,7 +618,7 @@ private fun WebDavUploadRow(
     val active by WebDavUploads.active.collectAsStateWithLifecycle()
     when (val state = active[song.videoId]) {
         is WebDavUploads.TrackState.Running -> ActionRow(
-            icon = Icons.Sharp.FileUpload,
+            icon = Icons.Outlined.FileUpload,
             label = stringResource(R.string.upload_to_webdav),
             value = "${(state.fraction * 100).toInt()}%",
             tint = palette.accent,
@@ -627,7 +627,7 @@ private fun WebDavUploadRow(
             onClick = {},
         )
         is WebDavUploads.TrackState.Failed -> ActionRow(
-            icon = Icons.Sharp.FileUpload,
+            icon = Icons.Outlined.FileUpload,
             label = state.reason,
             value = stringResource(R.string.try_again),
             tint = MaterialTheme.colorScheme.error,
@@ -635,7 +635,7 @@ private fun WebDavUploadRow(
             onClick = onUpload,
         )
         else -> ActionRow(
-            icon = Icons.Sharp.FileUpload,
+            icon = Icons.Outlined.FileUpload,
             label = stringResource(R.string.upload_to_webdav),
             accent = palette.accent,
             onClick = onUpload,
@@ -659,7 +659,7 @@ private fun SleepTimerPicker(palette: ArtworkPalette, onBack: () -> Unit) {
         ) {
             IconButton(onClick = onBack) {
                 Icon(
-                    Icons.AutoMirrored.Sharp.ArrowBack,
+                    Icons.AutoMirrored.Outlined.ArrowBack,
                     contentDescription = stringResource(R.string.back),
                     tint = MaterialTheme.colorScheme.onBackground,
                 )
@@ -708,7 +708,7 @@ private fun SleepTimerPicker(palette: ArtworkPalette, onBack: () -> Unit) {
             }
         }
         if (chosen != null || afterTrack) {
-            ActionRow(Icons.Sharp.Close, stringResource(R.string.turn_off_timer), accent = palette.accent) {
+            ActionRow(Icons.Outlined.Close, stringResource(R.string.turn_off_timer), accent = palette.accent) {
                 SleepTimer.cancel()
                 onBack()
             }
@@ -739,7 +739,7 @@ private fun SleepOption(
         )
         if (selected) {
             Icon(
-                Icons.Sharp.Check,
+                Icons.Outlined.Check,
                 contentDescription = stringResource(R.string.running),
                 tint = accent,
                 modifier = Modifier.size(22.dp),

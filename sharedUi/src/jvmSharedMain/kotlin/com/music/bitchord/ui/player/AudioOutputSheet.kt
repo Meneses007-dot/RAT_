@@ -15,20 +15,20 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.sharp.KeyboardArrowRight
-import androidx.compose.material.icons.automirrored.sharp.VolumeOff
-import androidx.compose.material.icons.automirrored.sharp.VolumeUp
-import androidx.compose.material.icons.sharp.Bluetooth
-import androidx.compose.material.icons.sharp.Cast
-import androidx.compose.material.icons.sharp.CastConnected
-import androidx.compose.material.icons.sharp.Check
-import androidx.compose.material.icons.sharp.GraphicEq
-import androidx.compose.material.icons.sharp.Headphones
-import androidx.compose.material.icons.sharp.PhoneAndroid
-import androidx.compose.material.icons.sharp.Speaker
-import androidx.compose.material.icons.sharp.Tv
-import androidx.compose.material.icons.sharp.Usb
-import androidx.compose.material.icons.sharp.Watch
+import androidx.compose.material.icons.automirrored.outlined.KeyboardArrowRight
+import androidx.compose.material.icons.automirrored.outlined.VolumeOff
+import androidx.compose.material.icons.automirrored.outlined.VolumeUp
+import androidx.compose.material.icons.outlined.Bluetooth
+import androidx.compose.material.icons.outlined.Cast
+import androidx.compose.material.icons.outlined.CastConnected
+import androidx.compose.material.icons.outlined.Check
+import androidx.compose.material.icons.outlined.GraphicEq
+import androidx.compose.material.icons.outlined.Headphones
+import androidx.compose.material.icons.outlined.PhoneAndroid
+import androidx.compose.material.icons.outlined.Speaker
+import androidx.compose.material.icons.outlined.Tv
+import androidx.compose.material.icons.outlined.Usb
+import androidx.compose.material.icons.outlined.Watch
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -168,7 +168,7 @@ private fun AudioPipelineRow(onClick: () -> Unit) {
             contentAlignment = Alignment.Center,
         ) {
             Icon(
-                imageVector = Icons.Sharp.GraphicEq,
+                imageVector = Icons.Outlined.GraphicEq,
                 contentDescription = null,
                 tint = Color.White.copy(alpha = 0.7f),
                 modifier = Modifier.size(20.dp),
@@ -193,7 +193,7 @@ private fun AudioPipelineRow(onClick: () -> Unit) {
             )
         }
         Icon(
-            imageVector = Icons.AutoMirrored.Sharp.KeyboardArrowRight,
+            imageVector = Icons.AutoMirrored.Outlined.KeyboardArrowRight,
             contentDescription = null,
             tint = Color.White.copy(alpha = 0.35f),
             modifier = Modifier.size(20.dp),
@@ -233,7 +233,7 @@ private fun CastRow(cast: CastUi, onClick: () -> Unit) {
             contentAlignment = Alignment.Center,
         ) {
             Icon(
-                imageVector = if (casting) Icons.Sharp.CastConnected else Icons.Sharp.Cast,
+                imageVector = if (casting) Icons.Outlined.CastConnected else Icons.Outlined.Cast,
                 contentDescription = null,
                 tint = Color.White.copy(alpha = if (casting) 1f else 0.7f),
                 modifier = Modifier.size(21.dp),
@@ -266,7 +266,7 @@ private fun CastRow(cast: CastUi, onClick: () -> Unit) {
             )
         }
         Icon(
-            imageVector = Icons.AutoMirrored.Sharp.KeyboardArrowRight,
+            imageVector = Icons.AutoMirrored.Outlined.KeyboardArrowRight,
             contentDescription = null,
             tint = Color.White.copy(alpha = 0.35f),
             modifier = Modifier.size(20.dp),
@@ -307,7 +307,7 @@ private fun WatchRow(watch: WatchOutputUi, onClick: () -> Unit) {
             contentAlignment = Alignment.Center,
         ) {
             Icon(
-                imageVector = Icons.Sharp.Watch,
+                imageVector = Icons.Outlined.Watch,
                 contentDescription = null,
                 tint = Color.White.copy(alpha = if (active) 1f else 0.7f),
                 modifier = Modifier.size(21.dp),
@@ -335,7 +335,7 @@ private fun WatchRow(watch: WatchOutputUi, onClick: () -> Unit) {
         }
         if (active) {
             Icon(
-                imageVector = Icons.Sharp.Check,
+                imageVector = Icons.Outlined.Check,
                 contentDescription = null,
                 tint = Color.White,
                 modifier = Modifier.size(20.dp),
@@ -408,7 +408,7 @@ private fun OutputRow(
         }
         if (active) {
             Icon(
-                imageVector = Icons.Sharp.Check,
+                imageVector = Icons.Outlined.Check,
                 contentDescription = null,
                 tint = Color.White,
                 modifier = Modifier.size(20.dp),
@@ -461,7 +461,7 @@ private fun VolumeRow(routeKey: Any) {
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Icon(
-            imageVector = if (level > 0f) Icons.AutoMirrored.Sharp.VolumeUp else Icons.AutoMirrored.Sharp.VolumeOff,
+            imageVector = if (level > 0f) Icons.AutoMirrored.Outlined.VolumeUp else Icons.AutoMirrored.Outlined.VolumeOff,
             contentDescription = null,
             tint = Color.White.copy(alpha = 0.6f),
             modifier = Modifier.size(20.dp),
@@ -483,12 +483,12 @@ private fun VolumeRow(routeKey: Any) {
 }
 
 private fun iconFor(kind: AudioOutputKind): ImageVector = when (kind) {
-    AudioOutputKind.PHONE -> Icons.Sharp.PhoneAndroid
-    AudioOutputKind.WIRED -> Icons.Sharp.Headphones
-    AudioOutputKind.USB -> Icons.Sharp.Usb
-    AudioOutputKind.BLUETOOTH -> Icons.Sharp.Bluetooth
-    AudioOutputKind.HDMI -> Icons.Sharp.Tv
-    AudioOutputKind.OTHER -> Icons.Sharp.Speaker
+    AudioOutputKind.PHONE -> Icons.Outlined.PhoneAndroid
+    AudioOutputKind.WIRED -> Icons.Outlined.Headphones
+    AudioOutputKind.USB -> Icons.Outlined.Usb
+    AudioOutputKind.BLUETOOTH -> Icons.Outlined.Bluetooth
+    AudioOutputKind.HDMI -> Icons.Outlined.Tv
+    AudioOutputKind.OTHER -> Icons.Outlined.Speaker
 }
 
 /** How many times the level is re-read after a route change, and how far apart. */

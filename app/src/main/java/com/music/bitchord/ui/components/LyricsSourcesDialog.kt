@@ -21,8 +21,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.sharp.Check
-import androidx.compose.material.icons.sharp.DragHandle
+import androidx.compose.material.icons.outlined.Check
+import androidx.compose.material.icons.outlined.DragHandle
 import androidx.compose.material3.Icon
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.MaterialTheme
@@ -280,7 +280,7 @@ private fun SyllableSyncToggle(checked: Boolean, onToggle: () -> Unit) {
         Spacer(Modifier.width(10.dp))
         if (checked) {
             Icon(
-                imageVector = Icons.Sharp.Check,
+                imageVector = Icons.Outlined.Check,
                 contentDescription = stringResource(R.string.enabled),
                 tint = MaterialTheme.colorScheme.primary,
                 modifier = Modifier.size(19.dp),
@@ -496,7 +496,7 @@ private fun ReorderableSourceList(
                         verticalAlignment = Alignment.CenterVertically,
                     ) {
                         Icon(
-                            imageVector = Icons.Sharp.DragHandle,
+                            imageVector = Icons.Outlined.DragHandle,
                             contentDescription = stringResource(R.string.drag_to_reorder),
                             tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.35f),
                             modifier = Modifier
@@ -556,7 +556,7 @@ private fun ReorderableSourceList(
                         Spacer(Modifier.width(10.dp))
                         if (checked) {
                             Icon(
-                                imageVector = Icons.Sharp.Check,
+                                imageVector = Icons.Outlined.Check,
                                 contentDescription = stringResource(R.string.enabled),
                                 tint = MaterialTheme.colorScheme.primary,
                                 modifier = Modifier.size(19.dp),

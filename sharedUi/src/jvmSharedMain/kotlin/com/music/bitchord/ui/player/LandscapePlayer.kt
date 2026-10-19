@@ -32,8 +32,8 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.sharp.Undo
-import androidx.compose.material.icons.sharp.MoreHoriz
+import androidx.compose.material.icons.automirrored.outlined.Undo
+import androidx.compose.material.icons.outlined.MoreHoriz
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -477,7 +477,7 @@ internal fun LandscapeCredits(
             Spacer(Modifier.width(8.dp))
         }
         CircleGlyph(
-            icon = if (showRevertCue) Icons.AutoMirrored.Sharp.Undo else Icons.Sharp.MoreHoriz,
+            icon = if (showRevertCue) Icons.AutoMirrored.Outlined.Undo else Icons.Outlined.MoreHoriz,
             contentDescription = stringResource(Res.string.more),
             onClick = onOpenMenu,
         )
