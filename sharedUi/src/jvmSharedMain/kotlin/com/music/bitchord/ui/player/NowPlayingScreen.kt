@@ -146,6 +146,7 @@ import com.music.bitchord.ui.theme.HideStatusBar
 import com.music.bitchord.ui.theme.StatusBarIcons
 import com.music.bitchord.ui.theme.stableStatusBarInsets
 import com.music.bitchord.ui.theme.rememberArtworkTopBandLuminance
+import com.music.bitchord.ui.theme.rememberArtworkBottomBandLuminance
 import com.music.bitchord.ui.theme.topBandScrimAlpha
 import com.music.bitchord.ui.LyricsProviderState
 import com.music.bitchord.ui.components.optimizedHazeEffect
@@ -755,6 +756,12 @@ fun NowPlayingScreen(
     // lies beneath the status bar when the player expands to full bleed.
     val artTopLuminance = rememberArtworkTopBandLuminance(remoteArt, ART_PX)
     val artworkStatusScrimAlpha = topBandScrimAlpha(artTopLuminance)
+    // DEDSEC // DEFALT: y la banda de *abajo*, que es la que el fondo enseña por
+    // debajo de la costura. El velo de ahí abajo se dimensiona con ella (ver
+    // [backdropScrimAlpha]): con una carátula que acaba clara, el texto blanco
+    // del reproductor se quedaba sobre blanco. Sale del mismo decodificado que
+    // la de arriba, así que no cuesta otra lectura.
+    val artBottomLuminance = rememberArtworkBottomBandLuminance(remoteArt, ART_PX)
     // The sleeve's own colour, lifted pale, read off the decode the scrim above
     // already made. Plain white until it is known, and for a sleeve with no
     // colour to give.
@@ -2108,6 +2115,7 @@ fun NowPlayingScreen(
                     ArtworkMeshBackdrop(
                         mesh = artMesh,
                         seam = if (canvasFirstPortrait) renderedCanvasBottom else if (heroMode) heroHeight else 0.dp,
+                        artworkLuminance = artBottomLuminance,
                         modifier = Modifier.graphicsLayer { alpha = 1f - fullArtworkBackdropAlpha },
                     )
                 }

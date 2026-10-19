@@ -153,6 +153,21 @@ fun rememberArtworkTopBandLuminance(
 ): Float? = rememberArtworkSeed(imageUrl, artPx)?.topBandLuminance
 
 /**
+ * Reads the sleeve's bottom-edge luminance from the cached palette decode.
+ *
+ * This is the band the player's backdrop is made of: the mesh holds the sleeve's
+ * own bottom edge under the seam and stretches the rest of the artwork below it,
+ * so the bottom edge is what the scrim there has to clear. It is measured, not
+ * guessed, for the same reason as the top band — a sleeve that is mostly white
+ * leaves nothing for white text to sit on.
+ */
+@Composable
+fun rememberArtworkBottomBandLuminance(
+    imageUrl: String?,
+    artPx: Int = CARD_ART_PX,
+): Float? = rememberArtworkSeed(imageUrl, artPx)?.let { relativeLuminance(it.edge.toArgb()) }
+
+/**
  * The pale tint the player sets its secondary text and glyphs in, or null
  * until the artwork has been read — and for artwork with no colour worth
  * echoing — so the player keeps its plain white rather than showing a
@@ -363,6 +378,33 @@ internal fun topBandScrimAlpha(artworkLuminance: Float?): Float {
 
 private const val PLAYER_STATUS_SCRIM_MIN_ALPHA = 0.16f
 private const val PLAYER_STATUS_SCRIM_MAX_ALPHA = 0.65f
+
+/**
+ * Maps artwork luminance to the player backdrop's scrim, the bottom half of the
+ * same idea as [topBandScrimAlpha].
+ *
+ * The backdrop below the sleeve is made of the sleeve's own colours, and the
+ * player writes over it in white: title, artist, times, transport. On a sleeve
+ * that ends bright there is nothing for that white to sit on — the page comes
+ * out washed out and the screen is unreadable. Measured, this stops it, and it
+ * stops it only there: a sleeve that ends dark keeps the nearly transparent
+ * scrim it has always had, so the backdrop still reads as *this* record's
+ * colour rather than as a grey veil over every one of them.
+ */
+internal fun backdropScrimAlpha(artworkLuminance: Float?): Float {
+    val luminance = artworkLuminance?.coerceIn(0f, 1f) ?: 0f
+    return BACKDROP_SCRIM_MIN_ALPHA +
+        (BACKDROP_SCRIM_MAX_ALPHA - BACKDROP_SCRIM_MIN_ALPHA) * luminance
+}
+
+/** Where the scrim starts on the darkest sleeves — what the player always had. */
+private const val BACKDROP_SCRIM_MIN_ALPHA = 0.30f
+
+/**
+ * Where it ends on the brightest. Enough black over a white sleeve — the worst
+ * case there is — to put white body text back over 4.5:1.
+ */
+private const val BACKDROP_SCRIM_MAX_ALPHA = 0.85f
 
 private fun Seed.toPalette(dark: Boolean): ArtworkPalette = if (dark) {
     ArtworkPalette(

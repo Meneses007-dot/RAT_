@@ -41,6 +41,7 @@ import coil3.request.ImageRequest
 import coil3.request.SuccessResult
 import com.music.bitchord.data.model.CARD_ART_PX
 import com.music.bitchord.data.model.artworkAt
+import com.music.bitchord.ui.theme.backdropScrimAlpha
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
@@ -316,6 +317,13 @@ fun ArtworkMeshBackdrop(
      * several times a second.
      */
     blurRadius: Dp = 32.dp,
+    /**
+     * How bright the sleeve's bottom edge is, measured — see
+     * [backdropScrimAlpha]. It decides how heavy the scrim below the seam has to
+     * be for the white the player writes over it to stay readable; a sleeve that
+     * ends dark leaves the scrim where it always was.
+     */
+    artworkLuminance: Float? = null,
 ) {
     val reduceAnimation by PlayerSettings.reduceAnimation.collectAsStateWithLifecycle()
     val reduceDynamicBlur by PlayerSettings.reduceDynamicBlur.collectAsStateWithLifecycle()
@@ -355,6 +363,12 @@ fun ArtworkMeshBackdrop(
         incoming = null
     }
 
+    // Sized to the sleeve and resolved here, not per frame: it changes when the
+    // song does and at no other time.
+    val scrimStops = remember(artworkLuminance) {
+        backdropScrimStops(backdropScrimAlpha(artworkLuminance))
+    }
+
     Canvas(
         modifier = modifier
             .fillMaxSize()
@@ -380,16 +394,38 @@ fun ArtworkMeshBackdrop(
         // more. The old backdrop needed a heavier one because it lightened
         // every colour it drew to a fixed band; these are the sleeve's own,
         // and a sleeve that ends dark should leave a dark screen.
-        drawRect(
-            brush = Brush.verticalGradient(
-                colors = listOf(
-                    Color.Black.copy(alpha = 0.06f),
-                    Color.Black.copy(alpha = 0.30f),
-                ),
-            ),
-        )
+        //
+        // A sleeve that ends *bright* is the other half of that, and it used to
+        // fall through: the mesh is the sleeve's own colours, so a white cover
+        // gave a white page with white text on it. The scrim is now sized to the
+        // sleeve — see [backdropScrimAlpha] — and weighted towards the band the
+        // title and credits sit in, because a scrim that only deepens at the
+        // very bottom never reaches them.
+        drawRect(brush = Brush.verticalGradient(colorStops = scrimStops))
     }
 }
+
+/**
+ * The scrim's stops, from the fallback weight [bottom] on the brightest sleeves
+ * up to it on the darkest.
+ *
+ * The top stays where it always was: nothing is written over the mesh there,
+ * the sleeve is. Everything from a third of the way down is pulled towards
+ * [bottom], which is where the player's own white lies.
+ */
+private fun backdropScrimStops(bottom: Float): Array<Pair<Float, Color>> = arrayOf(
+    0f to Color.Black.copy(alpha = BACKDROP_SCRIM_TOP_ALPHA),
+    0.30f to Color.Black.copy(
+        alpha = BACKDROP_SCRIM_TOP_ALPHA + (bottom - BACKDROP_SCRIM_TOP_ALPHA) * 0.55f,
+    ),
+    0.44f to Color.Black.copy(
+        alpha = BACKDROP_SCRIM_TOP_ALPHA + (bottom - BACKDROP_SCRIM_TOP_ALPHA) * 0.85f,
+    ),
+    1f to Color.Black.copy(alpha = bottom),
+)
+
+/** What the scrim was at the top before it was ever sized to the sleeve. */
+private const val BACKDROP_SCRIM_TOP_ALPHA = 0.06f
 
 /**
  * Paints [mesh] over the whole surface: the grid from [seamY] down, and its
