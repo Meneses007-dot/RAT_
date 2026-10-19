@@ -3679,11 +3679,16 @@ fun NowPlayingScreen(
                 // DEDSEC // DEFALT: la firma del visor, apoyada en su esquina de
                 // abajo a la izquierda (ver [DefaltHudSignature]). Va la última
                 // de la caja, para quedar por encima del mando.
+                //
+                // Abajo del todo y arrancando pasado el brazo del corchete: en la
+                // línea del mando el nombre del dispositivo conectado (que va
+                // centrado) le pasaba por encima, y más a la izquierda el propio
+                // brazo vertical le cruza la primera letra.
                 DefaltHudSignature(
                     alpha = dockFade,
                     modifier = Modifier
                         .align(Alignment.BottomStart)
-                        .padding(start = 12.dp, bottom = 12.dp + HUD_ARM + 4.dp),
+                        .padding(start = 12.dp + HUD_ARM + 4.dp, bottom = 18.dp),
                 )
                 playerOverlays()
             }
