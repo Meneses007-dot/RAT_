@@ -55,11 +55,11 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Cached
-import androidx.compose.material.icons.rounded.Folder
-import androidx.compose.material.icons.rounded.LibraryMusic
-import androidx.compose.material.icons.rounded.MoreVert
-import androidx.compose.material.icons.rounded.Storage
+import androidx.compose.material.icons.sharp.Cached
+import androidx.compose.material.icons.sharp.Folder
+import androidx.compose.material.icons.sharp.LibraryMusic
+import androidx.compose.material.icons.sharp.MoreVert
+import androidx.compose.material.icons.sharp.Storage
 import com.music.bitchord.ui.icons.BitChordIcons
 import coil3.compose.AsyncImage
 import com.music.bitchord.data.model.CARD_ART_PX
@@ -1011,22 +1011,22 @@ internal fun ShelfCard(
             "local:all" -> ServiceCard(
                 colors = listOf(Color(0xFF0037E6), Color(0xFF00E5FF)),
                 trackKey = "local:all",
-                icon = Icons.Rounded.LibraryMusic,
+                icon = Icons.Sharp.LibraryMusic,
             )
             "local:cache" -> ServiceCard(
                 colors = listOf(Color(0xFFDC0736), Color(0xFF6E0620)),
                 trackKey = "local:cache",
-                icon = Icons.Rounded.Cached,
+                icon = Icons.Sharp.Cached,
             )
             "local:webdav" -> ServiceCard(
                 colors = listOf(Color(0xFF00229E), Color(0xFF0037E6)),
                 trackKey = "local:webdav",
-                icon = Icons.Rounded.Folder,
+                icon = Icons.Sharp.Folder,
             )
             "local:smb" -> ServiceCard(
                 colors = listOf(Color(0xFF080B10), Color(0xFF26323B)),
                 trackKey = "local:smb",
-                icon = Icons.Rounded.Storage,
+                icon = Icons.Sharp.Storage,
             )
             else -> {
                 Box(

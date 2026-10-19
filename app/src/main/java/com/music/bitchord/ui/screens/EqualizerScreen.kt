@@ -21,12 +21,12 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Check
-import androidx.compose.material.icons.rounded.GraphicEq
-import androidx.compose.material.icons.automirrored.rounded.ShowChart
-import androidx.compose.material.icons.rounded.Tune
-import androidx.compose.material.icons.rounded.Warning
-import androidx.compose.material.icons.rounded.Waves
+import androidx.compose.material.icons.sharp.Check
+import androidx.compose.material.icons.sharp.GraphicEq
+import androidx.compose.material.icons.automirrored.sharp.ShowChart
+import androidx.compose.material.icons.sharp.Tune
+import androidx.compose.material.icons.sharp.Warning
+import androidx.compose.material.icons.sharp.Waves
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
@@ -117,7 +117,7 @@ fun EqualizerScreen(
             topSpacing = 8.dp,
         ) {
             SettingsRow(
-                icon = Icons.Rounded.Tune,
+                icon = Icons.Sharp.Tune,
                 title = stringResource(R.string.equalizer),
                 trailing = {
                     Switch(
@@ -196,7 +196,7 @@ fun EqualizerScreen(
                 EqualizerMode.MANUAL -> {
                     SettingsGroup {
                         SettingsRow(
-                            icon = Icons.Rounded.GraphicEq,
+                            icon = Icons.Sharp.GraphicEq,
                             title = stringResource(R.string.equalizer_preset),
                             value = preset.localizedLabel(),
                             onClick = { pickingPreset = true },
@@ -250,7 +250,7 @@ fun EqualizerScreen(
             if (!outputStatus.dspAvailable) {
                 SettingsGroup(footer = stringResource(R.string.equalizer_bitstream_footer)) {
                     SettingsRow(
-                        icon = Icons.Rounded.Warning,
+                        icon = Icons.Sharp.Warning,
                         title = stringResource(R.string.equalizer_bitstream_title),
                         subtitle = stringResource(R.string.equalizer_bitstream_subtitle),
                     )
@@ -264,7 +264,7 @@ fun EqualizerScreen(
         // somebody else's equaliser would be claiming ground we do not hold.
         SettingsGroup(footer = stringResource(R.string.system_equalizer_footer)) {
             SettingsRow(
-                icon = Icons.Rounded.GraphicEq,
+                icon = Icons.Sharp.GraphicEq,
                 title = stringResource(R.string.system_equalizer),
                 subtitle = stringResource(R.string.system_equalizer_subtitle),
                 onClick = { openEqualizer(context, sessionId) },
@@ -443,7 +443,7 @@ private fun ToneReadout(x: Int, y: Int) {
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Icon(
-            imageVector = Icons.Rounded.Waves,
+            imageVector = Icons.Sharp.Waves,
             contentDescription = stringResource(R.string.equalizer_tilt),
             tint = MaterialTheme.colorScheme.onBackground,
             modifier = Modifier.size(20.dp),
@@ -456,7 +456,7 @@ private fun ToneReadout(x: Int, y: Int) {
         )
         Spacer(Modifier.width(22.dp))
         Icon(
-            imageVector = Icons.AutoMirrored.Rounded.ShowChart,
+            imageVector = Icons.AutoMirrored.Sharp.ShowChart,
             contentDescription = stringResource(R.string.equalizer_contour),
             tint = MaterialTheme.colorScheme.onBackground,
             modifier = Modifier.size(20.dp),
@@ -502,7 +502,7 @@ private fun ChoiceRow(
         )
         if (selected) {
             Icon(
-                imageVector = Icons.Rounded.Check,
+                imageVector = Icons.Sharp.Check,
                 contentDescription = stringResource(R.string.selected),
                 tint = MaterialTheme.colorScheme.primary,
                 modifier = Modifier.size(22.dp),
@@ -865,7 +865,7 @@ private fun PresetSheet(selected: EqualizerPreset, onSelect: (EqualizerPreset) -
                     )
                     if (chosen) {
                         Icon(
-                            Icons.Rounded.Check,
+                            Icons.Sharp.Check,
                             contentDescription = stringResource(R.string.selected),
                             tint = MaterialTheme.colorScheme.primary,
                             modifier = Modifier.size(22.dp),

@@ -30,9 +30,9 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Close
-import androidx.compose.material.icons.rounded.DragHandle
-import androidx.compose.material.icons.rounded.GraphicEq
+import androidx.compose.material.icons.sharp.Close
+import androidx.compose.material.icons.sharp.DragHandle
+import androidx.compose.material.icons.sharp.GraphicEq
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -747,7 +747,7 @@ private fun InlineQueueRow(
     ) {
         if (draggable) {
             Icon(
-                Icons.Rounded.DragHandle,
+                Icons.Sharp.DragHandle,
                 contentDescription = stringResource(Res.string.drag_to_reorder),
                 tint = Color.White.copy(alpha = 0.4f),
                 modifier = Modifier
@@ -795,7 +795,7 @@ private fun InlineQueueRow(
         }
         if (isCurrent) {
             Icon(
-                Icons.Rounded.GraphicEq,
+                Icons.Sharp.GraphicEq,
                 contentDescription = stringResource(Res.string.now_playing),
                 tint = Color.White,
                 modifier = Modifier.size(18.dp),
@@ -811,7 +811,7 @@ private fun InlineQueueRow(
                 contentAlignment = Alignment.Center,
             ) {
                 Icon(
-                    Icons.Rounded.Close,
+                    Icons.Sharp.Close,
                     contentDescription = stringResource(Res.string.remove_from_queue),
                     tint = Color.White.copy(alpha = 0.55f),
                     modifier = Modifier.size(18.dp),

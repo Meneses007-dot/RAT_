@@ -18,8 +18,8 @@ import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Close
-import androidx.compose.material.icons.rounded.Search
+import androidx.compose.material.icons.sharp.Close
+import androidx.compose.material.icons.sharp.Search
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -79,7 +79,7 @@ fun SearchField(
         // pressing it is the only thing that runs a search, leaving it
         // decorative would mean the keyboard's own key was the single way in.
         Icon(
-            Icons.Rounded.Search,
+            Icons.Sharp.Search,
             contentDescription = stringResource(Res.string.search),
             tint = MaterialTheme.colorScheme.onSurfaceVariant,
             modifier = Modifier
@@ -133,7 +133,7 @@ fun SearchField(
                 contentAlignment = Alignment.Center,
             ) {
                 Icon(
-                    Icons.Rounded.Close,
+                    Icons.Sharp.Close,
                     contentDescription = stringResource(Res.string.clear_search),
                     tint = MaterialTheme.colorScheme.onSurfaceVariant,
                     modifier = Modifier.size(18.dp),

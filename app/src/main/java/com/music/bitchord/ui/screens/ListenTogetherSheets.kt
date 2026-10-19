@@ -23,8 +23,8 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Link
-import androidx.compose.material.icons.rounded.Person
+import androidx.compose.material.icons.sharp.Link
+import androidx.compose.material.icons.sharp.Person
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
@@ -172,7 +172,7 @@ internal fun GlowingAvatar(
                 contentAlignment = Alignment.Center,
             ) {
                 Icon(
-                    Icons.Rounded.Person,
+                    Icons.Sharp.Person,
                     contentDescription = null,
                     tint = MaterialTheme.colorScheme.onSurfaceVariant,
                     modifier = Modifier.size(size * 0.45f),
@@ -411,7 +411,7 @@ private fun PartySheetAvatar(url: String?, size: Dp = 40.dp) {
             contentAlignment = Alignment.Center,
         ) {
             Icon(
-                Icons.Rounded.Person,
+                Icons.Sharp.Person,
                 contentDescription = null,
                 tint = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.size(size * 0.5f),
@@ -578,7 +578,7 @@ internal fun JoinConfirmSheet(
             Spacer(Modifier.height(8.dp))
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Icon(
-                    Icons.Rounded.Person,
+                    Icons.Sharp.Person,
                     contentDescription = null,
                     tint = MaterialTheme.colorScheme.primary,
                     modifier = Modifier.size(16.dp),
@@ -676,7 +676,7 @@ internal fun InviteSheet(
             shape = RoundedCornerShape(percent = 50),
             modifier = Modifier.fillMaxWidth().height(52.dp),
         ) {
-            Icon(Icons.Rounded.Link, contentDescription = null, modifier = Modifier.size(20.dp))
+            Icon(Icons.Sharp.Link, contentDescription = null, modifier = Modifier.size(20.dp))
             Spacer(Modifier.width(8.dp))
             Text(
                 text = stringResource(R.string.listen_together_share_link),

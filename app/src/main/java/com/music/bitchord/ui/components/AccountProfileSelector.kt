@@ -13,11 +13,11 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Add
-import androidx.compose.material.icons.rounded.Check
-import androidx.compose.material.icons.rounded.ManageAccounts
-import androidx.compose.material.icons.rounded.Person
-import androidx.compose.material.icons.rounded.Settings
+import androidx.compose.material.icons.sharp.Add
+import androidx.compose.material.icons.sharp.Check
+import androidx.compose.material.icons.sharp.ManageAccounts
+import androidx.compose.material.icons.sharp.Person
+import androidx.compose.material.icons.sharp.Settings
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -107,9 +107,9 @@ fun AccountProfileSelector(
                         managing, { onSelect(account, profile); onDismiss() }, { onRemoveAccount(account) })
                 }
                 }
-                item { SelectorAction(Icons.Rounded.Add, stringResource(R.string.add_account), onAddAccount) }
-                item { SelectorAction(Icons.Rounded.ManageAccounts, stringResource(R.string.manage_accounts)) { managing = !managing } }
-                item { SelectorAction(Icons.Rounded.Settings, stringResource(R.string.settings), onOpenSettings) }
+                item { SelectorAction(Icons.Sharp.Add, stringResource(R.string.add_account), onAddAccount) }
+                item { SelectorAction(Icons.Sharp.ManageAccounts, stringResource(R.string.manage_accounts)) { managing = !managing } }
+                item { SelectorAction(Icons.Sharp.Settings, stringResource(R.string.settings), onOpenSettings) }
             }
         }
     }
@@ -122,13 +122,13 @@ fun AccountProfileSelector(
         .semantics { contentDescription = description }
         .padding(horizontal = 20.dp, vertical = 8.dp), verticalAlignment = Alignment.CenterVertically) {
         if (profile.avatar != null) AsyncImage(profile.avatar, null, Modifier.size(38.dp).clip(MaterialTheme.shapes.extraLarge))
-        else Icon(Icons.Rounded.Person, null, Modifier.size(38.dp), tint = MaterialTheme.colorScheme.onSurfaceVariant)
+        else Icon(Icons.Sharp.Person, null, Modifier.size(38.dp), tint = MaterialTheme.colorScheme.onSurfaceVariant)
         Spacer(Modifier.width(12.dp)); Column(Modifier.weight(1f)) {
             Text(profile.name, maxLines = 1, overflow = TextOverflow.Ellipsis)
             Text(profile.handle.ifBlank { stringResource(if (profile.isBrandAccount) R.string.brand_account else R.string.personal) },
                 style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
         }
-        if (selected && !managing) Icon(Icons.Rounded.Check, stringResource(R.string.selected_account), tint = MaterialTheme.colorScheme.primary)
+        if (selected && !managing) Icon(Icons.Sharp.Check, stringResource(R.string.selected_account), tint = MaterialTheme.colorScheme.primary)
         if (managing) Text(stringResource(R.string.sign_out), color = MaterialTheme.colorScheme.error)
     }
 }

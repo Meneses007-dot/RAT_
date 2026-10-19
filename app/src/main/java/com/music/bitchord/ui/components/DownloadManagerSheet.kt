@@ -25,11 +25,11 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.ArrowDownward
-import androidx.compose.material.icons.rounded.Close
-import androidx.compose.material.icons.rounded.DownloadDone
-import androidx.compose.material.icons.rounded.ErrorOutline
-import androidx.compose.material.icons.rounded.Refresh
+import androidx.compose.material.icons.sharp.ArrowDownward
+import androidx.compose.material.icons.sharp.Close
+import androidx.compose.material.icons.sharp.DownloadDone
+import androidx.compose.material.icons.sharp.ErrorOutline
+import androidx.compose.material.icons.sharp.Refresh
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
@@ -143,12 +143,12 @@ fun TopBarDownloadButton(onClick: () -> Unit, modifier: Modifier = Modifier) {
                 }
                 Icon(
                     imageVector = when {
-                        failed -> Icons.Rounded.ErrorOutline
+                        failed -> Icons.Sharp.ErrorOutline
                         // A bare arrow inside the ring, not the tray-and-arrow: the
                         // ring is already saying "downloading", and a second glyph
                         // that says it too is detail nobody can resolve at 15dp.
-                        session.busy -> Icons.Rounded.ArrowDownward
-                        else -> Icons.Rounded.DownloadDone
+                        session.busy -> Icons.Sharp.ArrowDownward
+                        else -> Icons.Sharp.DownloadDone
                     },
                     contentDescription = when {
                         session.busy -> stringResource(
@@ -320,9 +320,9 @@ private fun DownloadManagerRow(
                 ) {
                     Icon(
                         imageVector = if (failed != null) {
-                            Icons.Rounded.ErrorOutline
+                            Icons.Sharp.ErrorOutline
                         } else {
-                            Icons.Rounded.DownloadDone
+                            Icons.Sharp.DownloadDone
                         },
                         contentDescription = null,
                         tint = if (failed != null) {
@@ -391,8 +391,8 @@ private fun DownloadManagerRow(
         // track can be stopped, a failed one can be asked for again, and a
         // finished one needs nothing at all.
         when {
-            failed != null -> RowAction(Icons.Rounded.Refresh, stringResource(R.string.retry), onRetry)
-            !progress.settled -> RowAction(Icons.Rounded.Close, stringResource(R.string.cancel), onCancel)
+            failed != null -> RowAction(Icons.Sharp.Refresh, stringResource(R.string.retry), onRetry)
+            !progress.settled -> RowAction(Icons.Sharp.Close, stringResource(R.string.cancel), onCancel)
             else -> Spacer(Modifier.width(36.dp))
         }
     }

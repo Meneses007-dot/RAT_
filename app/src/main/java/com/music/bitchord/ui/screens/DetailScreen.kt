@@ -48,16 +48,16 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.rounded.ArrowBack
-import androidx.compose.material.icons.rounded.Add
-import androidx.compose.material.icons.rounded.Check
+import androidx.compose.material.icons.automirrored.sharp.ArrowBack
+import androidx.compose.material.icons.sharp.Add
+import androidx.compose.material.icons.sharp.Check
 import com.music.bitchord.data.model.LibraryState
-import androidx.compose.material.icons.rounded.Close
-import androidx.compose.material.icons.rounded.GraphicEq
-import androidx.compose.material.icons.rounded.MoreVert
-import androidx.compose.material.icons.rounded.Person
-import androidx.compose.material.icons.rounded.Star
-import androidx.compose.material.icons.rounded.StarBorder
+import androidx.compose.material.icons.sharp.Close
+import androidx.compose.material.icons.sharp.GraphicEq
+import androidx.compose.material.icons.sharp.MoreVert
+import androidx.compose.material.icons.sharp.Person
+import androidx.compose.material.icons.sharp.Star
+import androidx.compose.material.icons.sharp.StarBorder
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -118,8 +118,8 @@ import androidx.compose.runtime.mutableIntStateOf
 import kotlinx.coroutines.delay
 import androidx.compose.ui.layout.layout
 import androidx.compose.ui.unit.Constraints
-import androidx.compose.material.icons.automirrored.rounded.QueueMusic
-import androidx.compose.material.icons.rounded.Album
+import androidx.compose.material.icons.automirrored.sharp.QueueMusic
+import androidx.compose.material.icons.sharp.Album
 import com.music.bitchord.data.LocalGroups
 import com.music.bitchord.data.matchesSearch
 import com.music.bitchord.data.sortedForLibrary
@@ -1146,7 +1146,7 @@ private fun DetailSearchField(
             contentAlignment = Alignment.Center,
         ) {
             Icon(
-                imageVector = Icons.Rounded.Close,
+                imageVector = Icons.Sharp.Close,
                 contentDescription = stringResource(
                     if (query.isEmpty()) R.string.close_search else R.string.clear_search,
                 ),
@@ -1504,7 +1504,7 @@ private fun ActionRow(
 
         if (subscription != null) {
             CircleIconButton(
-                icon = if (subscription.subscribed) Icons.Rounded.Star else Icons.Rounded.StarBorder,
+                icon = if (subscription.subscribed) Icons.Sharp.Star else Icons.Sharp.StarBorder,
                 contentDescription = stringResource(
                     if (subscription.subscribed) R.string.unsubscribe else R.string.subscribe,
                 ),
@@ -1514,7 +1514,7 @@ private fun ActionRow(
             )
         } else {
             CircleIconButton(
-                icon = Icons.Rounded.StarBorder,
+                icon = Icons.Sharp.StarBorder,
                 contentDescription = stringResource(R.string.subscribe),
                 onClick = {},
                 size = ARTIST_SIDE_BUTTON,
@@ -1701,14 +1701,14 @@ private fun ArtistStatsRow(
         // screen without either wrapping into two.
         subscriberCountText?.let {
             StatChip(
-                icon = Icons.Rounded.Person,
+                icon = Icons.Sharp.Person,
                 text = stringResource(R.string.subscribers, it.substringBefore(' ')),
                 palette = palette,
             )
         }
         monthlyListenerCount?.let {
             StatChip(
-                icon = Icons.Rounded.GraphicEq,
+                icon = Icons.Sharp.GraphicEq,
                 text = stringResource(R.string.monthly_listeners, it.substringBefore(' ')),
                 palette = palette,
             )
@@ -2038,7 +2038,7 @@ private fun SuggestedSongRow(
             contentAlignment = Alignment.Center,
         ) {
             Icon(
-                Icons.Rounded.Add,
+                Icons.Sharp.Add,
                 contentDescription = stringResource(R.string.add_to_playlist),
                 tint = palette.accent,
                 modifier = Modifier.size(20.dp),
@@ -2163,7 +2163,7 @@ private fun TopReleaseCard(
                 contentAlignment = Alignment.Center,
             ) {
                 Icon(
-                    imageVector = if (saved) Icons.Rounded.Check else Icons.Rounded.Add,
+                    imageVector = if (saved) Icons.Sharp.Check else Icons.Sharp.Add,
                     contentDescription = stringResource(
                         if (saved) R.string.remove_from_library else R.string.add_to_library,
                     ),
@@ -2296,9 +2296,9 @@ private fun DetailPage.headerLines(trackCount: Int, playtime: String? = null): P
 
 /** The glyph on a release page's placeholder sleeve: what kind of thing has no cover. */
 private fun DetailPage.placeholderIcon(): ImageVector = deviceFolderIcon(browseId) ?: when {
-    LocalGroups.isArtist(browseId) -> Icons.Rounded.Person
-    type == BrowseType.ALBUM -> Icons.Rounded.Album
-    type == BrowseType.PLAYLIST -> Icons.AutoMirrored.Rounded.QueueMusic
+    LocalGroups.isArtist(browseId) -> Icons.Sharp.Person
+    type == BrowseType.ALBUM -> Icons.Sharp.Album
+    type == BrowseType.PLAYLIST -> Icons.AutoMirrored.Sharp.QueueMusic
     else -> BitChordIcons.MusicNote
 }
 

@@ -19,8 +19,8 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Check
-import androidx.compose.material.icons.rounded.Watch
+import androidx.compose.material.icons.sharp.Check
+import androidx.compose.material.icons.sharp.Watch
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -61,7 +61,7 @@ internal fun WearOsSettingsRow(onClick: () -> Unit) {
     LaunchedEffect(Unit) { WatchInstaller.refresh(context) }
     val list = watches.orEmpty()
     SettingsRow(
-        icon = Icons.Rounded.Watch,
+        icon = Icons.Sharp.Watch,
         title = stringResource(R.string.wear_os_section),
         value = when {
             watches == null -> null
@@ -119,11 +119,11 @@ fun WearOsScreen(contentPadding: PaddingValues, modifier: Modifier = Modifier) {
             val list = watches
             when {
                 list == null -> SettingsRow(
-                    icon = Icons.Rounded.Watch,
+                    icon = Icons.Sharp.Watch,
                     title = stringResource(R.string.wear_os_looking),
                 )
                 list.isEmpty() -> SettingsRow(
-                    icon = Icons.Rounded.Watch,
+                    icon = Icons.Sharp.Watch,
                     title = stringResource(R.string.wear_os_no_watch),
                     subtitle = stringResource(R.string.wear_os_no_watch_subtitle),
                 )
@@ -171,7 +171,7 @@ private fun WatchRow(
         }
     }
     SettingsRow(
-        icon = Icons.Rounded.Watch,
+        icon = Icons.Sharp.Watch,
         title = watch.name,
         subtitle = subtitle,
         trailing = {
@@ -183,7 +183,7 @@ private fun WatchRow(
                 watch.status == WatchAppStatus.UPDATE_AVAILABLE || watch.status == WatchAppStatus.UNKNOWN ->
                     ActionPill(stringResource(R.string.wear_os_update), onUpdate)
                 else -> Icon(
-                    Icons.Rounded.Check,
+                    Icons.Sharp.Check,
                     contentDescription = null,
                     tint = MaterialTheme.colorScheme.onSurfaceVariant,
                     modifier = Modifier.size(20.dp),
@@ -312,7 +312,7 @@ private fun StatusLine(state: WatchPairingState) {
             Spacer(Modifier.width(10.dp))
         } else if (state is WatchPairingState.Found || state is WatchPairingState.Installed) {
             Icon(
-                Icons.Rounded.Check,
+                Icons.Sharp.Check,
                 contentDescription = null,
                 tint = MaterialTheme.colorScheme.onBackground,
                 modifier = Modifier.size(18.dp),

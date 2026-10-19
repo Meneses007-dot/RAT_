@@ -15,20 +15,20 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.rounded.KeyboardArrowRight
-import androidx.compose.material.icons.automirrored.rounded.VolumeOff
-import androidx.compose.material.icons.automirrored.rounded.VolumeUp
-import androidx.compose.material.icons.rounded.Bluetooth
-import androidx.compose.material.icons.rounded.Cast
-import androidx.compose.material.icons.rounded.CastConnected
-import androidx.compose.material.icons.rounded.Check
-import androidx.compose.material.icons.rounded.GraphicEq
-import androidx.compose.material.icons.rounded.Headphones
-import androidx.compose.material.icons.rounded.PhoneAndroid
-import androidx.compose.material.icons.rounded.Speaker
-import androidx.compose.material.icons.rounded.Tv
-import androidx.compose.material.icons.rounded.Usb
-import androidx.compose.material.icons.rounded.Watch
+import androidx.compose.material.icons.automirrored.sharp.KeyboardArrowRight
+import androidx.compose.material.icons.automirrored.sharp.VolumeOff
+import androidx.compose.material.icons.automirrored.sharp.VolumeUp
+import androidx.compose.material.icons.sharp.Bluetooth
+import androidx.compose.material.icons.sharp.Cast
+import androidx.compose.material.icons.sharp.CastConnected
+import androidx.compose.material.icons.sharp.Check
+import androidx.compose.material.icons.sharp.GraphicEq
+import androidx.compose.material.icons.sharp.Headphones
+import androidx.compose.material.icons.sharp.PhoneAndroid
+import androidx.compose.material.icons.sharp.Speaker
+import androidx.compose.material.icons.sharp.Tv
+import androidx.compose.material.icons.sharp.Usb
+import androidx.compose.material.icons.sharp.Watch
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -168,7 +168,7 @@ private fun AudioPipelineRow(onClick: () -> Unit) {
             contentAlignment = Alignment.Center,
         ) {
             Icon(
-                imageVector = Icons.Rounded.GraphicEq,
+                imageVector = Icons.Sharp.GraphicEq,
                 contentDescription = null,
                 tint = Color.White.copy(alpha = 0.7f),
                 modifier = Modifier.size(20.dp),
@@ -193,7 +193,7 @@ private fun AudioPipelineRow(onClick: () -> Unit) {
             )
         }
         Icon(
-            imageVector = Icons.AutoMirrored.Rounded.KeyboardArrowRight,
+            imageVector = Icons.AutoMirrored.Sharp.KeyboardArrowRight,
             contentDescription = null,
             tint = Color.White.copy(alpha = 0.35f),
             modifier = Modifier.size(20.dp),
@@ -233,7 +233,7 @@ private fun CastRow(cast: CastUi, onClick: () -> Unit) {
             contentAlignment = Alignment.Center,
         ) {
             Icon(
-                imageVector = if (casting) Icons.Rounded.CastConnected else Icons.Rounded.Cast,
+                imageVector = if (casting) Icons.Sharp.CastConnected else Icons.Sharp.Cast,
                 contentDescription = null,
                 tint = Color.White.copy(alpha = if (casting) 1f else 0.7f),
                 modifier = Modifier.size(21.dp),
@@ -266,7 +266,7 @@ private fun CastRow(cast: CastUi, onClick: () -> Unit) {
             )
         }
         Icon(
-            imageVector = Icons.AutoMirrored.Rounded.KeyboardArrowRight,
+            imageVector = Icons.AutoMirrored.Sharp.KeyboardArrowRight,
             contentDescription = null,
             tint = Color.White.copy(alpha = 0.35f),
             modifier = Modifier.size(20.dp),
@@ -307,7 +307,7 @@ private fun WatchRow(watch: WatchOutputUi, onClick: () -> Unit) {
             contentAlignment = Alignment.Center,
         ) {
             Icon(
-                imageVector = Icons.Rounded.Watch,
+                imageVector = Icons.Sharp.Watch,
                 contentDescription = null,
                 tint = Color.White.copy(alpha = if (active) 1f else 0.7f),
                 modifier = Modifier.size(21.dp),
@@ -335,7 +335,7 @@ private fun WatchRow(watch: WatchOutputUi, onClick: () -> Unit) {
         }
         if (active) {
             Icon(
-                imageVector = Icons.Rounded.Check,
+                imageVector = Icons.Sharp.Check,
                 contentDescription = null,
                 tint = Color.White,
                 modifier = Modifier.size(20.dp),
@@ -408,7 +408,7 @@ private fun OutputRow(
         }
         if (active) {
             Icon(
-                imageVector = Icons.Rounded.Check,
+                imageVector = Icons.Sharp.Check,
                 contentDescription = null,
                 tint = Color.White,
                 modifier = Modifier.size(20.dp),
@@ -461,7 +461,7 @@ private fun VolumeRow(routeKey: Any) {
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Icon(
-            imageVector = if (level > 0f) Icons.AutoMirrored.Rounded.VolumeUp else Icons.AutoMirrored.Rounded.VolumeOff,
+            imageVector = if (level > 0f) Icons.AutoMirrored.Sharp.VolumeUp else Icons.AutoMirrored.Sharp.VolumeOff,
             contentDescription = null,
             tint = Color.White.copy(alpha = 0.6f),
             modifier = Modifier.size(20.dp),
@@ -483,12 +483,12 @@ private fun VolumeRow(routeKey: Any) {
 }
 
 private fun iconFor(kind: AudioOutputKind): ImageVector = when (kind) {
-    AudioOutputKind.PHONE -> Icons.Rounded.PhoneAndroid
-    AudioOutputKind.WIRED -> Icons.Rounded.Headphones
-    AudioOutputKind.USB -> Icons.Rounded.Usb
-    AudioOutputKind.BLUETOOTH -> Icons.Rounded.Bluetooth
-    AudioOutputKind.HDMI -> Icons.Rounded.Tv
-    AudioOutputKind.OTHER -> Icons.Rounded.Speaker
+    AudioOutputKind.PHONE -> Icons.Sharp.PhoneAndroid
+    AudioOutputKind.WIRED -> Icons.Sharp.Headphones
+    AudioOutputKind.USB -> Icons.Sharp.Usb
+    AudioOutputKind.BLUETOOTH -> Icons.Sharp.Bluetooth
+    AudioOutputKind.HDMI -> Icons.Sharp.Tv
+    AudioOutputKind.OTHER -> Icons.Sharp.Speaker
 }
 
 /** How many times the level is re-read after a route change, and how far apart. */

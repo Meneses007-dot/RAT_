@@ -66,16 +66,16 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.LocalOverscrollFactory
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.ArrowUpward
-import androidx.compose.material.icons.rounded.Check
-import androidx.compose.material.icons.rounded.Close
-import androidx.compose.material.icons.rounded.CloudOff
-import androidx.compose.material.icons.rounded.History
-import androidx.compose.material.icons.rounded.IosShare
-import androidx.compose.material.icons.rounded.MoreHoriz
-import androidx.compose.material.icons.rounded.Person
-import androidx.compose.material.icons.rounded.Sort
-import androidx.compose.material.icons.rounded.Upgrade
+import androidx.compose.material.icons.sharp.ArrowUpward
+import androidx.compose.material.icons.sharp.Check
+import androidx.compose.material.icons.sharp.Close
+import androidx.compose.material.icons.sharp.CloudOff
+import androidx.compose.material.icons.sharp.History
+import androidx.compose.material.icons.sharp.IosShare
+import androidx.compose.material.icons.sharp.MoreHoriz
+import androidx.compose.material.icons.sharp.Person
+import androidx.compose.material.icons.sharp.Sort
+import androidx.compose.material.icons.sharp.Upgrade
 import com.music.bitchord.data.listentogether.ServerConnectionState
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
@@ -3681,7 +3681,7 @@ private fun BitChordApp(
                                 when (val state = partyServerStatus) {
                                     is ServerConnectionState.CustomFallback -> {
                                         Icon(
-                                            Icons.Rounded.CloudOff,
+                                            Icons.Sharp.CloudOff,
                                             contentDescription = stringResource(R.string.listen_together_top_bar_fallback, stringResource(R.string.listen_together_ping, state.latencyMs)),
                                             tint = MaterialTheme.colorScheme.error,
                                             modifier = Modifier.size(14.dp),
@@ -3742,7 +3742,7 @@ private fun BitChordApp(
                                         // handset outline is mush, and the glyph
                                         // has to read as "newer version" rather
                                         // than as "something about your device".
-                                        Icons.Rounded.Upgrade,
+                                        Icons.Sharp.Upgrade,
                                         contentDescription = stringResource(R.string.update_available, update.version),
                                         tint = MaterialTheme.colorScheme.primary,
                                     )
@@ -3763,7 +3763,7 @@ private fun BitChordApp(
                                     },
                                 ) {
                                     Icon(
-                                        Icons.Rounded.History,
+                                        Icons.Sharp.History,
                                         contentDescription = stringResource(R.string.listening_history),
                                         tint = MaterialTheme.colorScheme.onSurface,
                                     )
@@ -3778,7 +3778,7 @@ private fun BitChordApp(
                                 Box {
                                     IconButton(onClick = { librarySortMenuOpen = true }) {
                                         Icon(
-                                            Icons.Rounded.Sort,
+                                            Icons.Sharp.Sort,
                                             contentDescription = stringResource(R.string.sort_library),
                                             tint = MaterialTheme.colorScheme.onSurface,
                                         )
@@ -3791,7 +3791,7 @@ private fun BitChordApp(
                                             DropdownMenuItem(
                                                 text = { Text(option.localizedLabel()) },
                                                 trailingIcon = if (option == librarySort) {
-                                                    { Icon(Icons.Rounded.Check, contentDescription = null) }
+                                                    { Icon(Icons.Sharp.Check, contentDescription = null) }
                                                 } else null,
                                                 onClick = {
                                                     AppSettings.setLibrarySort(option)
@@ -3816,7 +3816,7 @@ private fun BitChordApp(
                                 if (releaseSongs.isNotEmpty()) {
                                     IconButton(onClick = { detailSearching = !detailSearching }) {
                                         Icon(
-                                            if (detailSearching) Icons.Rounded.Close else BitChordIcons.Search,
+                                            if (detailSearching) Icons.Sharp.Close else BitChordIcons.Search,
                                             contentDescription = stringResource(
                                                 if (detailSearching) R.string.close_search else R.string.search_this_list,
                                             ),
@@ -3832,7 +3832,7 @@ private fun BitChordApp(
                                     onClick = { if (isLocalDetail) folderMenuOpen = true else songSortMenuOpen = true },
                                 ) {
                                     Icon(
-                                        Icons.Rounded.Sort,
+                                        Icons.Sharp.Sort,
                                         contentDescription = stringResource(
                                             if (isLocalDetail) R.string.sort_music else R.string.sort_songs,
                                         ),
@@ -3869,7 +3869,7 @@ private fun BitChordApp(
                                         },
                                     ) {
                                         Icon(
-                                            Icons.Rounded.MoreHoriz,
+                                            Icons.Sharp.MoreHoriz,
                                             contentDescription = stringResource(R.string.more),
                                             tint = MaterialTheme.colorScheme.onSurface,
                                         )
@@ -3895,7 +3895,7 @@ private fun BitChordApp(
                                     },
                                 ) {
                                     Icon(
-                                        Icons.Rounded.IosShare,
+                                        Icons.Sharp.IosShare,
                                         contentDescription = stringResource(R.string.share),
                                         tint = MaterialTheme.colorScheme.onSurface,
                                     )
@@ -4941,7 +4941,7 @@ private fun BitChordApp(
                     ) {
                         IconButton(onClick = { webSession = null }) {
                             Icon(
-                                Icons.Rounded.Close,
+                                Icons.Sharp.Close,
                                 contentDescription = stringResource(R.string.close),
                                 tint = MaterialTheme.colorScheme.onBackground,
                             )
@@ -5335,7 +5335,7 @@ private fun BitChordApp(
                     ) {
                         IconButton(onClick = { showDiscordLogin = false }) {
                             Icon(
-                                Icons.Rounded.Close,
+                                Icons.Sharp.Close,
                                 contentDescription = stringResource(R.string.close),
                                 tint = MaterialTheme.colorScheme.onBackground,
                             )
@@ -5372,7 +5372,7 @@ private fun BitChordApp(
                     ) {
                         IconButton(onClick = { showSpotifyLogin = false }) {
                             Icon(
-                                Icons.Rounded.Close,
+                                Icons.Sharp.Close,
                                 contentDescription = stringResource(R.string.close),
                                 tint = MaterialTheme.colorScheme.onBackground,
                             )
@@ -5515,7 +5515,7 @@ private fun FrostedSortMenu(
             )
             if (dateActive) {
                 Icon(
-                    Icons.Rounded.ArrowUpward,
+                    Icons.Sharp.ArrowUpward,
                     contentDescription = null,
                     tint = MaterialTheme.colorScheme.primary,
                     modifier = Modifier.rotate(arrowRotation),
@@ -5635,7 +5635,7 @@ private fun FrostedMenuRow(
         )
         if (checked) {
             Icon(
-                Icons.Rounded.Check,
+                Icons.Sharp.Check,
                 contentDescription = null,
                 tint = MaterialTheme.colorScheme.primary,
             )

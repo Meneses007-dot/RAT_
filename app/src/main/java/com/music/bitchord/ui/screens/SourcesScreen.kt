@@ -26,17 +26,17 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Add
-import androidx.compose.material.icons.rounded.Bluetooth
-import androidx.compose.material.icons.rounded.Cloud
-import androidx.compose.material.icons.rounded.DeleteSweep
-import androidx.compose.material.icons.rounded.Dns
-import androidx.compose.material.icons.rounded.DragHandle
-import androidx.compose.material.icons.rounded.Storage
-import androidx.compose.material.icons.rounded.Extension
-import androidx.compose.material.icons.rounded.GraphicEq
-import androidx.compose.material.icons.rounded.PlayCircle
-import androidx.compose.material.icons.rounded.Tune
+import androidx.compose.material.icons.sharp.Add
+import androidx.compose.material.icons.sharp.Bluetooth
+import androidx.compose.material.icons.sharp.Cloud
+import androidx.compose.material.icons.sharp.DeleteSweep
+import androidx.compose.material.icons.sharp.Dns
+import androidx.compose.material.icons.sharp.DragHandle
+import androidx.compose.material.icons.sharp.Storage
+import androidx.compose.material.icons.sharp.Extension
+import androidx.compose.material.icons.sharp.GraphicEq
+import androidx.compose.material.icons.sharp.PlayCircle
+import androidx.compose.material.icons.sharp.Tune
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Switch
@@ -300,7 +300,7 @@ fun SourcesScreen(
         // so it takes no part in the ranking and gets its own group. The
         // editor is raised to the activity like every other alert.
         RemoteLibrarySection(
-            icon = Icons.Rounded.Cloud,
+            icon = Icons.Sharp.Cloud,
             title = stringResource(R.string.webdav),
             description = stringResource(R.string.webdav_description),
             subtitle = if (webdavUrl.isBlank()) {
@@ -325,7 +325,7 @@ fun SourcesScreen(
         // for the same reason: it holds the listener's own files instead of
         // answering for YouTube's, so it takes no part in the ranking above.
         RemoteLibrarySection(
-            icon = Icons.Rounded.Storage,
+            icon = Icons.Sharp.Storage,
             title = stringResource(R.string.smb),
             description = stringResource(R.string.smb_description),
             subtitle = if (smbHost.isBlank() || smbShare.isBlank()) {
@@ -357,7 +357,7 @@ fun SourcesScreen(
             footer = stringResource(R.string.upgrade_length_slack_footer),
         ) {
             SliderRow(
-                icon = Icons.Rounded.Tune,
+                icon = Icons.Sharp.Tune,
                 title = stringResource(R.string.upgrade_length_slack),
                 subtitle = stringResource(R.string.upgrade_length_slack_subtitle),
                 value = stringResource(R.string.seconds_short, upgradeLengthSlackSeconds),
@@ -408,7 +408,7 @@ private fun RemoteLibrarySection(
         if (configured) {
             RowDivider()
             SettingsRow(
-                icon = Icons.Rounded.Dns,
+                icon = Icons.Sharp.Dns,
                 title = if (testing) {
                     stringResource(R.string.testing)
                 } else {
@@ -437,7 +437,7 @@ private fun RemoteLibrarySection(
             )
             RowDivider()
             SettingsRow(
-                icon = Icons.Rounded.DeleteSweep,
+                icon = Icons.Sharp.DeleteSweep,
                 title = disconnectTitle,
                 onClick = {
                     onDisconnect()
@@ -530,7 +530,7 @@ private fun ReorderableAddons(
             ) {
                 row(index + 1, config) {
                     Icon(
-                        imageVector = Icons.Rounded.DragHandle,
+                        imageVector = Icons.Sharp.DragHandle,
                         contentDescription = stringResource(R.string.drag_to_reorder),
                         tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.35f),
                         modifier = Modifier
@@ -642,7 +642,7 @@ private fun AddSourceRow(onClick: () -> Unit) {
         // the plus reads as belonging to the same column the list is indexed by.
         Spacer(Modifier.width(24.dp))
         Icon(
-            imageVector = Icons.Rounded.Add,
+            imageVector = Icons.Sharp.Add,
             contentDescription = null,
             tint = MaterialTheme.colorScheme.primary,
             modifier = Modifier.size(ICON_SIZE),
@@ -718,7 +718,7 @@ private fun BluetoothCodecPermissionRow() {
     ) {
         Spacer(Modifier.width(24.dp))
         Icon(
-            imageVector = Icons.Rounded.Bluetooth,
+            imageVector = Icons.Sharp.Bluetooth,
             contentDescription = null,
             tint = if (denied) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.primary,
             modifier = Modifier.size(ICON_SIZE),
@@ -790,11 +790,11 @@ private fun SourceRow(
         Spacer(Modifier.width(6.dp))
         Icon(
             imageVector = when (config.kind) {
-                SourceKind.ADDON -> Icons.Rounded.Extension
-                SourceKind.CUSTOM_MODULE -> Icons.Rounded.Extension
-                SourceKind.MODULE -> Icons.Rounded.Extension
-                SourceKind.JIOSAAVN -> Icons.Rounded.GraphicEq // or some other icon
-                SourceKind.YOUTUBE -> Icons.Rounded.PlayCircle
+                SourceKind.ADDON -> Icons.Sharp.Extension
+                SourceKind.CUSTOM_MODULE -> Icons.Sharp.Extension
+                SourceKind.MODULE -> Icons.Sharp.Extension
+                SourceKind.JIOSAAVN -> Icons.Sharp.GraphicEq // or some other icon
+                SourceKind.YOUTUBE -> Icons.Sharp.PlayCircle
             },
             contentDescription = null,
             tint = MaterialTheme.colorScheme.onBackground,

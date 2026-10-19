@@ -35,13 +35,13 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Close
-import androidx.compose.material.icons.rounded.History
-import androidx.compose.material.icons.rounded.MoreVert
-import androidx.compose.material.icons.rounded.NorthWest
-import androidx.compose.material.icons.rounded.PlayArrow
-import androidx.compose.material.icons.automirrored.rounded.PlaylistAdd
-import androidx.compose.material.icons.rounded.Search
+import androidx.compose.material.icons.sharp.Close
+import androidx.compose.material.icons.sharp.History
+import androidx.compose.material.icons.sharp.MoreVert
+import androidx.compose.material.icons.sharp.NorthWest
+import androidx.compose.material.icons.sharp.PlayArrow
+import androidx.compose.material.icons.automirrored.sharp.PlaylistAdd
+import androidx.compose.material.icons.sharp.Search
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
@@ -527,7 +527,7 @@ private fun TopResultCard(
                 onClick = onPlay,
                 colors = ButtonDefaults.outlinedButtonColors(contentColor = MaterialTheme.colorScheme.onSurface),
             ) {
-                Icon(Icons.Rounded.PlayArrow, contentDescription = null)
+                Icon(Icons.Sharp.PlayArrow, contentDescription = null)
                 Spacer(Modifier.width(6.dp))
                 Text(stringResource(Res.string.play))
             }
@@ -535,7 +535,7 @@ private fun TopResultCard(
                 onClick = onPlaylist,
                 colors = ButtonDefaults.outlinedButtonColors(contentColor = MaterialTheme.colorScheme.onSurface),
             ) {
-                Icon(Icons.AutoMirrored.Rounded.PlaylistAdd, contentDescription = null)
+                Icon(Icons.AutoMirrored.Sharp.PlaylistAdd, contentDescription = null)
                 Spacer(Modifier.width(6.dp))
                 Text(stringResource(Res.string.playlist_action))
             }
@@ -600,7 +600,7 @@ private fun SuggestionRow(
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Icon(
-            Icons.Rounded.Search,
+            Icons.Sharp.Search,
             contentDescription = null,
             tint = MaterialTheme.colorScheme.onSurfaceVariant,
             modifier = Modifier.size(22.dp),
@@ -626,7 +626,7 @@ private fun SuggestionRow(
                 contentAlignment = Alignment.Center,
             ) {
                 Icon(
-                    Icons.Rounded.NorthWest,
+                    Icons.Sharp.NorthWest,
                     contentDescription = stringResource(Res.string.recent_search_edit, term),
                     tint = MaterialTheme.colorScheme.onSurfaceVariant,
                     modifier = Modifier.size(18.dp),
@@ -837,7 +837,7 @@ private fun LazyListScope.recentAddonSearches(
             verticalAlignment = Alignment.CenterVertically,
         ) {
             Icon(
-                Icons.Rounded.History,
+                Icons.Sharp.History,
                 contentDescription = null,
                 tint = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.size(22.dp),
@@ -859,7 +859,7 @@ private fun LazyListScope.recentAddonSearches(
                 contentAlignment = Alignment.Center,
             ) {
                 Icon(
-                    Icons.Rounded.Close,
+                    Icons.Sharp.Close,
                     contentDescription = stringResource(Res.string.recent_search_remove, term),
                     tint = MaterialTheme.colorScheme.onSurfaceVariant,
                     modifier = Modifier.size(18.dp),
@@ -928,7 +928,7 @@ private fun RecentSearchEntityRow(
             contentAlignment = Alignment.Center,
         ) {
             Icon(
-                Icons.Rounded.Close,
+                Icons.Sharp.Close,
                 contentDescription = stringResource(Res.string.recent_search_remove, entity.title),
                 tint = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.size(18.dp),

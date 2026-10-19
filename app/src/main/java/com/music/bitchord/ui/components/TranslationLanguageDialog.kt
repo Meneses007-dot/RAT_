@@ -21,8 +21,8 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Check
-import androidx.compose.material.icons.rounded.Search
+import androidx.compose.material.icons.sharp.Check
+import androidx.compose.material.icons.sharp.Search
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -236,7 +236,7 @@ private fun SearchField(query: String, onQueryChange: (String) -> Unit) {
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Icon(
-            imageVector = Icons.Rounded.Search,
+            imageVector = Icons.Sharp.Search,
             contentDescription = null,
             tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.45f),
             modifier = Modifier.size(16.dp),
@@ -310,7 +310,7 @@ private fun LanguageChoiceRow(
         Spacer(Modifier.width(10.dp))
         if (selected) {
             Icon(
-                imageVector = Icons.Rounded.Check,
+                imageVector = Icons.Sharp.Check,
                 contentDescription = null,
                 tint = MaterialTheme.colorScheme.primary,
                 modifier = Modifier.size(19.dp),

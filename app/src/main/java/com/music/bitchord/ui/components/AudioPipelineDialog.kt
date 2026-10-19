@@ -22,11 +22,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.rounded.InsertDriveFile
-import androidx.compose.material.icons.automirrored.rounded.VolumeUp
-import androidx.compose.material.icons.rounded.GraphicEq
-import androidx.compose.material.icons.rounded.Memory
-import androidx.compose.material.icons.rounded.Tune
+import androidx.compose.material.icons.automirrored.sharp.InsertDriveFile
+import androidx.compose.material.icons.automirrored.sharp.VolumeUp
+import androidx.compose.material.icons.sharp.GraphicEq
+import androidx.compose.material.icons.sharp.Memory
+import androidx.compose.material.icons.sharp.Tune
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -269,7 +269,7 @@ fun AudioPipelineDialog(
             PipelineRule()
             PipelineSection(
                 stageIndex = 0,
-                icon = Icons.AutoMirrored.Rounded.InsertDriveFile,
+                icon = Icons.AutoMirrored.Sharp.InsertDriveFile,
                 title = stringResource(R.string.pipeline_track_info),
                 columnCoordinates = columnCoordinates,
                 stageActivationProvider = stageActivation,
@@ -294,7 +294,7 @@ fun AudioPipelineDialog(
             PipelineRule()
             PipelineSection(
                 stageIndex = 1,
-                icon = Icons.Rounded.Memory,
+                icon = Icons.Sharp.Memory,
                 title = stringResource(R.string.pipeline_decoder),
                 columnCoordinates = columnCoordinates,
                 stageActivationProvider = stageActivation,
@@ -342,7 +342,7 @@ fun AudioPipelineDialog(
             PipelineRule()
             PipelineSection(
                 stageIndex = 2,
-                icon = Icons.Rounded.Tune,
+                icon = Icons.Sharp.Tune,
                 title = if (dsdRateHz != null) "DSD to PCM" else stringResource(R.string.pipeline_resampler),
                 columnCoordinates = columnCoordinates,
                 stageActivationProvider = stageActivation,
@@ -400,7 +400,7 @@ fun AudioPipelineDialog(
             PipelineRule()
             PipelineSection(
                 stageIndex = 3,
-                icon = Icons.Rounded.GraphicEq,
+                icon = Icons.Sharp.GraphicEq,
                 title = stringResource(R.string.pipeline_dsp),
                 columnCoordinates = columnCoordinates,
                 stageActivationProvider = stageActivation,
@@ -453,7 +453,7 @@ fun AudioPipelineDialog(
             PipelineRule()
             PipelineSection(
                 stageIndex = 4,
-                icon = Icons.AutoMirrored.Rounded.VolumeUp,
+                icon = Icons.AutoMirrored.Sharp.VolumeUp,
                 title = stringResource(R.string.pipeline_output_device),
                 columnCoordinates = columnCoordinates,
                 stageActivationProvider = stageActivation,

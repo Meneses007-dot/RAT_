@@ -50,8 +50,8 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Language
-import androidx.compose.material.icons.rounded.Translate
+import androidx.compose.material.icons.sharp.Language
+import androidx.compose.material.icons.sharp.Translate
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -1473,7 +1473,7 @@ internal fun TranslationToggleButton(
             )
         } else {
             Icon(
-                imageVector = Icons.Rounded.Translate,
+                imageVector = Icons.Sharp.Translate,
                 contentDescription = stringResource(
                     if (showingTranslation) Res.string.show_original_lyrics
                     else Res.string.translate_lyrics,
@@ -1524,7 +1524,7 @@ internal fun RomanizationToggleButton(
             )
         } else {
             Icon(
-                imageVector = Icons.Rounded.Language,
+                imageVector = Icons.Sharp.Language,
                 contentDescription = stringResource(
                     if (showingRomanization) Res.string.show_original_lyrics
                     else Res.string.romanize_lyrics,

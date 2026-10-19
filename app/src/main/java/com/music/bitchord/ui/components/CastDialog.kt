@@ -14,9 +14,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Cast
-import androidx.compose.material.icons.rounded.CastConnected
-import androidx.compose.material.icons.rounded.Check
+import androidx.compose.material.icons.sharp.Cast
+import androidx.compose.material.icons.sharp.CastConnected
+import androidx.compose.material.icons.sharp.Check
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -134,7 +134,7 @@ private fun CastDeviceRow(
     ) {
         Box(Modifier.size(24.dp), contentAlignment = Alignment.Center) {
             Icon(
-                imageVector = if (connected) Icons.Rounded.CastConnected else Icons.Rounded.Cast,
+                imageVector = if (connected) Icons.Sharp.CastConnected else Icons.Sharp.Cast,
                 contentDescription = null,
                 tint = Color.White.copy(alpha = if (connected) 1f else 0.8f),
                 modifier = Modifier.size(20.dp),
@@ -170,7 +170,7 @@ private fun CastDeviceRow(
                 strokeWidth = 1.75.dp,
             )
             connected -> Icon(
-                imageVector = Icons.Rounded.Check,
+                imageVector = Icons.Sharp.Check,
                 contentDescription = null,
                 tint = Color.White,
                 modifier = Modifier.size(18.dp),

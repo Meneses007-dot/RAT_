@@ -32,17 +32,17 @@ import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Cloud
-import androidx.compose.material.icons.rounded.CloudDone
-import androidx.compose.material.icons.rounded.CloudOff
-import androidx.compose.material.icons.rounded.ContentCopy
-import androidx.compose.material.icons.rounded.Dns
-import androidx.compose.material.icons.rounded.Lock
-import androidx.compose.material.icons.rounded.Login
-import androidx.compose.material.icons.rounded.Logout
-import androidx.compose.material.icons.rounded.MusicNote
-import androidx.compose.material.icons.rounded.Person
-import androidx.compose.material.icons.rounded.Share
+import androidx.compose.material.icons.sharp.Cloud
+import androidx.compose.material.icons.sharp.CloudDone
+import androidx.compose.material.icons.sharp.CloudOff
+import androidx.compose.material.icons.sharp.ContentCopy
+import androidx.compose.material.icons.sharp.Dns
+import androidx.compose.material.icons.sharp.Lock
+import androidx.compose.material.icons.sharp.Login
+import androidx.compose.material.icons.sharp.Logout
+import androidx.compose.material.icons.sharp.MusicNote
+import androidx.compose.material.icons.sharp.Person
+import androidx.compose.material.icons.sharp.Share
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -487,7 +487,7 @@ fun ListenTogetherScreen(
         if (!signedIn) {
             SettingsGroup(footer = stringResource(R.string.listen_together_sign_in_footer)) {
                 SettingsRow(
-                    icon = Icons.Rounded.Login,
+                    icon = Icons.Sharp.Login,
                     title = stringResource(R.string.sign_in),
                     subtitle = stringResource(R.string.not_signed_in),
                     onClick = onSignIn,
@@ -558,7 +558,7 @@ fun ListenTogetherScreen(
             footer = stringResource(R.string.listen_together_custom_server_footer),
         ) {
             SettingsRow(
-                icon = Icons.Rounded.Dns,
+                icon = Icons.Sharp.Dns,
                 title = stringResource(R.string.listen_together_custom_server),
                 subtitleContent = {
                     Text(
@@ -609,9 +609,9 @@ private fun ServerHealthRow(
     SettingsGroup {
         SettingsRow(
             icon = when (status.health) {
-                ListenTogether.Health.ONLINE -> Icons.Rounded.CloudDone
-                ListenTogether.Health.OFFLINE -> Icons.Rounded.CloudOff
-                else -> Icons.Rounded.Cloud
+                ListenTogether.Health.ONLINE -> Icons.Sharp.CloudDone
+                ListenTogether.Health.OFFLINE -> Icons.Sharp.CloudOff
+                else -> Icons.Sharp.Cloud
             },
             title = stringResource(R.string.listen_together_server),
             subtitle = when (status.health) {
@@ -652,17 +652,17 @@ private fun ServerConnectionLine(connection: ServerConnectionState) {
             stringResource(R.string.listen_together_server_checking),
         )
         is ServerConnectionState.CustomOnline -> Triple(
-            Icons.Rounded.CloudDone,
+            Icons.Sharp.CloudDone,
             MaterialTheme.colorScheme.primary,
             stringResource(R.string.listen_together_status_custom_online, connection.latencyMs),
         )
         is ServerConnectionState.CustomFallback -> Triple(
-            Icons.Rounded.CloudOff,
+            Icons.Sharp.CloudOff,
             MaterialTheme.colorScheme.error,
             stringResource(R.string.listen_together_status_custom_fallback, connection.latencyMs),
         )
         ServerConnectionState.Offline -> Triple(
-            Icons.Rounded.CloudOff,
+            Icons.Sharp.CloudOff,
             MaterialTheme.colorScheme.error,
             stringResource(R.string.listen_together_status_all_offline),
         )
@@ -865,13 +865,13 @@ private fun InAParty(
         )
         RowDivider()
         SettingsRow(
-            icon = Icons.Rounded.ContentCopy,
+            icon = Icons.Sharp.ContentCopy,
             title = stringResource(R.string.copy_code),
             onClick = onCopy,
         )
         RowDivider()
         SettingsRow(
-            icon = Icons.Rounded.Share,
+            icon = Icons.Sharp.Share,
             title = stringResource(R.string.share),
             onClick = onShare,
         )
@@ -906,7 +906,7 @@ private fun InAParty(
             }
             RowDivider()
             SettingsRow(
-                icon = Icons.Rounded.Lock,
+                icon = Icons.Sharp.Lock,
                 title = stringResource(R.string.listen_together_host_only),
                 subtitle = stringResource(R.string.listen_together_host_only_subtitle),
                 trailing = {
@@ -931,7 +931,7 @@ private fun InAParty(
 
     SettingsGroup {
         SettingsRow(
-            icon = Icons.Rounded.Logout,
+            icon = Icons.Sharp.Logout,
             title = stringResource(R.string.listen_together_leave),
             subtitle = stringResource(R.string.listen_together_leave_subtitle),
             onClick = onLeave,
@@ -968,7 +968,7 @@ private fun NowPlayingInTheParty(state: ListenTogether.State) {
 
     SettingsGroup(header = stringResource(R.string.listen_together_now_playing)) {
         SettingsRow(
-            icon = Icons.Rounded.MusicNote,
+            icon = Icons.Sharp.MusicNote,
             title = track?.title?.takeIf { it.isNotBlank() } ?: nothingPlaying,
             subtitle = if (track == null) {
                 connection
@@ -1019,7 +1019,7 @@ private fun PartyAvatar(url: String?, size: Dp = ICON_SIZE) {
         )
     } else {
         Icon(
-            Icons.Rounded.Person,
+            Icons.Sharp.Person,
             contentDescription = null,
             tint = MaterialTheme.colorScheme.onBackground,
             modifier = Modifier.size(size),

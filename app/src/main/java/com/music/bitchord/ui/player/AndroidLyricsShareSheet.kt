@@ -14,10 +14,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Download
-import androidx.compose.material.icons.rounded.IosShare
-import androidx.compose.material.icons.rounded.PhoneIphone
-import androidx.compose.material.icons.rounded.Undo
+import androidx.compose.material.icons.sharp.Download
+import androidx.compose.material.icons.sharp.IosShare
+import androidx.compose.material.icons.sharp.PhoneIphone
+import androidx.compose.material.icons.sharp.Undo
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -137,7 +137,7 @@ internal fun AndroidLyricsShareSheet(
 
             ShareAction(
                 label = stringResource(if (story) R.string.lyrics_share_story_revert else R.string.lyrics_share_story),
-                icon = if (story) Icons.Rounded.Undo else Icons.Rounded.PhoneIphone,
+                icon = if (story) Icons.Sharp.Undo else Icons.Sharp.PhoneIphone,
                 accent = false,
                 enabled = image != null,
                 modifier = Modifier.fillMaxWidth(),
@@ -162,7 +162,7 @@ internal fun AndroidLyricsShareSheet(
             ) {
                 ShareAction(
                     label = stringResource(R.string.save),
-                    icon = Icons.Rounded.Download,
+                    icon = Icons.Sharp.Download,
                     accent = false,
                     enabled = image != null,
                     modifier = Modifier.weight(1f),
@@ -188,7 +188,7 @@ internal fun AndroidLyricsShareSheet(
                 )
                 ShareAction(
                     label = stringResource(R.string.share),
-                    icon = Icons.Rounded.IosShare,
+                    icon = Icons.Sharp.IosShare,
                     accent = true,
                     enabled = image != null,
                     modifier = Modifier.weight(1f),

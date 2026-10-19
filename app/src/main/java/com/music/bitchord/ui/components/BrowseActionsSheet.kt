@@ -14,14 +14,14 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.rounded.PlaylistPlay
-import androidx.compose.material.icons.automirrored.rounded.QueueMusic
-import androidx.compose.material.icons.rounded.Delete
-import androidx.compose.material.icons.rounded.DeleteForever
-import androidx.compose.material.icons.rounded.Edit
-import androidx.compose.material.icons.rounded.PlayArrow
-import androidx.compose.material.icons.rounded.Share
-import androidx.compose.material.icons.rounded.SwapVert
+import androidx.compose.material.icons.automirrored.sharp.PlaylistPlay
+import androidx.compose.material.icons.automirrored.sharp.QueueMusic
+import androidx.compose.material.icons.sharp.Delete
+import androidx.compose.material.icons.sharp.DeleteForever
+import androidx.compose.material.icons.sharp.Edit
+import androidx.compose.material.icons.sharp.PlayArrow
+import androidx.compose.material.icons.sharp.Share
+import androidx.compose.material.icons.sharp.SwapVert
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -212,15 +212,15 @@ fun BrowseActionsSheet(
                 HorizontalDivider(thickness = 0.5.dp, color = MaterialTheme.colorScheme.outline)
             }
 
-            onPlay?.let { ActionRow(Icons.Rounded.PlayArrow, stringResource(R.string.play), onClick = it) }
+            onPlay?.let { ActionRow(Icons.Sharp.PlayArrow, stringResource(R.string.play), onClick = it) }
             onShuffle?.let { ActionRow(BitChordIcons.Shuffle, stringResource(R.string.shuffle), onClick = it) }
             ActionRow(
-                Icons.AutoMirrored.Rounded.PlaylistPlay,
+                Icons.AutoMirrored.Sharp.PlaylistPlay,
                 stringResource(R.string.play_next),
                 onClick = onPlayNext,
             )
             ActionRow(
-                Icons.AutoMirrored.Rounded.QueueMusic,
+                Icons.AutoMirrored.Sharp.QueueMusic,
                 stringResource(R.string.add_to_queue),
                 onClick = onAddToQueue,
             )
@@ -273,7 +273,7 @@ fun BrowseActionsSheet(
                 )
             }
             onShare?.let {
-                ActionRow(Icons.Rounded.Share, stringResource(R.string.share), onClick = it)
+                ActionRow(Icons.Sharp.Share, stringResource(R.string.share), onClick = it)
             }
             onTogglePin?.let {
                 ActionRow(
@@ -283,7 +283,7 @@ fun BrowseActionsSheet(
                 )
             }
             if (onRename != null) {
-                ActionRow(Icons.Rounded.Edit, stringResource(R.string.rename)) {
+                ActionRow(Icons.Sharp.Edit, stringResource(R.string.rename)) {
                     if (menu && onRenameInSheet != null) {
                         onRenameInSheet()
                     } else {
@@ -292,30 +292,30 @@ fun BrowseActionsSheet(
                 }
             }
             onReorder?.let {
-                ActionRow(Icons.Rounded.SwapVert, stringResource(R.string.reorder_songs), onClick = it)
+                ActionRow(Icons.Sharp.SwapVert, stringResource(R.string.reorder_songs), onClick = it)
             }
             if (onDelete != null) {
                 if (confirmingDelete) {
                     ActionRow(
-                        icon = Icons.Rounded.DeleteForever,
+                        icon = Icons.Sharp.DeleteForever,
                         label = stringResource(R.string.delete_playlist_confirmation, target.title),
                         tint = MaterialTheme.colorScheme.error,
                         onClick = onDelete,
                     )
                 } else {
-                    ActionRow(Icons.Rounded.Delete, stringResource(R.string.delete_playlist)) { confirmingDelete = true }
+                    ActionRow(Icons.Sharp.Delete, stringResource(R.string.delete_playlist)) { confirmingDelete = true }
                 }
             }
             if (onDeleteDownload != null) {
                 if (confirmingDeleteDownload) {
                     ActionRow(
-                        icon = Icons.Rounded.DeleteForever,
+                        icon = Icons.Sharp.DeleteForever,
                         label = stringResource(R.string.delete_download_confirmation, target.title),
                         tint = MaterialTheme.colorScheme.error,
                         onClick = onDeleteDownload,
                     )
                 } else {
-                    ActionRow(Icons.Rounded.Delete, stringResource(R.string.delete_download)) {
+                    ActionRow(Icons.Sharp.Delete, stringResource(R.string.delete_download)) {
                         confirmingDeleteDownload = true
                     }
                 }

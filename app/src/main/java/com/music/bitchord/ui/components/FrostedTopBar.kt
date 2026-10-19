@@ -34,8 +34,8 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.CornerBasedShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.rounded.ArrowBack
-import androidx.compose.material.icons.rounded.Person
+import androidx.compose.material.icons.automirrored.sharp.ArrowBack
+import androidx.compose.material.icons.sharp.Person
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -296,7 +296,7 @@ fun FrostedTopBar(
                         modifier = Modifier.align(Alignment.CenterStart).padding(start = 4.dp),
                     ) {
                         Icon(
-                            Icons.AutoMirrored.Rounded.ArrowBack,
+                            Icons.AutoMirrored.Sharp.ArrowBack,
                             contentDescription = stringResource(R.string.back),
                             tint = MaterialTheme.colorScheme.onSurface,
                         )
@@ -357,7 +357,7 @@ private fun ArtworkPageBackButton(
             .then(artworkPageSurface(shape = shape, hazeState = hazeState)),
     ) {
         Icon(
-            Icons.AutoMirrored.Rounded.ArrowBack,
+            Icons.AutoMirrored.Sharp.ArrowBack,
             contentDescription = stringResource(R.string.back),
             tint = contentColor,
         )
@@ -506,7 +506,7 @@ fun TopBarAccountButton(
                 contentAlignment = Alignment.Center,
             ) {
                 Icon(
-                    Icons.Rounded.Person,
+                    Icons.Sharp.Person,
                     contentDescription = stringResource(R.string.switch_account),
                     tint = MaterialTheme.colorScheme.onSurfaceVariant,
                     modifier = Modifier.size(18.dp),

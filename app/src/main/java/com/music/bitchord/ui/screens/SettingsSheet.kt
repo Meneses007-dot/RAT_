@@ -33,52 +33,52 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.ScrollState
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.rounded.Notes
-import androidx.compose.material.icons.automirrored.rounded.VolumeOff
-import androidx.compose.material.icons.rounded.Animation
-import androidx.compose.material.icons.rounded.Apps
-import androidx.compose.material.icons.rounded.BarChart
-import androidx.compose.material.icons.rounded.AutoAwesome
-import androidx.compose.material.icons.rounded.BlurOff
-import androidx.compose.material.icons.rounded.BlurOn
-import androidx.compose.material.icons.rounded.Brightness4
-import androidx.compose.material.icons.rounded.Cached
-import androidx.compose.material.icons.rounded.Check
-import androidx.compose.material.icons.rounded.ChevronRight
-import androidx.compose.material.icons.rounded.Cloud
-import androidx.compose.material.icons.rounded.DeleteSweep
-import androidx.compose.material.icons.rounded.Dns
-import androidx.compose.material.icons.rounded.Download
-import androidx.compose.material.icons.rounded.FileDownload
-import androidx.compose.material.icons.rounded.FileUpload
-import androidx.compose.material.icons.rounded.FilterAlt
-import androidx.compose.material.icons.rounded.Folder
-import androidx.compose.material.icons.rounded.Fullscreen
-import androidx.compose.material.icons.rounded.Gradient
-import androidx.compose.material.icons.rounded.GraphicEq
-import androidx.compose.material.icons.rounded.Groups
-import androidx.compose.material.icons.rounded.History
-import androidx.compose.material.icons.rounded.Language
-import androidx.compose.material.icons.rounded.Translate
-import androidx.compose.material.icons.rounded.VisibilityOff
-import androidx.compose.material.icons.rounded.LibraryMusic
-import androidx.compose.material.icons.rounded.LocalOffer
-import androidx.compose.material.icons.rounded.MusicOff
-import androidx.compose.material.icons.rounded.MotionPhotosOff
-import androidx.compose.material.icons.rounded.Extension
-import androidx.compose.material.icons.rounded.Draw
-import androidx.compose.material.icons.rounded.Person
-import androidx.compose.material.icons.rounded.PlaylistPlay
-import androidx.compose.material.icons.rounded.SignalCellularAlt
-import androidx.compose.material.icons.rounded.SmartDisplay
-import androidx.compose.material.icons.rounded.Storage
-import androidx.compose.material.icons.rounded.SurroundSound
-import androidx.compose.material.icons.rounded.Tune
-import androidx.compose.material.icons.rounded.VolumeOff
-import androidx.compose.material.icons.rounded.WebAssetOff
-import androidx.compose.material.icons.rounded.VolumeUp
-import androidx.compose.material.icons.rounded.Waves
-import androidx.compose.material.icons.rounded.Wifi
+import androidx.compose.material.icons.automirrored.sharp.Notes
+import androidx.compose.material.icons.automirrored.sharp.VolumeOff
+import androidx.compose.material.icons.sharp.Animation
+import androidx.compose.material.icons.sharp.Apps
+import androidx.compose.material.icons.sharp.BarChart
+import androidx.compose.material.icons.sharp.AutoAwesome
+import androidx.compose.material.icons.sharp.BlurOff
+import androidx.compose.material.icons.sharp.BlurOn
+import androidx.compose.material.icons.sharp.Brightness4
+import androidx.compose.material.icons.sharp.Cached
+import androidx.compose.material.icons.sharp.Check
+import androidx.compose.material.icons.sharp.ChevronRight
+import androidx.compose.material.icons.sharp.Cloud
+import androidx.compose.material.icons.sharp.DeleteSweep
+import androidx.compose.material.icons.sharp.Dns
+import androidx.compose.material.icons.sharp.Download
+import androidx.compose.material.icons.sharp.FileDownload
+import androidx.compose.material.icons.sharp.FileUpload
+import androidx.compose.material.icons.sharp.FilterAlt
+import androidx.compose.material.icons.sharp.Folder
+import androidx.compose.material.icons.sharp.Fullscreen
+import androidx.compose.material.icons.sharp.Gradient
+import androidx.compose.material.icons.sharp.GraphicEq
+import androidx.compose.material.icons.sharp.Groups
+import androidx.compose.material.icons.sharp.History
+import androidx.compose.material.icons.sharp.Language
+import androidx.compose.material.icons.sharp.Translate
+import androidx.compose.material.icons.sharp.VisibilityOff
+import androidx.compose.material.icons.sharp.LibraryMusic
+import androidx.compose.material.icons.sharp.LocalOffer
+import androidx.compose.material.icons.sharp.MusicOff
+import androidx.compose.material.icons.sharp.MotionPhotosOff
+import androidx.compose.material.icons.sharp.Extension
+import androidx.compose.material.icons.sharp.Draw
+import androidx.compose.material.icons.sharp.Person
+import androidx.compose.material.icons.sharp.PlaylistPlay
+import androidx.compose.material.icons.sharp.SignalCellularAlt
+import androidx.compose.material.icons.sharp.SmartDisplay
+import androidx.compose.material.icons.sharp.Storage
+import androidx.compose.material.icons.sharp.SurroundSound
+import androidx.compose.material.icons.sharp.Tune
+import androidx.compose.material.icons.sharp.VolumeOff
+import androidx.compose.material.icons.sharp.WebAssetOff
+import androidx.compose.material.icons.sharp.VolumeUp
+import androidx.compose.material.icons.sharp.Waves
+import androidx.compose.material.icons.sharp.Wifi
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatDelegate
@@ -413,7 +413,7 @@ fun SettingsScreen(
             // them is named on the row itself.
             row(accountTitle, "scrobbling", "last.fm", "listenbrainz") {
                 SettingsRow(
-                    icon = Icons.Rounded.Person,
+                    icon = Icons.Sharp.Person,
                     title = accountTitle,
                     subtitle = account?.email?.takeIf { it.isNotBlank() }
                         ?: stringResource(if (signedIn) R.string.signed_in else R.string.not_signed_in),
@@ -426,7 +426,7 @@ fun SettingsScreen(
             val listenTogetherTitle = stringResource(R.string.listen_together)
             row(listenTogetherTitle, "jam", "party", "sync", "friends") {
                 SettingsRow(
-                    icon = Icons.Rounded.Groups,
+                    icon = Icons.Sharp.Groups,
                     title = listenTogetherTitle,
                     subtitle = party.code?.let {
                         stringResource(R.string.listen_together_in_party, it)
@@ -448,7 +448,7 @@ fun SettingsScreen(
             val sourceSubtitle = stringResource(R.string.sources_subtitle)
             row(sourceTitle, sourceSubtitle, "addon", "lossless") {
                 SettingsRow(
-                    icon = Icons.Rounded.Extension,
+                    icon = Icons.Sharp.Extension,
                     title = sourceTitle,
                     subtitle = sourceSubtitle,
                     onClick = onSources,
@@ -457,7 +457,7 @@ fun SettingsScreen(
             val onWifiTitle = stringResource(R.string.on_wifi)
             row(onWifiTitle, "wi-fi", "streaming quality") {
                 SettingsRow(
-                    icon = Icons.Rounded.Wifi,
+                    icon = Icons.Sharp.Wifi,
                     title = onWifiTitle,
                     badge = stringResource(R.string.in_use).takeIf { metered == false },
                     value = wifiQuality.localizedLabel(),
@@ -467,7 +467,7 @@ fun SettingsScreen(
             val onMobileDataTitle = stringResource(R.string.on_mobile_data)
             row(onMobileDataTitle, "cellular", "streaming quality") {
                 SettingsRow(
-                    icon = Icons.Rounded.SignalCellularAlt,
+                    icon = Icons.Sharp.SignalCellularAlt,
                     title = onMobileDataTitle,
                     badge = stringResource(R.string.in_use).takeIf { metered == true },
                     value = cellularQuality.localizedLabel(),
@@ -522,7 +522,7 @@ fun SettingsScreen(
             val downloadQualityTitle = stringResource(R.string.download_quality)
             row(downloadQualityTitle, "offline", "lossless") {
                 SettingsRow(
-                    icon = Icons.Rounded.Download,
+                    icon = Icons.Sharp.Download,
                     title = downloadQualityTitle,
                     subtitle = stringResource(R.string.download_quality_subtitle, downloadQuality.perTrack),
                     value = downloadQuality.localizedLabel(),
@@ -556,7 +556,7 @@ fun SettingsScreen(
             val preferMusicOnlyTitle = stringResource(R.string.prefer_music_only)
             row(preferMusicOnlyTitle, "video", "audio", "music video") {
                 SettingsRow(
-                    icon = Icons.Rounded.SmartDisplay,
+                    icon = Icons.Sharp.SmartDisplay,
                     title = preferMusicOnlyTitle,
                     subtitle = stringResource(R.string.prefer_music_only_subtitle),
                     trailing = {
@@ -575,7 +575,7 @@ fun SettingsScreen(
             val outputPrecisionTitle = stringResource(R.string.output_precision)
             row(outputPrecisionTitle, "pcm", "bit depth", "sample rate", "dac") {
                 SettingsRow(
-                    icon = Icons.Rounded.GraphicEq,
+                    icon = Icons.Sharp.GraphicEq,
                     title = outputPrecisionTitle,
                     subtitle = buildString {
                         append(outputStatus.sink)
@@ -606,7 +606,7 @@ fun SettingsScreen(
             val loudnessTitle = stringResource(R.string.loudness_normalization)
             row(loudnessTitle, "loudness", "volume", "normalize", "replaygain", "lufs") {
                 SettingsRow(
-                    icon = Icons.Rounded.VolumeUp,
+                    icon = Icons.Sharp.VolumeUp,
                     title = loudnessTitle,
                     subtitle = stringResource(R.string.loudness_normalization_subtitle),
                     trailing = {
@@ -637,7 +637,7 @@ fun SettingsScreen(
                 val crossfadeTitle = stringResource(R.string.crossfade)
                 row(crossfadeTitle, "fade", "gapless") {
                     SliderRow(
-                        icon = Icons.Rounded.Waves,
+                        icon = Icons.Sharp.Waves,
                         title = crossfadeTitle,
                         subtitle = stringResource(R.string.crossfade_subtitle),
                         value = if (crossfade == 0) stringResource(R.string.off) else "${crossfade}s",
@@ -651,7 +651,7 @@ fun SettingsScreen(
             val automixTitle = stringResource(R.string.automix)
             row(automixTitle, "crossfade", "smart fade", "mix") {
                 SettingsRow(
-                    icon = Icons.Rounded.AutoAwesome,
+                    icon = Icons.Sharp.AutoAwesome,
                     title = automixTitle,
                     subtitle = if (smartFade) {
                         stringResource(R.string.automix_enabled_subtitle)
@@ -674,7 +674,7 @@ fun SettingsScreen(
             val automixPerformanceTitle = stringResource(R.string.automix_performance)
             row(automixPerformanceTitle, "cpu", "battery") {
                 SettingsRow(
-                    icon = Icons.Rounded.Tune,
+                    icon = Icons.Sharp.Tune,
                     title = automixPerformanceTitle,
                     subtitle = stringResource(R.string.automix_performance_subtitle),
                     value = automixPerformance.localizedLabel(),
@@ -684,7 +684,7 @@ fun SettingsScreen(
             val skipSilenceTitle = stringResource(R.string.skip_silence)
             row(skipSilenceTitle, "silence") {
                 SettingsRow(
-                    icon = Icons.AutoMirrored.Rounded.VolumeOff,
+                    icon = Icons.AutoMirrored.Sharp.VolumeOff,
                     title = skipSilenceTitle,
                     // Silence skipping is Media3's own processor, and
                     // `DefaultAudioSink.configure` appends that processor list
@@ -714,7 +714,7 @@ fun SettingsScreen(
             val spatialAudioTitle = stringResource(R.string.spatial_audio)
             row(spatialAudioTitle, "surround", "3d") {
                 SettingsRow(
-                    icon = Icons.Rounded.SurroundSound,
+                    icon = Icons.Sharp.SurroundSound,
                     title = spatialAudioTitle,
                     // Widening a JOC stream would fight the object-based mix
                     // Dolby has already spatialized, so the service holds this
@@ -749,7 +749,7 @@ fun SettingsScreen(
             val equalizerTitle = stringResource(R.string.equalizer)
             row(equalizerTitle, "eq", "bass", "treble") {
                 SettingsRow(
-                    icon = Icons.Rounded.Tune,
+                    icon = Icons.Sharp.Tune,
                     title = equalizerTitle,
                     subtitle = stringResource(R.string.equalizer_subtitle),
                     onClick = onEqualizer,
@@ -760,7 +760,7 @@ fun SettingsScreen(
         SearchableSettingsGroup(search, header = stringResource(R.string.appearance)) {
             val themeTitle = stringResource(R.string.theme)
             row(themeTitle, "dark mode", "light mode") {
-                SettingsRow(icon = Icons.Rounded.Brightness4, title = themeTitle)
+                SettingsRow(icon = Icons.Sharp.Brightness4, title = themeTitle)
                 SegmentedControl(
                     options = ThemeMode.entries.map { it.localizedLabel() },
                     selectedIndex = ThemeMode.entries.indexOf(theme),
@@ -771,7 +771,7 @@ fun SettingsScreen(
             val reduceAnimationTitle = stringResource(R.string.reduce_animation)
             row(reduceAnimationTitle, "motion") {
                 SettingsRow(
-                    icon = Icons.Rounded.MotionPhotosOff,
+                    icon = Icons.Sharp.MotionPhotosOff,
                     title = reduceAnimationTitle,
                     subtitle = stringResource(R.string.reduce_animation_subtitle),
                     trailing = {
@@ -790,7 +790,7 @@ fun SettingsScreen(
             val reduceDynamicBlurTitle = stringResource(R.string.reduce_dynamic_blur)
             row(reduceDynamicBlurTitle, "blur", "performance") {
                 SettingsRow(
-                    icon = Icons.Rounded.BlurOff,
+                    icon = Icons.Sharp.BlurOff,
                     title = reduceDynamicBlurTitle,
                     subtitle = stringResource(R.string.reduce_dynamic_blur_subtitle),
                     trailing = {
@@ -809,7 +809,7 @@ fun SettingsScreen(
             val liquidGlassTitle = stringResource(R.string.liquid_glass)
             row(liquidGlassTitle, "glass", "blur") {
                 SettingsRow(
-                    icon = Icons.Rounded.AutoAwesome,
+                    icon = Icons.Sharp.AutoAwesome,
                     title = liquidGlassTitle,
                     subtitle = stringResource(
                         if (liquidGlassSupported) {
@@ -841,7 +841,7 @@ fun SettingsScreen(
                 val fullScreenCoverArtTitle = stringResource(R.string.full_screen_cover_art)
                 row(fullScreenCoverArtTitle, "artwork", "player") {
                     SettingsRow(
-                        icon = Icons.Rounded.Fullscreen,
+                        icon = Icons.Sharp.Fullscreen,
                         title = fullScreenCoverArtTitle,
                         subtitle = stringResource(R.string.full_screen_cover_art_subtitle),
                         trailing = {
@@ -861,7 +861,7 @@ fun SettingsScreen(
             val legacyMeshGradientTitle = stringResource(R.string.legacy_mesh_gradient)
             row(legacyMeshGradientTitle, "background", "player") {
                 SettingsRow(
-                    icon = Icons.Rounded.Gradient,
+                    icon = Icons.Sharp.Gradient,
                     title = legacyMeshGradientTitle,
                     subtitle = stringResource(R.string.legacy_mesh_gradient_subtitle),
                     trailing = {
@@ -883,7 +883,7 @@ fun SettingsScreen(
             // the switch that brings the Spotify row back rather than nothing.
             row(animatedCoverArtTitle, "canvas", "video", "spotify") {
                 SettingsRow(
-                    icon = Icons.Rounded.Animation,
+                    icon = Icons.Sharp.Animation,
                     title = animatedCoverArtTitle,
                     subtitle = stringResource(R.string.animated_cover_art_subtitle),
                     trailing = {
@@ -937,7 +937,7 @@ fun SettingsScreen(
             val artistSignaturesTitle = stringResource(R.string.artist_signatures)
             row(artistSignaturesTitle, "signature", "artist", "logo") {
                 SettingsRow(
-                    icon = Icons.Rounded.Draw,
+                    icon = Icons.Sharp.Draw,
                     title = artistSignaturesTitle,
                     subtitle = stringResource(R.string.artist_signatures_subtitle),
                     trailing = {
@@ -982,7 +982,7 @@ fun SettingsScreen(
             // translation rows are only here while this is on.
             row(syncedLyricsTitle, "lyrics", "translation", "lrclib", "musixmatch") {
                 SettingsRow(
-                    icon = Icons.AutoMirrored.Rounded.Notes,
+                    icon = Icons.AutoMirrored.Sharp.Notes,
                     title = syncedLyricsTitle,
                     subtitle = stringResource(R.string.synced_lyrics_subtitle),
                     trailing = {
@@ -1005,7 +1005,7 @@ fun SettingsScreen(
                 val lyricsBlurTitle = stringResource(R.string.blur_unfocused_lyrics)
                 row(lyricsBlurTitle, "lyrics", "blur") {
                     SettingsRow(
-                        icon = Icons.Rounded.BlurOn,
+                        icon = Icons.Sharp.BlurOn,
                         title = lyricsBlurTitle,
                         subtitle = stringResource(R.string.blur_unfocused_lyrics_subtitle),
                         trailing = {
@@ -1024,7 +1024,7 @@ fun SettingsScreen(
                 val lyricsSourcesTitle = stringResource(R.string.lyrics_sources)
                 row(lyricsSourcesTitle, "lyrics", "lrclib", "musixmatch") {
                     SettingsRow(
-                        icon = Icons.Rounded.Language,
+                        icon = Icons.Sharp.Language,
                         title = lyricsSourcesTitle,
                         subtitle = lyricsSources
                             .sortedBy { it.ordinal }
@@ -1037,7 +1037,7 @@ fun SettingsScreen(
                 val translationLanguageTitle = stringResource(R.string.translation_language)
                 row(translationLanguageTitle, "lyrics", "translate") {
                     SettingsRow(
-                        icon = Icons.Rounded.Translate,
+                        icon = Icons.Sharp.Translate,
                         title = translationLanguageTitle,
                         subtitle = if (translationLanguage.isBlank()) {
                             stringResource(R.string.translation_language_subtitle)
@@ -1117,7 +1117,7 @@ fun SettingsScreen(
             val localMusicFolderTitle = stringResource(R.string.local_music_folder)
             row(localMusicFolderTitle, "folder", "offline", "files") {
                 SettingsRow(
-                    icon = Icons.Rounded.Folder,
+                    icon = Icons.Sharp.Folder,
                     title = localMusicFolderTitle,
                     subtitle = LocalMediaRepository.selectedFolderLabel(localMusicFolderUri)
                         ?: stringResource(R.string.all_audio_folders),
@@ -1128,7 +1128,7 @@ fun SettingsScreen(
                 val useAllAudioFoldersTitle = stringResource(R.string.use_all_audio_folders)
                 row(useAllAudioFoldersTitle, "folder") {
                     SettingsRow(
-                        icon = Icons.Rounded.LibraryMusic,
+                        icon = Icons.Sharp.LibraryMusic,
                         title = useAllAudioFoldersTitle,
                         subtitle = stringResource(R.string.use_all_audio_folders_subtitle),
                         onClick = { AppSettings.setLocalMusicFolderUri("") },
@@ -1138,7 +1138,7 @@ fun SettingsScreen(
             val filterNonMusicAudioTitle = stringResource(R.string.filter_non_music_audio)
             row(filterNonMusicAudioTitle, "podcast", "recording") {
                 SettingsRow(
-                    icon = Icons.Rounded.FilterAlt,
+                    icon = Icons.Sharp.FilterAlt,
                     title = filterNonMusicAudioTitle,
                     subtitle = stringResource(R.string.filter_non_music_audio_subtitle),
                     trailing = {
@@ -1166,7 +1166,7 @@ fun SettingsScreen(
             val showCacheFolderTitle = stringResource(R.string.show_cache_folder)
             row(showCacheFolderTitle, "cache", "cached songs", "library", "folder") {
                 SettingsRow(
-                    icon = Icons.Rounded.Cached,
+                    icon = Icons.Sharp.Cached,
                     title = showCacheFolderTitle,
                     subtitle = stringResource(R.string.show_cache_folder_subtitle),
                     trailing = {
@@ -1185,7 +1185,7 @@ fun SettingsScreen(
             val songCacheLimitTitle = stringResource(R.string.song_cache_limit)
             row(songCacheLimitTitle, "cache", "space", "unlimited") {
                 SliderRow(
-                    icon = Icons.Rounded.Storage,
+                    icon = Icons.Sharp.Storage,
                     title = songCacheLimitTitle,
                     subtitle = when {
                         cacheUnlimited -> stringResource(R.string.song_cache_unlimited_subtitle)
@@ -1206,7 +1206,7 @@ fun SettingsScreen(
             val clearSongCacheTitle = stringResource(R.string.clear_song_cache)
             row(clearSongCacheTitle, "cache", "free space") {
                 SettingsRow(
-                    icon = Icons.Rounded.DeleteSweep,
+                    icon = Icons.Sharp.DeleteSweep,
                     title = clearSongCacheTitle,
                     subtitle = stringResource(R.string.clear_song_cache_subtitle),
                     onClick = { confirmClearSongCache = true },
@@ -1215,7 +1215,7 @@ fun SettingsScreen(
             val clearImageCacheTitle = stringResource(R.string.clear_image_cache)
             row(clearImageCacheTitle, "cache", "artwork", "free space") {
                 SettingsRow(
-                    icon = Icons.Rounded.DeleteSweep,
+                    icon = Icons.Sharp.DeleteSweep,
                     title = clearImageCacheTitle,
                     subtitle = stringResource(R.string.clear_image_cache_subtitle),
                     onClick = {
@@ -1241,7 +1241,7 @@ fun SettingsScreen(
             val replayTitle = stringResource(R.string.replay)
             row(replayTitle, "stats", "history", "wrapped") {
                 SettingsRow(
-                    icon = Icons.Rounded.BarChart,
+                    icon = Icons.Sharp.BarChart,
                     title = replayTitle,
                     subtitle = stringResource(R.string.replay_subtitle),
                     onClick = onOpenReplay,
@@ -1250,7 +1250,7 @@ fun SettingsScreen(
             val workOutGenresTitle = stringResource(R.string.work_out_genres)
             row(workOutGenresTitle, "genre", "replay") {
                 SettingsRow(
-                    icon = Icons.Rounded.LocalOffer,
+                    icon = Icons.Sharp.LocalOffer,
                     title = workOutGenresTitle,
                     subtitle = if (replayGenres) {
                         stringResource(R.string.replay_genres_enabled_subtitle)
@@ -1273,7 +1273,7 @@ fun SettingsScreen(
             val exportDataTitle = stringResource(R.string.export_data)
             row(exportDataTitle, "backup") {
                 SettingsRow(
-                    icon = Icons.Rounded.FileUpload,
+                    icon = Icons.Sharp.FileUpload,
                     title = exportDataTitle,
                     subtitle = exportStatus ?: stringResource(R.string.export_data_subtitle),
                     onClick = { exportPicker.launch(Backup.suggestedName()) },
@@ -1282,7 +1282,7 @@ fun SettingsScreen(
             val importDataTitle = stringResource(R.string.import_data)
             row(importDataTitle, "backup", "restore") {
                 SettingsRow(
-                    icon = Icons.Rounded.FileDownload,
+                    icon = Icons.Sharp.FileDownload,
                     title = importDataTitle,
                     subtitle = importStatus ?: stringResource(R.string.import_data_subtitle),
                     onClick = { confirmImport = true },
@@ -1296,7 +1296,7 @@ fun SettingsScreen(
             val playNextOnSwipeTitle = stringResource(R.string.play_next_on_swipe)
             row(playNextOnSwipeTitle, "swipe", "queue") {
                 SettingsRow(
-                    icon = Icons.Rounded.PlaylistPlay,
+                    icon = Icons.Sharp.PlaylistPlay,
                     title = playNextOnSwipeTitle,
                     subtitle = if (swipeToPlayNext) {
                         stringResource(R.string.swipe_plays_next)
@@ -1319,7 +1319,7 @@ fun SettingsScreen(
             val dontRepeatSongsTitle = stringResource(R.string.dont_repeat_songs)
             row(dontRepeatSongsTitle, "radio", "suggestions") {
                 SettingsRow(
-                    icon = Icons.Rounded.History,
+                    icon = Icons.Sharp.History,
                     title = dontRepeatSongsTitle,
                     subtitle = stringResource(R.string.dont_repeat_songs_subtitle),
                     trailing = {
@@ -1338,7 +1338,7 @@ fun SettingsScreen(
             val stopMusicOnCloseTitle = stringResource(R.string.stop_music_on_close)
             row(stopMusicOnCloseTitle, "notification", "background") {
                 SettingsRow(
-                    icon = Icons.Rounded.MusicOff,
+                    icon = Icons.Sharp.MusicOff,
                     title = stopMusicOnCloseTitle,
                     subtitle = stringResource(R.string.stop_music_on_close_subtitle),
                     trailing = {
@@ -1357,7 +1357,7 @@ fun SettingsScreen(
             val hideVolumeBarTitle = stringResource(R.string.hide_volume_bar)
             row(hideVolumeBarTitle, "volume", "player") {
                 SettingsRow(
-                    icon = Icons.Rounded.VolumeOff,
+                    icon = Icons.Sharp.VolumeOff,
                     title = hideVolumeBarTitle,
                     subtitle = stringResource(R.string.hide_volume_bar_subtitle),
                     trailing = {
@@ -1376,7 +1376,7 @@ fun SettingsScreen(
             val hideStatusBarTitle = stringResource(R.string.hide_status_bar_in_player)
             row(hideStatusBarTitle, "status bar", "immersive", "fullscreen", "player") {
                 SettingsRow(
-                    icon = Icons.Rounded.WebAssetOff,
+                    icon = Icons.Sharp.WebAssetOff,
                     title = hideStatusBarTitle,
                     subtitle = stringResource(R.string.hide_status_bar_in_player_subtitle),
                     trailing = {
@@ -1395,7 +1395,7 @@ fun SettingsScreen(
             val showQueueHistoryTitle = stringResource(R.string.show_queue_history)
             row(showQueueHistoryTitle, "player", "queue", "history", "previously played") {
                 SettingsRow(
-                    icon = Icons.Rounded.History,
+                    icon = Icons.Sharp.History,
                     title = showQueueHistoryTitle,
                     subtitle = stringResource(R.string.show_queue_history_subtitle),
                     trailing = {
@@ -1414,7 +1414,7 @@ fun SettingsScreen(
             val hideSongStatusTitle = stringResource(R.string.hide_song_status)
             row(hideSongStatusTitle, "player", "playing from", "played by") {
                 SettingsRow(
-                    icon = Icons.Rounded.VisibilityOff,
+                    icon = Icons.Sharp.VisibilityOff,
                     title = hideSongStatusTitle,
                     subtitle = stringResource(R.string.hide_song_status_subtitle),
                     trailing = {
@@ -1438,7 +1438,7 @@ fun SettingsScreen(
                 val selectedLanguage = AppCompatDelegate.getApplicationLocales().get(0)?.toLanguageTag()
                     ?: Locale.getDefault().toLanguageTag()
                 SettingsRow(
-                    icon = Icons.Rounded.Language,
+                    icon = Icons.Sharp.Language,
                     title = appLanguageTitle,
                     subtitle = stringResource(languageDisplayNameRes(selectedLanguage)),
                     onClick = onAppLanguage,
@@ -1450,7 +1450,7 @@ fun SettingsScreen(
             val smartAlignmentTitle = stringResource(R.string.smart_version_alignment)
             row(smartAlignmentTitle, "alignment", "sync", "waveform", "video", "audio", "skit", "intro") {
                 SettingsRow(
-                    icon = Icons.Rounded.GraphicEq,
+                    icon = Icons.Sharp.GraphicEq,
                     title = smartAlignmentTitle,
                     subtitle = stringResource(R.string.smart_version_alignment_subtitle),
                     trailing = {
@@ -1469,7 +1469,7 @@ fun SettingsScreen(
             val showNerdStatsTitle = stringResource(R.string.show_nerd_stats)
             row(showNerdStatsTitle, "debug", "bitrate", "codec") {
                 SettingsRow(
-                    icon = Icons.Rounded.BarChart,
+                    icon = Icons.Sharp.BarChart,
                     title = showNerdStatsTitle,
                     subtitle = stringResource(R.string.show_nerd_stats_subtitle),
                     trailing = {
@@ -1488,7 +1488,7 @@ fun SettingsScreen(
             val appIconTitle = stringResource(R.string.app_icon)
             row(appIconTitle, "icon", "launcher", "logo") {
                 var selectedIcon by remember { mutableStateOf(AppIcon.current(context)) }
-                SettingsRow(icon = Icons.Rounded.Apps, title = appIconTitle)
+                SettingsRow(icon = Icons.Sharp.Apps, title = appIconTitle)
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -1873,8 +1873,8 @@ private fun Context.countOfMonths(months: Int): String = if (months == 0) {
 
 /** Which ceiling the open picker is editing. */
 private enum class QualityTarget(val icon: ImageVector) {
-    WIFI(Icons.Rounded.Wifi),
-    CELLULAR(Icons.Rounded.SignalCellularAlt),
+    WIFI(Icons.Sharp.Wifi),
+    CELLULAR(Icons.Sharp.SignalCellularAlt),
 }
 
 @Composable
@@ -2001,7 +2001,7 @@ internal fun AccountCard(
                 contentAlignment = Alignment.Center,
             ) {
                 Icon(
-                    Icons.Rounded.Person,
+                    Icons.Sharp.Person,
                     contentDescription = null,
                     tint = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
@@ -2102,7 +2102,7 @@ private fun QualitySheet(
                 if (chosen) {
                     Spacer(Modifier.width(12.dp))
                     Icon(
-                        Icons.Rounded.Check,
+                        Icons.Sharp.Check,
                         contentDescription = stringResource(R.string.selected),
                         tint = MaterialTheme.colorScheme.primary,
                         modifier = Modifier.size(22.dp),
@@ -2126,7 +2126,7 @@ private fun AutomixPerformanceSheet(
             verticalAlignment = Alignment.CenterVertically,
         ) {
             Icon(
-                imageVector = Icons.Rounded.Tune,
+                imageVector = Icons.Sharp.Tune,
                 contentDescription = null,
                 tint = MaterialTheme.colorScheme.onBackground,
                 modifier = Modifier.size(22.dp),
@@ -2179,7 +2179,7 @@ private fun AutomixPerformanceSheet(
                 if (chosen) {
                     Spacer(Modifier.width(12.dp))
                     Icon(
-                        Icons.Rounded.Check,
+                        Icons.Sharp.Check,
                         contentDescription = stringResource(R.string.selected),
                         tint = MaterialTheme.colorScheme.primary,
                         modifier = Modifier.size(22.dp),
@@ -2211,7 +2211,7 @@ private fun DownloadQualitySheet(
             verticalAlignment = Alignment.CenterVertically,
         ) {
             Icon(
-                imageVector = Icons.Rounded.Download,
+                imageVector = Icons.Sharp.Download,
                 contentDescription = null,
                 tint = MaterialTheme.colorScheme.onBackground,
                 modifier = Modifier.size(22.dp),
@@ -2261,7 +2261,7 @@ private fun DownloadQualitySheet(
                 if (chosen) {
                     Spacer(Modifier.width(12.dp))
                     Icon(
-                        Icons.Rounded.Check,
+                        Icons.Sharp.Check,
                         contentDescription = stringResource(R.string.selected),
                         tint = MaterialTheme.colorScheme.primary,
                         modifier = Modifier.size(22.dp),
@@ -2591,7 +2591,7 @@ internal fun Badge(text: String) {
 @Composable
 internal fun Chevron() {
     Icon(
-        Icons.Rounded.ChevronRight,
+        Icons.Sharp.ChevronRight,
         contentDescription = null,
         tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f),
         modifier = Modifier.size(20.dp),

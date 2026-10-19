@@ -19,8 +19,8 @@ import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Close
-import androidx.compose.material.icons.rounded.DragHandle
+import androidx.compose.material.icons.sharp.Close
+import androidx.compose.material.icons.sharp.DragHandle
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.HorizontalDivider
@@ -89,7 +89,7 @@ fun ReorderPlaylistSheet(
         ) {
             IconButton(onClick = onClose) {
                 Icon(
-                    Icons.Rounded.Close,
+                    Icons.Sharp.Close,
                     contentDescription = stringResource(R.string.back),
                     tint = MaterialTheme.colorScheme.onBackground,
                 )
@@ -302,7 +302,7 @@ private fun ReorderRow(
             )
         }
         Icon(
-            imageVector = Icons.Rounded.DragHandle,
+            imageVector = Icons.Sharp.DragHandle,
             contentDescription = stringResource(R.string.drag_to_reorder),
             tint = MaterialTheme.colorScheme.onSurfaceVariant,
             modifier = Modifier
