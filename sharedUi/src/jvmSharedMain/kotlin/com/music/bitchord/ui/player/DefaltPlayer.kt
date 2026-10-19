@@ -11,15 +11,23 @@
 
 package com.music.bitchord.ui.player
 
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 /**
  * Cian DedSec: el color de sistema de esta edición — lo que está encendido,
@@ -34,7 +42,10 @@ internal val DefaltCyan = Color(0xFF00E5FF)
 internal val DefaltRed = Color(0xFFDC0736)
 
 /** Cuánto mide el brazo de cada corchete. */
-private val HUD_ARM = 26.dp
+internal val HUD_ARM = 26.dp
+
+/** El paso de la rejilla técnica, el mismo que el fondo de la app. */
+private val GRID_STEP = 36.dp
 
 /**
  * Lo que baja el hilo por debajo de la barra de estado. El visor se separa del
@@ -108,4 +119,65 @@ private fun DrawScope.drawDefaltHud(
     corner(right, top, -1f, 1f)
     corner(left, bottom, 1f, -1f)
     corner(right, bottom, -1f, -1f)
+}
+
+/**
+ * DEDSEC // DEFALT — la rejilla técnica sobre el fondo de la carátula.
+ *
+ * La misma malla que lleva el fondo de la app (`DefaltBackdrop.kt`, módulo
+ * `:app`): una línea cada 36dp y una más marcada cada cinco. Aquí es algo más
+ * presente que allí a propósito — aquel fondo es casi negro y éste lleva los
+ * colores de la portada, que se comen una línea al 5%.
+ *
+ * Se aplica **antes** que la carátula en el árbol, así que la rejilla sólo se
+ * ve donde asoma el mesh: alrededor y por debajo del vinilo, nunca por encima.
+ */
+internal fun Modifier.defaltGrid(step: Dp = GRID_STEP): Modifier = drawBehind {
+    val minor = DefaltCyan.copy(alpha = 0.075f)
+    val major = DefaltCyan.copy(alpha = 0.14f)
+    val px = step.toPx()
+    var index = 0
+    var x = 0f
+    while (x <= size.width) {
+        drawLine(if (index % 5 == 0) major else minor, Offset(x, 0f), Offset(x, size.height), 1f)
+        x += px
+        index++
+    }
+    index = 0
+    var y = 0f
+    while (y <= size.height) {
+        drawLine(if (index % 5 == 0) major else minor, Offset(0f, y), Offset(size.width, y), 1f)
+        y += px
+        index++
+    }
+}
+
+/**
+ * DEDSEC // DEFALT — la firma del visor.
+ *
+ * `RAT // PLAYER` apoyada en la esquina de abajo a la izquierda, dentro del
+ * visor y en la monoespaciada de los rótulos. No lleva ningún dato: es la firma,
+ * no un instrumento — la pantalla ya dice lo que tiene que decir.
+ *
+ * [alpha] se lee en la capa gráfica, no en la composición: la firma se va con el
+ * reproductor cuando éste se pliega, sin recomponer la pantalla en el viaje.
+ */
+@Composable
+internal fun DefaltHudSignature(
+    alpha: () -> Float,
+    modifier: Modifier = Modifier,
+) {
+    Text(
+        text = "RAT // PLAYER",
+        modifier = modifier.graphicsLayer { this.alpha = alpha() },
+        style = MaterialTheme.typography.labelSmall.copy(
+            fontSize = 9.sp,
+            letterSpacing = 1.4.sp,
+            fontWeight = FontWeight.Medium,
+            // Sobre una carátula clara, un cian al 75% sin sombra se pierde.
+            shadow = Shadow(Color.Black.copy(alpha = 0.55f), Offset(0f, 1f), 4f),
+        ),
+        color = DefaltCyan.copy(alpha = 0.75f),
+        maxLines = 1,
+    )
 }

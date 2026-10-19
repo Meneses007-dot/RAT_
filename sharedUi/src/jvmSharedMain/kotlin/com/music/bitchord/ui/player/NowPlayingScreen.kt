@@ -2111,6 +2111,15 @@ fun NowPlayingScreen(
                         modifier = Modifier.graphicsLayer { alpha = 1f - fullArtworkBackdropAlpha },
                     )
                 }
+                // DEDSEC // DEFALT: la rejilla técnica sobre el fondo de la
+                // carátula. Va antes que el vinilo, así que sólo asoma por donde
+                // el mesh se ve; y se apaga con el cruce al desenfoque a sangre.
+                Box(
+                    Modifier
+                        .matchParentSize()
+                        .graphicsLayer { alpha = 1f - fullArtworkBackdropAlpha }
+                        .defaltGrid(),
+                )
                 fullArtworkBlurContent(
                     Modifier.graphicsLayer { alpha = fullArtworkBackdropAlpha },
                 )
@@ -3659,6 +3668,15 @@ fun NowPlayingScreen(
                     }
                     }
                 }
+                // DEDSEC // DEFALT: la firma del visor, apoyada en su esquina de
+                // abajo a la izquierda (ver [DefaltHudSignature]). Va la última
+                // de la caja, para quedar por encima del mando.
+                DefaltHudSignature(
+                    alpha = dockFade,
+                    modifier = Modifier
+                        .align(Alignment.BottomStart)
+                        .padding(start = 12.dp, bottom = 12.dp + HUD_ARM + 4.dp),
+                )
                 playerOverlays()
             }
         }
