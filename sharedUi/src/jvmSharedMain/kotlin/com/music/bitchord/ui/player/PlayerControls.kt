@@ -220,6 +220,12 @@ internal fun PlayerScrubber(
             mixing = mixing,
             mixPulse = mixPulse,
             transitionWindow = transitionWindow,
+            // DEDSEC // DEFALT: la parte escuchada va en el cian de sistema; lo
+            // que queda por delante se deja en el blanco del material, que
+            // aguanta sobre cualquier carátula. El volumen no lo toca: la barra
+            // que manda es ésta.
+            activeColor = DefaltCyan,
+            markerColor = DefaltCyan.copy(alpha = 0.5f),
         )
         Box(
             modifier = Modifier

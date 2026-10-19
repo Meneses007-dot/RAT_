@@ -1785,7 +1785,15 @@ fun NowPlayingScreen(
                 }
             }
 
-            Box(modifier = modifier.fillMaxSize().then(dockHost)) {
+            // DEDSEC // DEFALT: el visor que enmarca la pantalla (ver [defaltHud]).
+            // Va en la caja raíz para quedar por encima de todo, y se apaga con
+            // `dockFade` mientras el reproductor se pliega hacia la barra.
+            Box(
+                modifier = modifier
+                    .fillMaxSize()
+                    .then(dockHost)
+                    .defaltHud(alpha = dockFade, topInset = statusBarTop + HUD_TOP_GAP),
+            ) {
                 LandscapePlayerLayout(
                     pane = when {
                         lyricsOpen -> PlayerPane.Lyrics
@@ -2050,7 +2058,10 @@ fun NowPlayingScreen(
                     .fillMaxSize()
                     .onSizeChanged { playerBounds = it }
                     .then(dockHost)
-                    .background(Color.Black),
+                    .background(Color.Black)
+                    // DEDSEC // DEFALT: el visor. Ver [defaltHud] para por qué
+                    // la opacidad se pasa como función y no como valor.
+                    .defaltHud(alpha = dockFade, topInset = statusBarTop + HUD_TOP_GAP),
             ) {
                 // Anchored to the sleeve's bottom edge, so the screen carries on in the
                 // colours the artwork ended in rather than in a quantiser's idea of what
