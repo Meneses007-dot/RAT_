@@ -107,6 +107,26 @@ fun DrawScope.drawDefaltBackdrop(density: Float) {
         i++
     }
 
+    // Marca de agua. Defalt no firma, etiqueta: el nombre que le pone a DedSec
+    // pintado a tamaño de valla sobre la rejilla, en plantilla recortada —solo
+    // el borde de cada letra— para que se lea sin ensuciar lo que haya encima.
+    // Va debajo de las scanlines, así el CRT también la atraviesa.
+    val mark = "DEDSUC"
+    val markCells = pixelWordWidthCells(mark).toFloat()
+    val markCell = size.width * 1.05f / markCells
+    val markWidth = markCells * markCell
+    val markHeight = 7f * markCell
+    val markCenter = Offset(size.width * 0.52f, size.height * 0.46f)
+    drawPixelWord(
+        text = mark,
+        cell = markCell,
+        topLeft = Offset(markCenter.x - markWidth / 2f, markCenter.y - markHeight / 2f),
+        color = DedSec.Cyan.copy(alpha = 0.075f),
+        rotation = -13f,
+        pivot = markCenter,
+        stencil = true,
+    )
+
     // Scanlines de CRT: claras, no oscuras, o sobre un fondo casi negro no se ven.
     val scanStep = 4f * density
     val scanColor = Color.White.copy(alpha = 0.018f)
