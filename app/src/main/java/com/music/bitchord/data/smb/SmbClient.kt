@@ -35,7 +35,7 @@ object SmbClient {
         password: String,
     ): Result<Unit> = withContext(Dispatchers.IO) {
         runCatching {
-            require(SmbConfig.isConfigured(host, share)) { "Enter a server and a share" }
+            require(SmbConfig.isConfigured(host, share)) { "Escribe un servidor y un recurso compartido" }
             SmbAuth.update(host, share, basePath, username, password)
             SmbConnection.withShare { diskShare ->
                 diskShare.list(smbPath(SmbAuth.basePath))

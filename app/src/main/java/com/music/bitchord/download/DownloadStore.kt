@@ -225,12 +225,12 @@ object DownloadStore {
         fun openStream(): OutputStream =
             part?.outputStream()
                 ?: context.contentResolver.openOutputStream(uri)
-                ?: error("Could not open $name for writing")
+                ?: error("No se pudo abrir $name para escribir")
 
         /** @return the uri the finished file can be reached at. */
         fun commit(): Uri {
             if (part != null && target != null) {
-                if (!part.renameTo(target)) error("Could not finish writing $name")
+                if (!part.renameTo(target)) error("No se pudo terminar de escribir $name")
                 // Nothing indexes a file that simply appeared; without this it
                 // is on disk and invisible to every app that lists media.
                 MediaScannerConnection.scanFile(
@@ -266,8 +266,8 @@ object DownloadStore {
     fun begin(context: Context, name: String, mimeType: String): Pending {
         if (!AppSettings.exportDownloads.value) {
             val target = privateFile(context, name)
-            val folder = target.parentFile ?: error("No download folder")
-            if (!folder.exists() && !folder.mkdirs()) error("Could not create ${folder.path}")
+            val folder = target.parentFile ?: error("No hay carpeta de descargas")
+            if (!folder.exists() && !folder.mkdirs()) error("No se pudo crear ${folder.path}")
             val part = File(folder, ".$name.part")
             part.delete()
             return Pending(context, Uri.fromFile(target), name, part = part, target = target)
@@ -290,14 +290,14 @@ object DownloadStore {
                 context.contentResolver.insert(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, values)
             }.getOrElse { cause ->
                 Log.w(TAG, "the media store refused $mimeType for $name: ${cause.message}")
-                error("Android won't store ${name.substringAfterLast('.', mimeType)} files in Music")
-            } ?: error("Could not create $name in Music")
+                error("Android no deja guardar archivos ${name.substringAfterLast('.', mimeType)} en Música")
+            } ?: error("No se pudo crear $name en Música")
             return Pending(context, uri, name, part = null, target = null)
         }
 
         val target = legacyFile(name)
-        val folder = target.parentFile ?: error("No Music folder on this device")
-        if (!folder.exists() && !folder.mkdirs()) error("Could not create ${folder.path}")
+        val folder = target.parentFile ?: error("No hay carpeta de Música en este dispositivo")
+        if (!folder.exists() && !folder.mkdirs()) error("No se pudo crear ${folder.path}")
         val part = File(folder, "$name.part")
         part.delete()
         return Pending(context, Uri.fromFile(target), name, part = part, target = target)

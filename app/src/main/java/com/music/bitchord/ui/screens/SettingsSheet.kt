@@ -1571,7 +1571,7 @@ fun SettingsScreen(
                 }
                 append("  ")
                 withLink(LinkAnnotation.Url("https://github.com/kushagrasinghx", linkStyles)) {
-                    append("Developer")
+                    append("Desarrollador")
                 }
                 append("  ")
                 withLink(LinkAnnotation.Url("https://discord.gg/pDdKfrdHY6", linkStyles)) {
@@ -1579,9 +1579,9 @@ fun SettingsScreen(
                 }
                 append("  ")
                 withLink(LinkAnnotation.Url("https://bitchord.kushagrasingh.in/", linkStyles)) {
-                    append("Website")
+                    append("Sitio web")
                 }
-                append("\n~YouTube Music & Listen Together Backend")
+                append("\n~YouTube Music y servidor de Listen Together")
             },
             style = MaterialTheme.typography.labelSmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant,

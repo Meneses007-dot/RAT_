@@ -947,7 +947,7 @@ object Downloads {
             clear(id)
             return
         }
-        val route = plan.route ?: error("Nothing to download")
+        val route = plan.route ?: error("No hay nada que bajar")
 
         var pending: DownloadStore.Pending? = null
         var lyrics: Deferred<LyricsTag.Embeddable?>? = null
@@ -1261,7 +1261,7 @@ object Downloads {
     private fun Exception.friendly(): String = when {
         (this is IllegalStateException || this is IllegalArgumentException) &&
             !message.isNullOrBlank() -> message!!
-        else -> "Download failed — check your connection"
+        else -> "La descarga falló. Revisa la conexión."
     }
 
     /**
@@ -1323,7 +1323,7 @@ object Downloads {
      * looking for a network problem that isn't there. Shared with the callers
      * that show it as a toast so the two cannot drift apart.
      */
-    internal const val WIFI_ONLY_REFUSAL = "Downloads are set to Wi-Fi only"
+    internal const val WIFI_ONLY_REFUSAL = "Las descargas están solo con Wi-Fi"
 
     /** Dropped when the sheet is reopened; a failure is worth showing once. */
     fun dismissFailure(videoId: String) {

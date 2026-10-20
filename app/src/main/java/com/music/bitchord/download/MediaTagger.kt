@@ -140,7 +140,7 @@ object MediaTagger {
             val name = target.name
             synchronized(artworkFileLock) {
                 if (!target.exists()) {
-                    if (!folder.exists() && !folder.mkdirs()) error("Could not create artwork folder")
+                    if (!folder.exists() && !folder.mkdirs()) error("No se pudo crear la carpeta de carátulas")
                     val temp = File(folder, ".$name-${System.nanoTime()}.part")
                     try {
                         temp.writeBytes(artwork.bytes)
@@ -332,7 +332,7 @@ object MediaTagger {
                 openInput(context, uri)?.use { source ->
                     source.skipFully(rewrite.audioStart.toLong())
                     source.copyTo(sink, COPY_BUFFER)
-                } ?: error("could not reopen $uri")
+                } ?: error("no se pudo reabrir $uri")
             }
             replaceWith(context, uri, temp)
             true
@@ -355,7 +355,7 @@ object MediaTagger {
                 File(requireNotNull(uri.path)).outputStream()
             } else {
                 context.contentResolver.openOutputStream(uri, "wt")
-                    ?: error("could not open $uri for writing")
+                    ?: error("no se pudo abrir $uri para escribir")
             }
             sink.use { source.copyTo(it, COPY_BUFFER) }
         }

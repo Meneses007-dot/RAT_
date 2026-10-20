@@ -255,7 +255,13 @@ private fun androidx.compose.foundation.lazy.LazyListScope.itemsIndexedShelves(
 ) {
     shelves.forEachIndexed { index, shelf ->
         item(key = shelf.title + index) {
-            val openItem: (ShelfItem) -> Unit = { item -> onItemClick(item, shelf.title) }
+            // The shelf's name travels with the tap: it is what the player
+            // captions its origin with and what the queue header repeats. It
+            // leaves here in the language the shelf is titled in, so a locally
+            // built shelf — Recents — does not follow the song out as the
+            // English word it was keyed under.
+            val sourceName = localizeShelfTitle(shelf.title)
+            val openItem: (ShelfItem) -> Unit = { item -> onItemClick(item, sourceName) }
             if (index == 0 && shelf.title.equals(RECENTS_TITLE, ignoreCase = true)) {
                 RecentShelf(
                     shelf = shelf,
@@ -358,6 +364,12 @@ private fun RecentSectionHeader(
     viewType: LibraryViewType,
     onViewTypeToggle: () -> Unit,
 ) {
+    // The Recents shelf is built here rather than fetched, and it is keyed
+    // under an English name the rest of the app compares against. Its heading
+    // is still asked of the same table as every other shelf's, so the one
+    // heading this header owns does not stay in English on a Spanish phone.
+    val displayTitle = localizeShelfTitle(title)
+    val displaySubtitle = localizeShelfSubtitle(subtitle)
     Row(
         modifier = Modifier
             .padding(horizontal = PAGE_GUTTER, vertical = 10.dp)
@@ -366,15 +378,15 @@ private fun RecentSectionHeader(
     ) {
         Column(Modifier.weight(1f)) {
             Text(
-                text = title,
+                text = displayTitle,
                 style = MaterialTheme.typography.headlineMedium,
                 color = MaterialTheme.colorScheme.onBackground,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
             )
-            if (subtitle.isNotBlank()) {
+            if (displaySubtitle.isNotBlank()) {
                 Text(
-                    text = subtitle,
+                    text = displaySubtitle,
                     style = MaterialTheme.typography.titleMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     maxLines = 1,

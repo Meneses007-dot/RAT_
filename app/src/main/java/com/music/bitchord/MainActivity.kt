@@ -5343,7 +5343,7 @@ private fun BitChordApp(
                             )
                         }
                         Text(
-                            "Sign in to Discord",
+                            "Entrar en Discord",
                             style = MaterialTheme.typography.titleMedium,
                             color = MaterialTheme.colorScheme.onBackground,
                         )

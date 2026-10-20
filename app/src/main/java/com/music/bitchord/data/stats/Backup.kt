@@ -91,12 +91,12 @@ object Backup {
         runCatching {
             val text = context.contentResolver.openInputStream(source)
                 ?.use { it.readBytes().decodeToString() }
-                ?: error("Couldn't open that file")
+                ?: error("No se pudo abrir ese archivo")
             val file = runCatching { json.decodeFromString(BackupFile.serializer(), text) }
-                .getOrElse { error("That doesn't look like a RAT backup") }
-            require(file.app == APP_TAG) { "That backup is from another app" }
+                .getOrElse { error("Eso no parece una copia de RAT") }
+            require(file.app == APP_TAG) { "Esa copia es de otra app" }
             require(file.version <= SCHEMA_VERSION) {
-                "That backup was written by a newer version of RAT"
+                "Esa copia la escribió una versión más nueva de RAT"
             }
 
             ListeningStats.importAll(file.listening)

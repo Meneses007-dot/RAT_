@@ -13,6 +13,7 @@ import com.music.bitchord.data.model.ArtistCredit
 import com.music.bitchord.data.model.CreditSegment
 import com.music.bitchord.data.model.creditSegments
 import com.music.bitchord.sharedui.resources.*
+import com.music.bitchord.ui.screens.localizeShelfTitle
 
 import org.jetbrains.compose.resources.DrawableResource
 import androidx.compose.animation.animateContentSize
@@ -139,15 +140,21 @@ private const val AUTOPLAY_TAP_WINDOW_MS = 700L
  * playing *out of*, in the words the caption uses.
  */
 @Composable
-internal fun playbackOriginText(song: Song, playedBy: String?): String =
-    playedBy?.let {
-        stringResource(Res.string.played_by, it)
-    } ?: song.radioName?.let {
-        stringResource(Res.string.playing_radio, it)
-    } ?: stringResource(
-        Res.string.playing_from,
-        song.playbackSource ?: song.albumName ?: stringResource(Res.string.queue),
-    )
+internal fun playbackOriginText(song: Song, playedBy: String?): String {
+    playedBy?.let { return stringResource(Res.string.played_by, it) }
+    song.radioName?.let { return stringResource(Res.string.playing_radio, it) }
+    val source = song.playbackSource
+    // A shelf's name is stored as the server (or the repository) spelled it,
+    // and the locally built Recents shelf is keyed under "Recents". Anything
+    // already in the queue keeps whatever it was stored with, so the caption
+    // asks the same table the home shelves ask before it prints one.
+    val origin = if (source != null) {
+        localizeShelfTitle(source)
+    } else {
+        song.albumName ?: stringResource(Res.string.queue)
+    }
+    return stringResource(Res.string.playing_from, origin)
+}
 
 /**
  * The small caption naming what the player is playing out of — see

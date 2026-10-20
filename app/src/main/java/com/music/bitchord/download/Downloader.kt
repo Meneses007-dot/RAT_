@@ -70,7 +70,7 @@ object Downloader {
         onProgress: (written: Long, total: Long) -> Unit,
     ): Long = withContext(Dispatchers.IO) {
         var url = stream.url
-        val total = contentLength(url) ?: error("Track unavailable: no length to fetch")
+        val total = contentLength(url) ?: error("Pista no disponible: no dice cuánto ocupa")
 
         var position = 0L
         var reresolved = false
@@ -96,7 +96,7 @@ object Downloader {
             if (response.code in REFUSAL_CODES) {
                 response.close()
                 StreamResolver.onPlaybackRefused(url, response.code)
-                if (reresolved) error("Download refused after ${position}B (HTTP ${response.code})")
+                if (reresolved) error("Descarga rechazada tras ${position}B (HTTP ${response.code})")
                 reresolved = true
                 Log.w(TAG, "re-resolving $videoId after HTTP ${response.code} at $position")
                 url = StreamResolver.resolveForDownload(videoId, maxKbps, requireM4a).url
@@ -105,13 +105,13 @@ object Downloader {
                 // one stream into the middle of another produces a file that is
                 // the right length and unplayable, so a length that has moved
                 // is a failure rather than something to work around.
-                if (contentLength(url) != total) error("The stream changed mid-download — try again")
+                if (contentLength(url) != total) error("La transmisión cambió a mitad. Inténtalo otra vez.")
                 continue
             }
 
             response.use {
-                if (it.code !in 200..299) error("Download failed (HTTP ${it.code})")
-                val body = it.body ?: error("Download failed: empty response")
+                if (it.code !in 200..299) error("La descarga falló (HTTP ${it.code})")
+                val body = it.body ?: error("La descarga falló: respuesta vacía")
                 val source = body.byteStream()
                 var readForChunk = 0L
                 while (readForChunk < length) {
@@ -127,7 +127,7 @@ object Downloader {
                 // A range that stops short is not fatal on its own — the next
                 // pass simply asks for what is left — but one that yields
                 // nothing at all would loop here forever.
-                if (readForChunk == 0L) error("Download stalled at ${position}B")
+                if (readForChunk == 0L) error("La descarga se quedó parada en ${position}B")
             }
         }
 
@@ -174,8 +174,8 @@ object Downloader {
             .build()
 
         Http.client.newCall(request).execute().use { response ->
-            if (response.code !in 200..299) error("Download failed (HTTP ${response.code})")
-            val body = response.body ?: error("Download failed: empty response")
+            if (response.code !in 200..299) error("La descarga falló (HTTP ${response.code})")
+            val body = response.body ?: error("La descarga falló: respuesta vacía")
             val total = response.header("Content-Length")?.toLongOrNull()?.takeIf { it > 0 }
             val source = body.byteStream()
             val buffer = ByteArray(BUFFER_BYTES)
@@ -196,9 +196,9 @@ object Downloader {
             // committing would publish a file that looks whole and stops
             // halfway through the song.
             if (total != null && written < total) {
-                error("Download stopped at ${written}B of $total — try again")
+                error("La descarga se cortó en ${written}B de $total. Inténtalo otra vez.")
             }
-            if (written == 0L) error("Download failed: nothing was sent")
+            if (written == 0L) error("La descarga falló: no llegó nada")
             Log.d(TAG, "fetched ${written}B directly")
             written
         }

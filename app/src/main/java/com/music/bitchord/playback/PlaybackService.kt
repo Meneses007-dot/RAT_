@@ -1891,7 +1891,7 @@ class PlaybackService : MediaLibraryService() {
             },
         )
             .setSessionCommand(shuffleCommand)
-            .setDisplayName(if (shuffleEnabled) "Shuffle off" else "Shuffle on")
+            .setDisplayName(if (shuffleEnabled) "Aleatorio desactivado" else "Aleatorio activado")
             .build()
         return listOfNotNull(favorite, shuffle)
     }
@@ -4150,7 +4150,7 @@ class PlaybackService : MediaLibraryService() {
         var depth = 0
         while (cause != null && depth++ < PERMANENT_CAUSE_DEPTH) {
             if (cause is StreamResolver.PermanentlyUnplayableException) {
-                return cause.message ?: "This track cannot be played"
+                return cause.message ?: "Esta pista no se puede reproducir"
             }
             cause = cause.cause?.takeIf { it !== cause }
         }

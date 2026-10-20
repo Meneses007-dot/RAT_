@@ -61,19 +61,19 @@ internal object ManifestFile {
                 headers.forEach { (name, value) -> header(name, value) }
             }.build()
             return Http.client.newCall(request).execute().use { response ->
-                if (!response.isSuccessful) error("Segment failed (HTTP ${response.code})")
-                response.body?.bytes() ?: error("Empty segment")
+                if (!response.isSuccessful) error("Falló un segmento (HTTP ${response.code})")
+                response.body?.bytes() ?: error("Segmento vacío")
             }
         }
 
-        val base = url.toHttpUrlOrNull() ?: error("Invalid manifest URL")
+        val base = url.toHttpUrlOrNull() ?: error("URL del manifiesto no válida")
         val index = String(fetch(url), Charsets.UTF_8)
         val (initRef, mediaRefs) = if (dash) {
             OfflineDash.parse(index).let { it.initialization to it.media }
         } else {
             hlsSegments(index)
         }
-        fun resolve(ref: String) = base.resolve(ref)?.toString() ?: error("Invalid segment URL")
+        fun resolve(ref: String) = base.resolve(ref)?.toString() ?: error("URL de segmento no válida")
         val total = mediaRefs.size + 1L
 
         val init = fetch(resolve(initRef))
@@ -101,22 +101,22 @@ internal object ManifestFile {
                     }
                 }
             }
-            else -> error("Can't save a .$extension from a manifest")
+            else -> error("No se puede guardar un .$extension desde un manifiesto")
         }
     }
 
     /** The init segment and media segments of an HLS media playlist, refusing what [OfflineHls] refuses. */
     internal fun hlsSegments(playlist: String): Pair<String, List<String>> {
-        if (!playlist.startsWith("#EXTM3U")) error("Invalid HLS playlist")
+        if (!playlist.startsWith("#EXTM3U")) error("Lista HLS no válida")
         if (playlist.contains("#EXT-X-KEY:") && !playlist.contains("METHOD=NONE")) {
-            error("Encrypted HLS cannot be saved")
+            error("Una lista HLS cifrada no se puede guardar")
         }
         val init = Regex("""#EXT-X-MAP:.*URI="([^"]+)"""").find(playlist)?.groupValues?.get(1)
-            ?: error("HLS playlist has no initialisation segment")
+            ?: error("La lista HLS no trae segmento de inicio")
         val media = playlist.lineSequence().map(String::trim)
             .filter { it.isNotEmpty() && !it.startsWith('#') }
             .toList()
-        if (media.isEmpty()) error("HLS playlist has no fragments")
+        if (media.isEmpty()) error("La lista HLS no trae fragmentos")
         return init to media
     }
 
@@ -127,19 +127,19 @@ internal object ManifestFile {
      * large to hold in memory while waiting for it.
      */
     private fun writeFlac(cacheDir: File, init: ByteArray, media: Sequence<ByteArray>, sink: OutputStream) {
-        val trak = find(init, "moov", "trak") ?: error("Not an MP4 initialisation segment")
-        val trackId = readU32(init, (child(init, trak, "tkhd") ?: error("No track header")).let {
+        val trak = find(init, "moov", "trak") ?: error("No es un segmento de inicio MP4")
+        val trackId = readU32(init, (child(init, trak, "tkhd") ?: error("Sin cabecera de pista")).let {
             it.content + if (init[it.content].toInt() == 1) 20 else 12
         })
-        val mdhd = find(init, "moov", "trak", "mdia", "mdhd") ?: error("No media header")
+        val mdhd = find(init, "moov", "trak", "mdia", "mdhd") ?: error("Sin cabecera de medios")
         val timescale = readU32(init, mdhd.content + if (init[mdhd.content].toInt() == 1) 20 else 12)
-        val stsd = find(init, "moov", "trak", "mdia", "minf", "stbl", "stsd") ?: error("No sample description")
+        val stsd = find(init, "moov", "trak", "mdia", "minf", "stbl", "stsd") ?: error("Sin descripción de muestras")
         // stsd: FullBox header and entry count, then the entries.
         val entry = boxes(init, stsd.content + 8, stsd.end).firstOrNull()
-        if (entry?.type != "fLaC") error("Stream is ${entry?.type ?: "unknown"}, not FLAC")
+        if (entry?.type != "fLaC") error("La pista es ${entry?.type ?: "desconocido"}, no FLAC")
         // AudioSampleEntry: 28 bytes of fields before its child boxes.
         val dfla = boxes(init, entry.content + 28, entry.end).firstOrNull { it.type == "dfLa" }
-            ?: error("FLAC stream has no dfLa")
+            ?: error("El flujo FLAC no trae dfLa")
         val blocks = metadataBlocks(init.copyOfRange(dfla.content + 4, dfla.end))
         val trex = find(init, "moov", "mvex", "trex")
         val trexDuration = trex?.let { readU32(init, it.content + 12) } ?: 0L
@@ -152,7 +152,7 @@ internal object ManifestFile {
                 media.forEach { segment ->
                     boxes(segment).filter { it.type == "moof" }.forEach { moof ->
                         val samples = Mp4Boxes.samples(segment, moof, trackId, trexDuration, trexSize)
-                            ?: error("Unreadable FLAC fragment")
+                            ?: error("Fragmento FLAC ilegible")
                         samples.forEach {
                             out.write(segment, it.offset, it.size)
                             ticks += it.duration
@@ -160,7 +160,7 @@ internal object ManifestFile {
                     }
                 }
             }
-            if (ticks <= 0) error("Manifest held no audio")
+            if (ticks <= 0) error("El manifiesto no tenía audio")
 
             val info = blocks.first().second
             val rate = ((info[10].toLong() and 0xFF) shl 12) or ((info[11].toLong() and 0xFF) shl 4) or
@@ -195,7 +195,7 @@ internal object ManifestFile {
             p += 4 + length
             if (last) break
         }
-        if (out.firstOrNull()?.let { it.first == 0 && it.second.size == 34 } != true) error("FLAC stream has no STREAMINFO")
+        if (out.firstOrNull()?.let { it.first == 0 && it.second.size == 34 } != true) error("El flujo FLAC no trae STREAMINFO")
         return out
     }
 }

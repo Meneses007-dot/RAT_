@@ -49,7 +49,7 @@ internal object OfflineHls {
             Regex("""#EXT-X-MAP:.*URI=\"([^\"]+)\"""").find(playlist)?.groupValues?.get(1)?.let {
                 references.add(0, it)
             }
-            if (references.isEmpty()) error("HLS playlist has no fragments")
+            if (references.isEmpty()) error("La lista HLS no trae fragmentos")
             val localNames = linkedMapOf<String, String>()
             references.distinct().forEachIndexed { index, remote ->
                 coroutineContext.ensureActive()

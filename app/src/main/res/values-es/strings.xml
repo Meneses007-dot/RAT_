@@ -221,7 +221,7 @@
     <string name="reduce_animation_subtitle">Detiene el degradado del reproductor principal</string>
     <string name="reduce_dynamic_blur">Reducir desenfoque dinámico</string>
     <string name="reduce_dynamic_blur_subtitle">Cambia el cristal esmerilado por fondos sólidos</string>
-    <string name="liquid_glass">Liquid Glass</string>
+    <string name="liquid_glass">Cristal líquido</string>
     <string name="liquid_glass_subtitle">Cristal refractante real en la barra de navegación flotante. Solo Android 12+; usa más GPU.</string>
     <string name="liquid_glass_unavailable">Requiere Android 12 o posterior</string>
     <string name="full_screen_cover_art">Portada a pantalla completa</string>
@@ -1141,49 +1141,49 @@
     <string name="cast_connect_failed">No se pudo conectar con el receptor</string>
     <string name="audio_pipeline_subtitle">Ruta de la señal en vivo, del decodificador a la salida</string>
 
-    <string name="pipeline_track_info">Track Info</string>
+    <string name="pipeline_track_info">Datos de la pista</string>
 
-    <string name="pipeline_decoder">Decoder</string>
+    <string name="pipeline_decoder">Decodificador</string>
 
-    <string name="pipeline_resampler">Resampler</string>
+    <string name="pipeline_resampler">Remuestreador</string>
 
     <string name="pipeline_dsp">DSP</string>
 
-    <string name="pipeline_output_device">Output Device</string>
+    <string name="pipeline_output_device">Salida</string>
 
-    <string name="pipeline_source">Source</string>
+    <string name="pipeline_source">Fuente</string>
 
-    <string name="pipeline_format">Format</string>
+    <string name="pipeline_format">Formato</string>
 
-    <string name="pipeline_bit_depth">Bit Depth</string>
+    <string name="pipeline_bit_depth">Profundidad</string>
 
-    <string name="pipeline_sample_rate">Sample Rate</string>
+    <string name="pipeline_sample_rate">Frecuencia</string>
 
-    <string name="pipeline_bitrate">Bitrate</string>
+    <string name="pipeline_bitrate">Tasa de bits</string>
 
-    <string name="pipeline_channels">Channels</string>
+    <string name="pipeline_channels">Canales</string>
 
-    <string name="pipeline_decoder_name">Decoder Name</string>
+    <string name="pipeline_decoder_name">Nombre del decodificador</string>
 
-    <string name="pipeline_io_rate">I/O Rate</string>
+    <string name="pipeline_io_rate">Tasa de E/S</string>
 
-    <string name="pipeline_type">Type</string>
+    <string name="pipeline_type">Tipo</string>
 
-    <string name="pipeline_cutoff">Cutoff</string>
+    <string name="pipeline_cutoff">Corte</string>
 
-    <string name="pipeline_quality">Quality</string>
+    <string name="pipeline_quality">Calidad</string>
 
-    <string name="pipeline_pcm_format">PCM Format</string>
+    <string name="pipeline_pcm_format">Formato PCM</string>
 
-    <string name="pipeline_eq_preset">EQ Preset</string>
+    <string name="pipeline_eq_preset">Preset de EQ</string>
 
-    <string name="pipeline_stereo_expand">Stereo Expand</string>
+    <string name="pipeline_stereo_expand">Ampliación estéreo</string>
 
-    <string name="pipeline_buffers">Buffers</string>
+    <string name="pipeline_buffers">Búferes</string>
 
-    <string name="pipeline_output_api">Output API</string>
+    <string name="pipeline_output_api">API de salida</string>
 
-    <string name="pipeline_device_name">Device Name</string>
+    <string name="pipeline_device_name">Dispositivo</string>
 
 
 
@@ -1276,6 +1276,20 @@
     <string name="search_addons_none">No hay addons activados. Añade uno en Ajustes → Fuentes.</string>
     <string name="app_icon">Icono de la app</string>
     <string name="app_icon_default">Predeterminado</string>
+    <string name="search_source_youtube">YouTube</string>
+    <string name="app_icon_liquid_glass">Cristal líquido</string>
+    <string name="app_icon_liquid_glass_dark">Cristal líquido oscuro</string>
+    <string name="app_icon_liquid_glass_clear">Cristal líquido claro</string>
+    <string name="app_icon_liquid_glass_clear_dark">Cristal líquido claro oscuro</string>
+    <string name="app_icon_samsung_glass">Cristal Samsung</string>
+    <string name="app_icon_samsung_glass_dark">Cristal Samsung oscuro</string>
+    <string name="app_icon_samsung_glass_clear">Cristal Samsung claro</string>
+    <string name="app_icon_samsung_glass_clear_dark">Cristal Samsung claro oscuro</string>
+    <string name="app_icon_pixel_glass">Cristal Pixel</string>
+    <string name="app_icon_pixel_glass_dark">Cristal Pixel oscuro</string>
+    <string name="app_icon_pixel_glass_clear">Cristal Pixel claro</string>
+    <string name="app_icon_pixel_glass_clear_dark">Cristal Pixel claro oscuro</string>
+    <string name="pipeline_pcm_data_rate">Tasa de datos PCM</string>
     <string name="show_queue_history">Mostrar historial de la cola</string>
     <string name="show_queue_history_subtitle">Muestra hasta 25 canciones reproducidas antes de «Reproduciendo ahora» en la cola</string>
     <string name="not_enough_this_week">Escucha unas cuantas canciones más esta semana para desbloquear tu Replay.</string>

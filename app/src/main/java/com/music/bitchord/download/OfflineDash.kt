@@ -79,7 +79,7 @@ internal object OfflineDash {
         // download records of every device that has one.
         val root = File(File(context.filesDir, "offline-hls"), id.hashCode().toUInt().toString(16))
         root.deleteRecursively()
-        if (!root.mkdirs()) error("Could not create offline package")
+        if (!root.mkdirs()) error("No se pudo crear el paquete sin conexión")
         try {
             fun request(target: String) = Request.Builder().url(target).apply {
                 headers.forEach { (name, value) -> header(name, value) }

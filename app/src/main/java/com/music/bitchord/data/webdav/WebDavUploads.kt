@@ -179,7 +179,7 @@ object WebDavUploads {
      */
     private suspend fun prepareUpload(context: Context, song: Song, ext: String): Sendable {
         val direct = { source: UploadSource -> Sendable(source) {} }
-        val original = openSource(context, song) ?: throw WebDavException("Could not read this file")
+        val original = openSource(context, song) ?: throw WebDavException("No se pudo leer este archivo")
         if (!com.music.bitchord.download.MediaTagger.carriesTags(ext)) return direct(original)
         if (hasEmbeddedPicture(context, song)) return direct(original)
         if (com.music.bitchord.download.Downloads.verifiedSavedUri(song.videoId) == null) return direct(original)
@@ -199,9 +199,9 @@ object WebDavUploads {
                 artwork = artwork,
             )
             tmp
-        }.getOrNull() ?: return direct(openSource(context, song) ?: throw WebDavException("Could not read this file"))
+        }.getOrNull() ?: return direct(openSource(context, song) ?: throw WebDavException("No se pudo leer este archivo"))
         val stream = runCatching { staged.inputStream() }.getOrNull()
-            ?: run { staged.delete(); return direct(openSource(context, song) ?: throw WebDavException("Could not read this file")) }
+            ?: run { staged.delete(); return direct(openSource(context, song) ?: throw WebDavException("No se pudo leer este archivo")) }
         return Sendable(
             UploadSource(stream, staged.length().takeIf { it > 0 } ?: -1),
         ) {
