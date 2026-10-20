@@ -477,7 +477,7 @@ internal fun LandscapeCredits(
             Spacer(Modifier.width(8.dp))
         }
         CircleGlyph(
-            icon = if (showRevertCue) Icons.AutoMirrored.Outlined.Undo else Icons.Outlined.MoreHoriz,
+            icon = if (showRevertCue) Icons.AutoMirrored.Outlined.Undo else BitChordIcons.MoreHoriz,
             contentDescription = stringResource(Res.string.more),
             onClick = onOpenMenu,
         )

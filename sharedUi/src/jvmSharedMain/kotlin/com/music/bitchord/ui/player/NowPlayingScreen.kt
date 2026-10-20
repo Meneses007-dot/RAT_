@@ -3329,7 +3329,7 @@ fun NowPlayingScreen(
                                     showRevertCue -> Icons.AutoMirrored.Outlined.Undo
                                     lyricsShareGlyphVisible && lyricPicker.picking -> Icons.Outlined.Close
                                     lyricsShareGlyphVisible -> Icons.Outlined.IosShare
-                                    else -> Icons.Outlined.MoreHoriz
+                                    else -> BitChordIcons.MoreHoriz
                                 },
                                 contentDescription = stringResource(
                                     when {

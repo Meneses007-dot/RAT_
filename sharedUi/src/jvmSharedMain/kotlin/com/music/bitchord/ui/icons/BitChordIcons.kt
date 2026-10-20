@@ -68,17 +68,11 @@ object BitChordIcons {
                 lineTo(4.9f, 7.5f)
                 lineTo(2.3f, 7.5f)
                 close()
-            }
-
-            path(fill = stroke) {
                 moveTo(2.3f, 10.7f)
                 lineTo(4.9f, 10.7f)
                 lineTo(4.9f, 13.3f)
                 lineTo(2.3f, 13.3f)
                 close()
-            }
-
-            path(fill = stroke) {
                 moveTo(2.3f, 16.5f)
                 lineTo(4.9f, 16.5f)
                 lineTo(4.9f, 19.1f)
@@ -121,9 +115,6 @@ object BitChordIcons {
                 lineTo(16.4f, 9.8f)
                 lineTo(6.6f, 9.8f)
                 close()
-            }
-
-            path(fill = stroke) {
                 moveTo(6.6f, 11.4f)
                 lineTo(13.4f, 11.4f)
                 lineTo(13.4f, 13.6f)
@@ -173,9 +164,6 @@ object BitChordIcons {
                 lineTo(9.8f, 19.4f)
                 lineTo(6.2f, 19.4f)
                 close()
-            }
-
-            path(fill = stroke) {
                 moveTo(13.4f, 4.6f)
                 lineTo(17f, 4.6f)
                 lineTo(16.2f, 19.4f)
@@ -201,9 +189,6 @@ object BitChordIcons {
                 lineTo(13.4f, 13.4f)
                 lineTo(19.6f, 19f)
                 close()
-            }
-
-            path(fill = stroke) {
                 moveTo(11.4f, 5f)
                 lineTo(5.2f, 10.6f)
                 lineTo(4.2f, 12f)
@@ -230,9 +215,6 @@ object BitChordIcons {
                 lineTo(10.6f, 13.4f)
                 lineTo(4.4f, 19f)
                 close()
-            }
-
-            path(fill = stroke) {
                 moveTo(12.6f, 5f)
                 lineTo(18.8f, 10.6f)
                 lineTo(19.8f, 12f)
@@ -305,16 +287,10 @@ object BitChordIcons {
                 lineTo(15.6f, 12f)
                 lineTo(12f, 12f)
                 close()
-            }
-
-            path(fill = stroke) {
                 moveTo(12f, 17.6f)
                 lineTo(8.4f, 12f)
                 lineTo(12f, 12f)
                 close()
-            }
-
-            path(fill = stroke) {
                 moveTo(11f, 11f)
                 lineTo(13f, 11f)
                 lineTo(13f, 13f)
@@ -340,18 +316,12 @@ object BitChordIcons {
                 lineTo(6.4f, 5.9f)
                 lineTo(6.4f, 4.4f)
                 close()
-            }
-
-            path(fill = stroke) {
                 moveTo(6.4f, 7.5f)
                 lineTo(20f, 7.5f)
                 lineTo(20f, 10.4f)
                 lineTo(4.6f, 10.4f)
                 lineTo(4.6f, 8.9f)
                 close()
-            }
-
-            path(fill = stroke) {
                 moveTo(9.2f, 12f)
                 lineTo(19.2f, 12f)
                 lineTo(19.2f, 20.6f)
@@ -464,16 +434,10 @@ object BitChordIcons {
                 lineTo(15.2f, 12f)
                 lineTo(12f, 12f)
                 close()
-            }
-
-            path(fill = stroke) {
                 moveTo(12f, 17.2f)
                 lineTo(8.8f, 12f)
                 lineTo(12f, 12f)
                 close()
-            }
-
-            path(fill = stroke) {
                 moveTo(11.05f, 11.05f)
                 lineTo(12.95f, 11.05f)
                 lineTo(12.95f, 12.95f)
@@ -496,27 +460,26 @@ object BitChordIcons {
                 stroke = stroke, strokeLineWidth = STROKE,
                 strokeLineCap = StrokeCap.Square, strokeLineJoin = StrokeJoin.Miter,
             ) {
-                moveTo(3.2f, 6.8f)
-                lineTo(6.4f, 6.8f)
-                lineTo(15.4f, 15.8f)
-                moveTo(3.2f, 16.6f)
-                lineTo(6.4f, 16.6f)
-                lineTo(10.6f, 12.4f)
-                moveTo(12.4f, 10.6f)
-                lineTo(15.4f, 7.6f)
+                moveTo(3.2f, 8.6f)
+                lineTo(8.6f, 8.6f)
+                lineTo(12f, 12f)
+                lineTo(15.4f, 15.4f)
+                lineTo(17.8f, 15.4f)
+                moveTo(3.2f, 15.4f)
+                lineTo(8.6f, 15.4f)
+                lineTo(12f, 12f)
+                lineTo(15.4f, 8.6f)
+                lineTo(17.8f, 8.6f)
             }
 
             path(fill = stroke) {
-                moveTo(13.7f, 17.5f)
-                lineTo(17.73f, 18.13f)
-                lineTo(17.1f, 14.1f)
+                moveTo(17.8f, 6.4f)
+                lineTo(20.8f, 8.6f)
+                lineTo(17.8f, 10.8f)
                 close()
-            }
-
-            path(fill = stroke) {
-                moveTo(17.1f, 9.3f)
-                lineTo(17.73f, 5.27f)
-                lineTo(13.7f, 5.9f)
+                moveTo(17.8f, 13.2f)
+                lineTo(20.8f, 15.4f)
+                lineTo(17.8f, 17.6f)
                 close()
             }
         }.build()
@@ -607,17 +570,11 @@ object BitChordIcons {
                 lineTo(11.4f, 17f)
                 lineTo(6.2f, 15.6f)
                 close()
-            }
-
-            path(fill = stroke) {
                 moveTo(11.6f, 5.2f)
                 lineTo(18.2f, 6.9f)
                 lineTo(18.2f, 8.6f)
                 lineTo(11.6f, 6.9f)
                 close()
-            }
-
-            path(fill = stroke) {
                 moveTo(11.6f, 7.9f)
                 lineTo(17.2f, 9.2f)
                 lineTo(17.2f, 10.9f)
@@ -693,41 +650,129 @@ object BitChordIcons {
     }
 
     /**
-     * The player's like control, in two weights.
-     *
-     * Filled rather than merely tinted when set: the player draws every glyph
-     * white on artwork, where a colour change alone is the one signal the
-     * backdrop can swallow. A shape change survives any album cover.
-     *
-     * The one curved icon in the family, deliberately: a heart with corners is a
-     * spade, and a spade is the wrong signal next to a play button.
+     * The like control, empty: a 7-by-6 sprite, and the void is the outline
+     *      * eroded one pixel. Blocks, not curves.
      */
-    val Heart: ImageVector by lazy { heart("bc_heart", filled = false) }
-
-    val HeartFilled: ImageVector by lazy { heart("bc_heart_filled", filled = true) }
-
-    private fun heart(name: String, filled: Boolean): ImageVector =
+    val Heart: ImageVector by lazy {
         ImageVector.Builder(
-            name = name,
+            name = "bc_heart",
             defaultWidth = 24.dp, defaultHeight = 24.dp,
             viewportWidth = 24f, viewportHeight = 24f,
         ).apply {
-            path(
-                stroke = stroke,
-                strokeLineWidth = STROKE,
-                strokeLineCap = StrokeCap.Square,
-                strokeLineJoin = StrokeJoin.Miter,
-                fill = if (filled) stroke else null,
-            ) {
-                // Two lobes meeting at the top notch, falling to a single point.
-                moveTo(12f, 20f)
-                curveTo(12f, 20f, 3.2f, 14.6f, 3.2f, 8.9f)
-                arcToRelative(4.5f, 4.5f, 0f, isMoreThanHalf = false, isPositiveArc = true, 8.8f, -1.5f)
-                arcToRelative(4.5f, 4.5f, 0f, isMoreThanHalf = false, isPositiveArc = true, 8.8f, 1.5f)
-                curveTo(20.8f, 14.6f, 12f, 20f, 12f, 20f)
+            path(fill = stroke, pathFillType = PathFillType.EvenOdd) {
+                moveTo(4.5f, 3f)
+                lineTo(10.5f, 3f)
+                lineTo(10.5f, 6f)
+                lineTo(4.5f, 6f)
+                close()
+                moveTo(13.5f, 3f)
+                lineTo(19.5f, 3f)
+                lineTo(19.5f, 6f)
+                lineTo(13.5f, 6f)
+                close()
+                moveTo(1.5f, 6f)
+                lineTo(22.5f, 6f)
+                lineTo(22.5f, 9f)
+                lineTo(1.5f, 9f)
+                close()
+                moveTo(1.5f, 9f)
+                lineTo(22.5f, 9f)
+                lineTo(22.5f, 12f)
+                lineTo(1.5f, 12f)
+                close()
+                moveTo(4.5f, 12f)
+                lineTo(19.5f, 12f)
+                lineTo(19.5f, 15f)
+                lineTo(4.5f, 15f)
+                close()
+                moveTo(7.5f, 15f)
+                lineTo(16.5f, 15f)
+                lineTo(16.5f, 18f)
+                lineTo(7.5f, 18f)
+                close()
+                moveTo(10.5f, 18f)
+                lineTo(13.5f, 18f)
+                lineTo(13.5f, 21f)
+                lineTo(10.5f, 21f)
+                close()
+                moveTo(4.5f, 6f)
+                lineTo(10.5f, 6f)
+                lineTo(10.5f, 9f)
+                lineTo(4.5f, 9f)
+                close()
+                moveTo(13.5f, 6f)
+                lineTo(19.5f, 6f)
+                lineTo(19.5f, 9f)
+                lineTo(13.5f, 9f)
+                close()
+                moveTo(4.5f, 9f)
+                lineTo(19.5f, 9f)
+                lineTo(19.5f, 12f)
+                lineTo(4.5f, 12f)
+                close()
+                moveTo(7.5f, 12f)
+                lineTo(16.5f, 12f)
+                lineTo(16.5f, 15f)
+                lineTo(7.5f, 15f)
+                close()
+                moveTo(10.5f, 15f)
+                lineTo(13.5f, 15f)
+                lineTo(13.5f, 18f)
+                lineTo(10.5f, 18f)
                 close()
             }
         }.build()
+    }
+
+    /**
+     * The same sprite, solid. Liking a track changes the shape, not just the
+     *      * tint: white on artwork loses a colour change, not a silhouette.
+     */
+    val HeartFilled: ImageVector by lazy {
+        ImageVector.Builder(
+            name = "bc_heart_filled",
+            defaultWidth = 24.dp, defaultHeight = 24.dp,
+            viewportWidth = 24f, viewportHeight = 24f,
+        ).apply {
+            path(fill = stroke) {
+                moveTo(4.5f, 3f)
+                lineTo(10.5f, 3f)
+                lineTo(10.5f, 6f)
+                lineTo(4.5f, 6f)
+                close()
+                moveTo(13.5f, 3f)
+                lineTo(19.5f, 3f)
+                lineTo(19.5f, 6f)
+                lineTo(13.5f, 6f)
+                close()
+                moveTo(1.5f, 6f)
+                lineTo(22.5f, 6f)
+                lineTo(22.5f, 9f)
+                lineTo(1.5f, 9f)
+                close()
+                moveTo(1.5f, 9f)
+                lineTo(22.5f, 9f)
+                lineTo(22.5f, 12f)
+                lineTo(1.5f, 12f)
+                close()
+                moveTo(4.5f, 12f)
+                lineTo(19.5f, 12f)
+                lineTo(19.5f, 15f)
+                lineTo(4.5f, 15f)
+                close()
+                moveTo(7.5f, 15f)
+                lineTo(16.5f, 15f)
+                lineTo(16.5f, 18f)
+                lineTo(7.5f, 18f)
+                close()
+                moveTo(10.5f, 18f)
+                lineTo(13.5f, 18f)
+                lineTo(13.5f, 21f)
+                lineTo(10.5f, 21f)
+                close()
+            }
+        }.build()
+    }
 
     /**
      * A cross whose crossbar is parted at the centre.
@@ -812,9 +857,6 @@ object BitChordIcons {
                 lineTo(9.2f, 16.7f)
                 lineTo(7.6f, 16.7f)
                 close()
-            }
-
-            path(fill = stroke) {
                 moveTo(14.8f, 15.1f)
                 lineTo(16.4f, 15.1f)
                 lineTo(16.4f, 16.7f)
@@ -931,9 +973,6 @@ object BitChordIcons {
                 lineTo(13.2f, 17.8f)
                 lineTo(10.8f, 17.8f)
                 close()
-            }
-
-            path(fill = stroke) {
                 moveTo(15.5f, 9.3f)
                 lineTo(17.3f, 9.3f)
                 lineTo(17.3f, 11.1f)
@@ -1030,27 +1069,18 @@ object BitChordIcons {
                 lineTo(8.2f, 8.6f)
                 lineTo(3.4f, 8.6f)
                 close()
-            }
-
-            path(fill = stroke) {
                 moveTo(15.4f, 3.4f)
                 lineTo(20.6f, 3.4f)
                 lineTo(20.6f, 8.6f)
                 lineTo(15.8f, 8.6f)
                 lineTo(15.4f, 8.2f)
                 close()
-            }
-
-            path(fill = stroke) {
                 moveTo(3.4f, 15.4f)
                 lineTo(8.2f, 15.4f)
                 lineTo(8.6f, 15.8f)
                 lineTo(8.6f, 20.6f)
                 lineTo(3.4f, 20.6f)
                 close()
-            }
-
-            path(fill = stroke) {
                 moveTo(15.8f, 15.4f)
                 lineTo(20.6f, 15.4f)
                 lineTo(20.6f, 20.6f)
@@ -1102,17 +1132,11 @@ object BitChordIcons {
                 lineTo(5.3f, 7.5f)
                 lineTo(2.7f, 7.5f)
                 close()
-            }
-
-            path(fill = stroke) {
                 moveTo(2.7f, 10.7f)
                 lineTo(5.3f, 10.7f)
                 lineTo(5.3f, 13.3f)
                 lineTo(2.7f, 13.3f)
                 close()
-            }
-
-            path(fill = stroke) {
                 moveTo(2.7f, 16.5f)
                 lineTo(5.3f, 16.5f)
                 lineTo(5.3f, 19.1f)
@@ -1137,21 +1161,44 @@ object BitChordIcons {
                 lineTo(13.4f, 6.8f)
                 lineTo(10.6f, 6.8f)
                 close()
-            }
-
-            path(fill = stroke) {
                 moveTo(10.6f, 10.6f)
                 lineTo(13.4f, 10.6f)
                 lineTo(13.4f, 13.4f)
                 lineTo(10.6f, 13.4f)
                 close()
-            }
-
-            path(fill = stroke) {
                 moveTo(10.6f, 17.2f)
                 lineTo(13.4f, 17.2f)
                 lineTo(13.4f, 20f)
                 lineTo(10.6f, 20f)
+                close()
+            }
+        }.build()
+    }
+
+    /**
+     * The same three blocks, laid down: the player's menu.
+     */
+    val MoreHoriz: ImageVector by lazy {
+        ImageVector.Builder(
+            name = "bc_more_horiz",
+            defaultWidth = 24.dp, defaultHeight = 24.dp,
+            viewportWidth = 24f, viewportHeight = 24f,
+        ).apply {
+            path(fill = stroke) {
+                moveTo(4f, 10.6f)
+                lineTo(6.8f, 10.6f)
+                lineTo(6.8f, 13.4f)
+                lineTo(4f, 13.4f)
+                close()
+                moveTo(10.6f, 10.6f)
+                lineTo(13.4f, 10.6f)
+                lineTo(13.4f, 13.4f)
+                lineTo(10.6f, 13.4f)
+                close()
+                moveTo(17.2f, 10.6f)
+                lineTo(20f, 10.6f)
+                lineTo(20f, 13.4f)
+                lineTo(17.2f, 13.4f)
                 close()
             }
         }.build()

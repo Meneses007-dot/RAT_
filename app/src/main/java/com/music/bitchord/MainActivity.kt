@@ -3869,7 +3869,7 @@ private fun BitChordApp(
                                         },
                                     ) {
                                         Icon(
-                                            Icons.Outlined.MoreHoriz,
+                                            BitChordIcons.MoreHoriz,
                                             contentDescription = stringResource(R.string.more),
                                             tint = MaterialTheme.colorScheme.onSurface,
                                         )
