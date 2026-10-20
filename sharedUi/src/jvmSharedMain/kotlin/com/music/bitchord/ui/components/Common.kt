@@ -36,6 +36,7 @@ import androidx.compose.material.icons.outlined.PlaylistAdd
 import androidx.compose.material.icons.outlined.PlaylistPlay
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import com.music.bitchord.ui.icons.BitChordIcons
 import androidx.compose.material3.SwipeToDismissBox
 import androidx.compose.material3.SwipeToDismissBoxValue
 import androidx.compose.material3.SwipeToDismissBoxState
@@ -657,7 +658,7 @@ fun RowMoreButton(
         contentAlignment = Alignment.Center,
     ) {
         Icon(
-            Icons.Outlined.MoreVert,
+            BitChordIcons.MoreVert,
             contentDescription = stringResource(Res.string.more),
             tint = tint,
             modifier = Modifier.size(iconSize),

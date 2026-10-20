@@ -148,11 +148,96 @@ object BitChordIcons {
                 fill = stroke, stroke = stroke, strokeLineWidth = 1.7f,
                 strokeLineCap = StrokeCap.Square, strokeLineJoin = StrokeJoin.Miter,
             ) {
-                moveTo(6.8f, 4.6f)
+                moveTo(7.2f, 4.9f)
                 lineTo(17.6f, 10.9f)
-                lineTo(18.8f, 12f)
+                lineTo(19f, 12f)
                 lineTo(17.6f, 13.1f)
-                lineTo(6.8f, 19.4f)
+                lineTo(7.2f, 19.1f)
+                close()
+            }
+        }.build()
+    }
+
+    /**
+     * Two bars, leaning: still a pause, but cut on the slant of the family.
+     */
+    val Pause: ImageVector by lazy {
+        ImageVector.Builder(
+            name = "bc_pause",
+            defaultWidth = 24.dp, defaultHeight = 24.dp,
+            viewportWidth = 24f, viewportHeight = 24f,
+        ).apply {
+            path(fill = stroke) {
+                moveTo(7f, 4.6f)
+                lineTo(10.6f, 4.6f)
+                lineTo(9.8f, 19.4f)
+                lineTo(6.2f, 19.4f)
+                close()
+            }
+
+            path(fill = stroke) {
+                moveTo(13.4f, 4.6f)
+                lineTo(17f, 4.6f)
+                lineTo(16.2f, 19.4f)
+                lineTo(12.6f, 19.4f)
+                close()
+            }
+        }.build()
+    }
+
+    /**
+     * Two wedges with cut points, parted by the stencil gap.
+     */
+    val Previous: ImageVector by lazy {
+        ImageVector.Builder(
+            name = "bc_previous",
+            defaultWidth = 24.dp, defaultHeight = 24.dp,
+            viewportWidth = 24f, viewportHeight = 24f,
+        ).apply {
+            path(fill = stroke) {
+                moveTo(19.6f, 5f)
+                lineTo(13.4f, 10.6f)
+                lineTo(12.4f, 12f)
+                lineTo(13.4f, 13.4f)
+                lineTo(19.6f, 19f)
+                close()
+            }
+
+            path(fill = stroke) {
+                moveTo(11.4f, 5f)
+                lineTo(5.2f, 10.6f)
+                lineTo(4.2f, 12f)
+                lineTo(5.2f, 13.4f)
+                lineTo(11.4f, 19f)
+                close()
+            }
+        }.build()
+    }
+
+    /**
+     * The same pair, mirrored: the family's fast-forward.
+     */
+    val Next: ImageVector by lazy {
+        ImageVector.Builder(
+            name = "bc_next",
+            defaultWidth = 24.dp, defaultHeight = 24.dp,
+            viewportWidth = 24f, viewportHeight = 24f,
+        ).apply {
+            path(fill = stroke) {
+                moveTo(4.4f, 5f)
+                lineTo(10.6f, 10.6f)
+                lineTo(11.6f, 12f)
+                lineTo(10.6f, 13.4f)
+                lineTo(4.4f, 19f)
+                close()
+            }
+
+            path(fill = stroke) {
+                moveTo(12.6f, 5f)
+                lineTo(18.8f, 10.6f)
+                lineTo(19.8f, 12f)
+                lineTo(18.8f, 13.4f)
+                lineTo(12.6f, 19f)
                 close()
             }
         }.build()
@@ -411,24 +496,28 @@ object BitChordIcons {
                 stroke = stroke, strokeLineWidth = STROKE,
                 strokeLineCap = StrokeCap.Square, strokeLineJoin = StrokeJoin.Miter,
             ) {
-                moveTo(3.4f, 7f)
-                lineTo(7.2f, 7f)
-                lineTo(10.8f, 10.6f)
-                moveTo(13f, 12.8f)
-                lineTo(16.4f, 16.2f)
-                lineTo(19.2f, 16.2f)
-                moveTo(3.4f, 16.2f)
-                lineTo(7.2f, 16.2f)
-                lineTo(10.8f, 12.8f)
-                moveTo(13f, 10.6f)
-                lineTo(16.4f, 7f)
-                lineTo(19.2f, 7f)
-                moveTo(16.6f, 4.4f)
-                lineTo(19.4f, 7f)
-                lineTo(16.6f, 9.6f)
-                moveTo(16.6f, 13.6f)
-                lineTo(19.4f, 16.2f)
-                lineTo(16.6f, 18.8f)
+                moveTo(3.2f, 6.8f)
+                lineTo(6.4f, 6.8f)
+                lineTo(15.4f, 15.8f)
+                moveTo(3.2f, 16.6f)
+                lineTo(6.4f, 16.6f)
+                lineTo(10.6f, 12.4f)
+                moveTo(12.4f, 10.6f)
+                lineTo(15.4f, 7.6f)
+            }
+
+            path(fill = stroke) {
+                moveTo(13.7f, 17.5f)
+                lineTo(17.73f, 18.13f)
+                lineTo(17.1f, 14.1f)
+                close()
+            }
+
+            path(fill = stroke) {
+                moveTo(17.1f, 9.3f)
+                lineTo(17.73f, 5.27f)
+                lineTo(13.7f, 5.9f)
+                close()
             }
         }.build()
     }
@@ -446,19 +535,23 @@ object BitChordIcons {
                 stroke = stroke, strokeLineWidth = STROKE,
                 strokeLineCap = StrokeCap.Square, strokeLineJoin = StrokeJoin.Miter,
             ) {
-                moveTo(7.6f, 6f)
-                lineTo(18.4f, 6f)
-                lineTo(20.8f, 8.4f)
-                lineTo(20.8f, 15.6f)
-                lineTo(18.4f, 18f)
-                lineTo(5.6f, 18f)
-                lineTo(3.2f, 15.6f)
-                lineTo(3.2f, 8.4f)
-                lineTo(5.6f, 6f)
-                lineTo(9f, 6f)
-                moveTo(13.4f, 3.4f)
-                lineTo(16f, 6f)
-                lineTo(13.4f, 8.6f)
+                moveTo(17.2f, 6.4f)
+                lineTo(18.8f, 6.4f)
+                lineTo(20.6f, 8.2f)
+                lineTo(20.6f, 15.8f)
+                lineTo(18.8f, 17.6f)
+                lineTo(5.6f, 17.6f)
+                lineTo(3.8f, 15.8f)
+                lineTo(3.8f, 8.2f)
+                lineTo(5.6f, 6.4f)
+                lineTo(12.2f, 6.4f)
+            }
+
+            path(fill = stroke) {
+                moveTo(11.8f, 4.1f)
+                lineTo(15.6f, 6.4f)
+                lineTo(11.8f, 8.7f)
+                close()
             }
         }.build()
     }
@@ -1024,6 +1117,41 @@ object BitChordIcons {
                 lineTo(5.3f, 16.5f)
                 lineTo(5.3f, 19.1f)
                 lineTo(2.7f, 19.1f)
+                close()
+            }
+        }.build()
+    }
+
+    /**
+     * Three blocks, not three dots.
+     */
+    val MoreVert: ImageVector by lazy {
+        ImageVector.Builder(
+            name = "bc_more_vert",
+            defaultWidth = 24.dp, defaultHeight = 24.dp,
+            viewportWidth = 24f, viewportHeight = 24f,
+        ).apply {
+            path(fill = stroke) {
+                moveTo(10.6f, 4f)
+                lineTo(13.4f, 4f)
+                lineTo(13.4f, 6.8f)
+                lineTo(10.6f, 6.8f)
+                close()
+            }
+
+            path(fill = stroke) {
+                moveTo(10.6f, 10.6f)
+                lineTo(13.4f, 10.6f)
+                lineTo(13.4f, 13.4f)
+                lineTo(10.6f, 13.4f)
+                close()
+            }
+
+            path(fill = stroke) {
+                moveTo(10.6f, 17.2f)
+                lineTo(13.4f, 17.2f)
+                lineTo(13.4f, 20f)
+                lineTo(10.6f, 20f)
                 close()
             }
         }.build()
