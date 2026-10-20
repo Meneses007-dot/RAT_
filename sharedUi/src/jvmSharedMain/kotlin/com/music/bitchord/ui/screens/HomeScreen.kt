@@ -10,6 +10,7 @@ import org.jetbrains.compose.resources.stringResource
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
+import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.clickable
 import com.music.bitchord.ui.components.longPressMenuClickable
 import androidx.compose.foundation.layout.Arrangement
@@ -42,6 +43,9 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableLongStateOf
+import androidx.compose.runtime.setValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.snapshotFlow
@@ -51,6 +55,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -142,6 +147,12 @@ fun HomeScreen(
     leadHero: Boolean = true,
     currentSong: Song? = null,
     isPlaying: Boolean = false,
+    /**
+     * Siete toques en el emblema del titulo. Inicio es lo unico que lo lleva y
+     * lo unico que sabe de esto: una nota de Defalt, nada que ver con la
+     * biblioteca ni con el reproductor. Ver [HomeTitle].
+     */
+    onLogoSecret: (() -> Unit)? = null,
 ) {
     val recentsViewType by AppUi.host.homeRecentsViewType.collectAsStateWithLifecycle()
 
@@ -166,7 +177,7 @@ fun HomeScreen(
             },
         ) {
             if (title != null) {
-                item { HomeTitle(title) }
+                item { HomeTitle(title, onSecret = onLogoSecret) }
             }
             if (!signedIn && onSignIn != null) {
                 item {
@@ -509,9 +520,21 @@ fun CompactTrackRow(
  * system font scale.
  */
 @Composable
-private fun HomeTitle(title: String, modifier: Modifier = Modifier) {
+private fun HomeTitle(
+    title: String,
+    modifier: Modifier = Modifier,
+    onSecret: (() -> Unit)? = null,
+) {
     val style = MaterialTheme.typography.displayLarge
     val logoHeight = with(LocalDensity.current) { (style.fontSize * LOGO_TO_FONT).toDp() }
+
+    // El emblema no es un boton y no lo parece: no tiene fondo, ni etiqueta, ni
+    // responde al pulsarlo una vez. Solo cuenta. Siete toques seguidos, sin
+    // dejar pasar mas de [SECRET_TAP_GAP_MS] entre uno y otro, abren la nota.
+    // El contador se reinicia solo, y tambien si se toca otra cosa.
+    var taps by remember { mutableIntStateOf(0) }
+    var lastTapAt by remember { mutableLongStateOf(0L) }
+
     Column(modifier = modifier.padding(horizontal = PAGE_GUTTER, vertical = 8.dp)) {
         Icon(
             painter = painterResource(Res.drawable.ic_logo),
@@ -520,7 +543,24 @@ private fun HomeTitle(title: String, modifier: Modifier = Modifier) {
             modifier = Modifier
                 .padding(bottom = 14.dp)
                 .height(logoHeight)
-                .aspectRatio(LOGO_ASPECT),
+                .aspectRatio(LOGO_ASPECT)
+                .then(
+                    if (onSecret == null) {
+                        Modifier
+                    } else {
+                        Modifier.pointerInput(onSecret) {
+                            detectTapGestures {
+                                val now = System.currentTimeMillis()
+                                taps = if (now - lastTapAt > SECRET_TAP_GAP_MS) 1 else taps + 1
+                                lastTapAt = now
+                                if (taps >= SECRET_TAPS) {
+                                    taps = 0
+                                    onSecret()
+                                }
+                            }
+                        }
+                    },
+                ),
         )
         Text(
             text = title,
@@ -532,6 +572,10 @@ private fun HomeTitle(title: String, modifier: Modifier = Modifier) {
 
 /** The wordmark's height against the heading's font size. */
 private const val LOGO_TO_FONT = 0.9f
+
+/** Cuantos toques, y con cuanto margen entre ellos, abren la nota de Defalt. */
+private const val SECRET_TAPS = 7
+private const val SECRET_TAP_GAP_MS = 1200L
 
 /** RAT // PLAYER's mark is the rat emblem: 86.57 wide by 100 tall. */
 private const val LOGO_ASPECT = 86.57f / 100f

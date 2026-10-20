@@ -124,14 +124,18 @@ import com.music.bitchord.AppIcon
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.LinkAnnotation
 import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.TextLinkStyles
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.text.withLink
+import com.music.bitchord.ui.theme.DefaltQuotes
+import com.music.bitchord.ui.theme.JetBrainsMono
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil3.SingletonImageLoader
 import coil3.compose.AsyncImage
@@ -1557,6 +1561,23 @@ fun SettingsScreen(
         // The version line is the page's colophon, not a setting: it belongs to
         // the whole list, so it goes when the list is narrowed to a few rows.
         if (searchQuery.isBlank()) {
+        // DEDSEC // DEFALT — la nota del dia, aqui abajo, donde se acaba la
+        // pagina: una de las diecisiete, en su ingles original, sin traducir y
+        // sin explicar de donde sale. Cambia con el dia del ano, no con la
+        // hora, asi que no baila mientras la app esta abierta.
+        Text(
+            text = "// " + DefaltQuotes.ofDay(),
+            style = TextStyle(
+                fontFamily = JetBrainsMono,
+                fontSize = 10.sp,
+                letterSpacing = 0.3.sp,
+            ),
+            color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.55f),
+            textAlign = TextAlign.Center,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 28.dp, end = 28.dp, top = 28.dp),
+        )
         Text(
             text = buildAnnotatedString {
                 append("RAT $version  ")

@@ -1341,4 +1341,6 @@
     <string name="wear_os_code_hint">Código de vinculación</string>
     <string name="wear_os_done">Hecho</string>
     <string name="signed_by">Firmado por %1$s</string>
+    <string name="defalt_intercept_label">Transmisión interceptada</string>
+    <string name="defalt_intercept_dismiss">Toca para cerrar</string>
 </resources>

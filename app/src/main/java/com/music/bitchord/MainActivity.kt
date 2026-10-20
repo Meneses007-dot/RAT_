@@ -111,7 +111,9 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.platform.LocalClipboardManager
+import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalView
@@ -269,6 +271,7 @@ import com.music.bitchord.ui.components.AppLanguageDialog
 import com.music.bitchord.ui.components.TranslationLanguageDialog
 import com.music.bitchord.ui.components.LyricsSourcesDialog
 import com.music.bitchord.ui.components.ServerEditorHost
+import com.music.bitchord.ui.components.DefaltIntercept
 import com.music.bitchord.ui.components.UpdateAvailableDialog
 import com.music.bitchord.ui.components.WebDavConflictAlert
 import com.music.bitchord.ui.components.FieldConfig
@@ -323,6 +326,7 @@ import com.music.bitchord.ui.replay.ReplayStories
 import com.music.bitchord.ui.replay.ReplayStoryPage
 import com.music.bitchord.ui.replay.rememberReplayState
 import com.music.bitchord.ui.theme.BitChordTheme
+import com.music.bitchord.ui.theme.DefaltQuotes
 import com.music.bitchord.ui.theme.drawDefaltBackdrop
 import com.music.bitchord.ui.theme.rememberArtworkPalette
 import com.music.bitchord.data.canvas.AppleArtistArtRepository
@@ -726,6 +730,12 @@ private fun BitChordApp(
     // doesn't bring it back — only a fresh launch does.
     var updateDialogShown by rememberSaveable { mutableStateOf(false) }
     var showUpdateDialog by remember { mutableStateOf(false) }
+
+    // DEDSEC // DEFALT — la nota que suelta el emblema tras siete toques. Null
+    // mientras no haya nada que enseñar. No se guarda entre recreaciones: si la
+    // pantalla se gira con la nota puesta, se va, como una ventana emergente.
+    var defaltQuote by remember { mutableStateOf<String?>(null) }
+    val haptics = LocalHapticFeedback.current
     val updateAvailable by viewModel.updateAvailable.collectAsStateWithLifecycle()
 
     /**
@@ -3127,6 +3137,10 @@ private fun BitChordApp(
                             onLoadMore = viewModel::loadMoreHome,
                             loadingMore = homeLoadingMore,
                             recentlyPlayedLoading = homeRecentlyPlayedLoading,
+                            onLogoSecret = {
+                                haptics.performHapticFeedback(HapticFeedbackType.LongPress)
+                                defaltQuote = DefaltQuotes.random()
+                            },
                         )
                         TAB_EXPLORE -> selectedMoodGenre?.let { category ->
                             MoodGenrePlaylistsScreen(
@@ -5008,6 +5022,16 @@ private fun BitChordApp(
                     )
                 }
             }
+        }
+
+        // ---- DEDSEC // DEFALT: la nota del emblema. Se cierra al tocarla. ----
+        defaltQuote?.let { quote ->
+            BackHandler { defaltQuote = null }
+            LaunchedEffect(quote) {
+                kotlinx.coroutines.delay(9_000)
+                defaltQuote = null
+            }
+            DefaltIntercept(quote = quote, onDismiss = { defaltQuote = null })
         }
 
         // ---- Update available (once per launch; held until the welcome is done) ----
