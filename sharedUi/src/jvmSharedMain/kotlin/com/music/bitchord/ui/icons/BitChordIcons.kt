@@ -5,26 +5,30 @@ import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.StrokeJoin
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.graphics.vector.PathBuilder
-import androidx.compose.ui.graphics.vector.addPathNodes
+import androidx.compose.ui.graphics.PathFillType
 import androidx.compose.ui.graphics.vector.path
 import androidx.compose.ui.unit.dp
 
 /**
- * DEDSEC // DEFALT — the icon family: cut corners, square ends, and flat edges
- * where a circle used to be.
+ * DEDSEC // DEFALT — the icon family, cut rather than drawn.
  *
- * Drawn as strokes at 2.2 with [StrokeCap.Square] and [StrokeJoin.Miter]. A
- * round cap on a 2.2px line is a smudge at 24dp, and this set has to read as
- * *drawn* — cut, not poured. The same reasoning runs through the geometry: every
- * circle in the family (the magnifier's lens, the compass dial, the clock face,
- * the pin's head) is an [octagon], every rounded corner a [chamferedRect], and
- * every bullet a [block]. At this size the alternative is a fillet nobody can
- * see, which is a shape nobody can name.
+ * Three rules run through every glyph, and they are the whole of the style:
  *
- * Tint is applied by [androidx.compose.material3.Icon].
+ *  - **Stencil.** A closed contour is opened at one corner, one unit wide. The
+ *    shape is not a badge any more; it is a mask with a register mark cut out of
+ *    it, the way a paint stencil is keyed to its own outline.
+ *  - **Facet.** A circle becomes an octagon or a notched ring, a curve becomes
+ *    two 45° edges. Nothing in the family is round except [Heart], which is round
+ *    because a heart that is not round is a shield.
+ *  - **Pixel.** Where the old set had a dot it has a block; where it had a run of
+ *    parallel lines one of them steps down a pixel on its way out.
  *
- * [Home] is the exception and says why it is one.
+ * The pen is 2.2 with [StrokeCap.Square] and [StrokeJoin.Miter], so ends are cut
+ * square and corners come to a point. At 24dp a round cap is a smudge and a
+ * fillet is invisible; the family is meant to look *sawn*.
+ *
+ * Tint is applied by [androidx.compose.material3.Icon]. Every name here is
+ * public API of the player and stays where it was.
  */
 object BitChordIcons {
 
@@ -32,105 +36,108 @@ object BitChordIcons {
     private val stroke = SolidColor(Color.Black)
 
     /**
-     * A rectangle with its corners cut off flat, the way a stencil makes one.
+     * The play queue: three cut rows, three solid blocks in the gutter.
      */
-    private fun PathBuilder.chamferedRect(x: Float, y: Float, w: Float, h: Float, cut: Float) {
-        moveTo(x + cut, y)
-        lineTo(x + w - cut, y)
-        lineTo(x + w, y + cut)
-        lineTo(x + w, y + h - cut)
-        lineTo(x + w - cut, y + h)
-        lineTo(x + cut, y + h)
-        lineTo(x, y + h - cut)
-        lineTo(x, y + cut)
-        close()
-    }
-
-    /**
-     * A regular octagon, flat edge against flat edge: top, bottom and both sides
-     * are straight, so it still reads as a circle at 24dp while answering to the
-     * rest of the family.
-     */
-    private fun PathBuilder.octagon(cx: Float, cy: Float, r: Float) {
-        val a = r * 0.92388f // cos 22.5°
-        val b = r * 0.38268f // sin 22.5°
-        moveTo(cx + a, cy - b)
-        lineTo(cx + a, cy + b)
-        lineTo(cx + b, cy + a)
-        lineTo(cx - b, cy + a)
-        lineTo(cx - a, cy + b)
-        lineTo(cx - a, cy - b)
-        lineTo(cx - b, cy - a)
-        lineTo(cx + b, cy - a)
-        close()
-    }
-
-    /** A small solid block: the family's bullet, where a dot would be round. */
-    private fun PathBuilder.block(cx: Float, cy: Float, size: Float = 1.9f) {
-        val h = size / 2f
-        moveTo(cx - h, cy - h)
-        lineTo(cx + h, cy - h)
-        lineTo(cx + h, cy + h)
-        lineTo(cx - h, cy + h)
-        close()
-    }
-
-    /** Compact list and quotation-bubble shapes used by the player controls. */
     val Queue: ImageVector by lazy {
         ImageVector.Builder(
-            name = "bc_queue", defaultWidth = 24.dp, defaultHeight = 24.dp,
-            viewportWidth = 24f, viewportHeight = 24f,
-        ).apply {
-            path(stroke = stroke, strokeLineWidth = 2f, strokeLineCap = StrokeCap.Square) {
-                for (y in listOf(6f, 12f, 18f)) {
-                    moveTo(8f, y)
-                    lineTo(21f, y)
-                }
-            }
-            path(fill = stroke) {
-                for (y in listOf(6f, 12f, 18f)) block(3.3f, y, 2.5f)
-            }
-        }.build()
-    }
-
-    val LyricsQuote: ImageVector by lazy {
-        ImageVector.Builder(
-            name = "bc_lyrics_quote", defaultWidth = 24.dp, defaultHeight = 24.dp,
+            name = "bc_queue",
+            defaultWidth = 24.dp, defaultHeight = 24.dp,
             viewportWidth = 24f, viewportHeight = 24f,
         ).apply {
             path(
-                stroke = stroke, strokeLineWidth = 2f,
+                stroke = stroke, strokeLineWidth = STROKE,
                 strokeLineCap = StrokeCap.Square, strokeLineJoin = StrokeJoin.Miter,
             ) {
-                moveTo(5.4f, 3.5f)
-                lineTo(18.6f, 3.5f)
-                lineTo(21f, 5.9f)
-                lineTo(21f, 15.1f)
-                lineTo(18.6f, 17.5f)
-                lineTo(10f, 17.5f)
-                lineTo(6f, 21f)
-                lineTo(6f, 17.5f)
-                lineTo(5.4f, 17.5f)
-                lineTo(3f, 15.1f)
-                lineTo(3f, 5.9f)
+                moveTo(8.8f, 6.2f)
+                lineTo(13.2f, 6.2f)
+                moveTo(8.8f, 12f)
+                lineTo(13.2f, 12f)
+                moveTo(8.8f, 17.8f)
+                lineTo(13.2f, 17.8f)
+                moveTo(14.4f, 6.2f)
+                lineTo(20.2f, 6.2f)
+                moveTo(14.4f, 12f)
+                lineTo(20.2f, 12f)
+                moveTo(14.4f, 17.8f)
+                lineTo(20.2f, 17.8f)
+            }
+
+            path(fill = stroke) {
+                moveTo(2.3f, 4.9f)
+                lineTo(4.9f, 4.9f)
+                lineTo(4.9f, 7.5f)
+                lineTo(2.3f, 7.5f)
                 close()
             }
+
             path(fill = stroke) {
-                // Quotation marks with square shoulders — a pair of sixes, cut.
-                for (x in listOf(7.6f, 12.8f)) {
-                    moveTo(x, 8f)
-                    lineTo(x + 3f, 8f)
-                    lineTo(x + 3f, 11.1f)
-                    lineTo(x + 1.05f, 13.7f)
-                    lineTo(x + 0.05f, 13.7f)
-                    lineTo(x + 1.05f, 11.1f)
-                    lineTo(x, 11.1f)
-                    close()
-                }
+                moveTo(2.3f, 10.7f)
+                lineTo(4.9f, 10.7f)
+                lineTo(4.9f, 13.3f)
+                lineTo(2.3f, 13.3f)
+                close()
+            }
+
+            path(fill = stroke) {
+                moveTo(2.3f, 16.5f)
+                lineTo(4.9f, 16.5f)
+                lineTo(4.9f, 19.1f)
+                lineTo(2.3f, 19.1f)
+                close()
             }
         }.build()
     }
 
+    /**
+     * A bubble in facets, opened at the fold, holding two stepped lines.
+     */
+    val LyricsQuote: ImageVector by lazy {
+        ImageVector.Builder(
+            name = "bc_lyrics_quote",
+            defaultWidth = 24.dp, defaultHeight = 24.dp,
+            viewportWidth = 24f, viewportHeight = 24f,
+        ).apply {
+            path(
+                stroke = stroke, strokeLineWidth = STROKE,
+                strokeLineCap = StrokeCap.Square, strokeLineJoin = StrokeJoin.Miter,
+            ) {
+                moveTo(6.85f, 3.8f)
+                lineTo(18.4f, 3.8f)
+                lineTo(20.8f, 6.2f)
+                lineTo(20.8f, 14.6f)
+                lineTo(18.4f, 17f)
+                lineTo(10.6f, 17f)
+                lineTo(6.4f, 20.8f)
+                lineTo(6.4f, 17f)
+                lineTo(5f, 17f)
+                lineTo(2.6f, 14.6f)
+                lineTo(2.6f, 6.2f)
+                lineTo(5.66f, 4.16f)
+            }
+
+            path(fill = stroke) {
+                moveTo(6.6f, 7.6f)
+                lineTo(16.4f, 7.6f)
+                lineTo(16.4f, 9.8f)
+                lineTo(6.6f, 9.8f)
+                close()
+            }
+
+            path(fill = stroke) {
+                moveTo(6.6f, 11.4f)
+                lineTo(13.4f, 11.4f)
+                lineTo(13.4f, 13.6f)
+                lineTo(8.8f, 13.6f)
+                lineTo(8.8f, 12.6f)
+                lineTo(6.6f, 12.6f)
+                close()
+            }
+        }.build()
+    }
+
+    /**
+     * The triangle, with its point cut back and a mitred pen to keep the corners.
+     */
     val Play: ImageVector by lazy {
         ImageVector.Builder(
             name = "bc_play",
@@ -138,35 +145,22 @@ object BitChordIcons {
             viewportWidth = 24f, viewportHeight = 24f,
         ).apply {
             path(
-                stroke = stroke,
-                strokeLineWidth = STROKE,
-                strokeLineCap = StrokeCap.Square,
-                strokeLineJoin = StrokeJoin.Miter,
-                fill = stroke,
+                fill = stroke, stroke = stroke, strokeLineWidth = 1.7f,
+                strokeLineCap = StrokeCap.Square, strokeLineJoin = StrokeJoin.Miter,
             ) {
-                moveTo(6.8f, 4.8f)
-                lineTo(19.2f, 12f)
-                lineTo(6.8f, 19.2f)
+                moveTo(6.8f, 4.6f)
+                lineTo(17.6f, 10.9f)
+                lineTo(18.8f, 12f)
+                lineTo(17.6f, 13.1f)
+                lineTo(6.8f, 19.4f)
                 close()
             }
         }.build()
     }
 
     /**
-     * The one solid icon in the set, and the tab bar is why.
-     *
-     * Selection here is carried by tint alone — see `GlassNavBar`, where the
-     * unselected tabs are the same glyph at 65% — so the home tab is the anchor
-     * of the bar rather than a state of it, and a filled silhouette reads as
-     * that anchor at 24dp where a four-stroke outline reads as detail.
-     *
-     * Filled *and* stroked, with the same path. The outline of a house is all
-     * corners — an apex, two shoulders, two door jambs — and stroking the fill
-     * with a mitred pen is what puts a point back on every one of them at once,
-     * for a geometry that stays nine straight lines. The numbers below are
-     * therefore inset by half the stroke: the pen puts back what they give up,
-     * and the door notch is drawn oversized for the same reason, since the pen
-     * closes in on it from both jambs.
+     * The tab bar's anchor: a faceted roof with one step, a window punched through,
+     *      * and a door cut up out of the floor.
      */
     val Home: ImageVector by lazy {
         ImageVector.Builder(
@@ -174,93 +168,163 @@ object BitChordIcons {
             defaultWidth = 24.dp, defaultHeight = 24.dp,
             viewportWidth = 24f, viewportHeight = 24f,
         ).apply {
-            path(
-                fill = stroke,
-                stroke = stroke,
-                strokeLineWidth = 1.7f,
-                strokeLineCap = StrokeCap.Square,
-                strokeLineJoin = StrokeJoin.Miter,
-            ) {
-                // Roof, flush with the walls rather than overhanging them: an
-                // eave narrower than the pen it is drawn with comes out as a
-                // blob on the corner instead of a ledge.
-                moveTo(12f, 4.05f)
-                lineTo(19.75f, 11.35f)
-                // Right wall, down to the floor
-                lineTo(19.75f, 19.65f)
-                // Door, cut up out of the bottom edge
-                lineTo(14.95f, 19.65f)
-                lineTo(14.95f, 15.6f)
-                lineTo(9.05f, 15.6f)
-                lineTo(9.05f, 19.65f)
-                // Left wall, back up to the apex
-                lineTo(4.25f, 19.65f)
-                lineTo(4.25f, 11.35f)
+            path(fill = stroke, pathFillType = PathFillType.EvenOdd) {
+                moveTo(10.4f, 3.4f)
+                lineTo(13.2f, 3.4f)
+                lineTo(16f, 6.2f)
+                lineTo(17.8f, 6.2f)
+                lineTo(20.4f, 8.8f)
+                lineTo(20.4f, 20.2f)
+                lineTo(15.2f, 20.2f)
+                lineTo(15.2f, 15.4f)
+                lineTo(8.8f, 15.4f)
+                lineTo(8.8f, 20.2f)
+                lineTo(3.6f, 20.2f)
+                lineTo(3.6f, 8.8f)
+                close()
+                moveTo(14.4f, 12.3f)
+                lineTo(17.3f, 12.3f)
+                lineTo(17.3f, 14.7f)
+                lineTo(14.4f, 14.7f)
                 close()
             }
         }.build()
     }
 
     /**
-     * The phone tab bar's Explore, Library and Search glyphs: solid-weight
-     * iOS shapes rather than this file's stroked family, taken from the
-     * outlines of Flutter's cupertino_icons font (MIT) — square_grid_2x2,
-     * square_stack_fill and search.
-     *
-     * Each is the glyph laid out the way the font sets it: the 512-unit em
-     * box is the viewport, the baseline sits at the font's ascent share of
-     * it, and the advance is centred. So they keep the font's own optical
-     * size and weight against one another at any icon size.
-     *
-     * DEDSEC // DEFALT: the font rounds every one of its corners with a `Q`
-     * curve whose control point *is* the corner. Rewriting each `Q` as an `L`
-     * through that same control point keeps every coordinate the font chose and
-     * makes the corner square — which is the whole of what this family wanted
-     * from these three. Named after the font's glyphs, not the app's.
+     * A compass ring, notched at the top, over a two-tone needle.
      */
     val TabExplore: ImageVector by lazy {
-        fontGlyph(
-            "bc_tab_explore",
-            "M99.5 230.24L58.5 230.24 58.5 188.24V93.24L58.5 51.24 99.5 51.24H197.5L238.5 51.24 238.5 93.24V188.24L238.5 230.24 197.5 230.24Z" +
-                "M314.5 230.24L273.5 230.24 273.5 188.24V93.24L273.5 51.24 314.5 51.24H412.5L453.5 51.24 453.5 93.24V188.24L453.5 230.24 412.5 230.24Z" +
-                "M99.5 200.24H196.5L207.5 200.24 207.5 188.24V93.24L207.5 81.24 196.5 81.24H99.5L88.5 81.24 88.5 93.24V188.24L88.5 200.24 99.5 200.24Z" +
-                "M314.5 200.24H411.5L422.5 200.24 422.5 188.24V93.24L422.5 81.24 411.5 81.24H314.5L303.5 81.24 303.5 93.24V188.24L303.5 200.24 314.5 200.24Z" +
-                "M99.5 445.24L58.5 445.24 58.5 403.24V307.24L58.5 266.24 99.5 266.24H197.5L238.5 266.24 238.5 307.24V403.24L238.5 445.24 197.5 445.24Z" +
-                "M314.5 445.24L273.5 445.24 273.5 403.24V307.24L273.5 266.24 314.5 266.24H412.5L453.5 266.24 453.5 307.24V403.24L453.5 445.24 412.5 445.24Z" +
-                "M99.5 415.24H196.5L207.5 415.24 207.5 403.24V308.24L207.5 296.24 196.5 296.24H99.5L88.5 296.24 88.5 308.24V403.24L88.5 415.24 99.5 415.24Z" +
-                "M314.5 415.24H411.5L422.5 415.24 422.5 403.24V308.24L422.5 296.24 411.5 296.24H314.5L303.5 296.24 303.5 308.24V403.24L303.5 415.24 314.5 415.24Z",
-        )
+        ImageVector.Builder(
+            name = "bc_tab_explore",
+            defaultWidth = 24.dp, defaultHeight = 24.dp,
+            viewportWidth = 24f, viewportHeight = 24f,
+        ).apply {
+            path(
+                stroke = stroke, strokeLineWidth = 2.6f,
+                strokeLineCap = StrokeCap.Square, strokeLineJoin = StrokeJoin.Miter,
+            ) {
+                moveTo(16.18f, 4.81f)
+                lineTo(20.04f, 8.67f)
+                lineTo(20.04f, 15.33f)
+                lineTo(15.33f, 20.04f)
+                lineTo(8.67f, 20.04f)
+                lineTo(3.96f, 15.33f)
+                lineTo(3.96f, 8.67f)
+                lineTo(8.67f, 3.96f)
+                lineTo(14.13f, 3.96f)
+            }
+
+            path(fill = stroke) {
+                moveTo(12f, 6.4f)
+                lineTo(15.6f, 12f)
+                lineTo(12f, 12f)
+                close()
+            }
+
+            path(fill = stroke) {
+                moveTo(12f, 17.6f)
+                lineTo(8.4f, 12f)
+                lineTo(12f, 12f)
+                close()
+            }
+
+            path(fill = stroke) {
+                moveTo(11f, 11f)
+                lineTo(13f, 11f)
+                lineTo(13f, 13f)
+                lineTo(11f, 13f)
+                close()
+            }
+        }.build()
     }
 
     /**
-     * Two units lower than the font sets it: the back card's top edge rises
-     * just past the em box, and the viewport would clip it flat.
+     * Three slabs, stepped: a shelf seen from the spine.
      */
     val TabLibrary: ImageVector by lazy {
-        fontGlyph(
-            "bc_tab_library",
-            "M154 27.24L156 0.24 185 0.24H322L352 0.24 353 27.24Z" +
-                "M116 87.24L121 56.24 150 56.24H356L385 56.24 390 87.24Z" +
-                "M133 500.24L66 500.24 66 434.24V187.24L66 121.24 133 121.24H378L446 121.24 446 187.24V434.24L446 500.24 385 500.24Z",
-        )
-    }
-
-    val TabSearch: ImageVector by lazy {
-        fontGlyph(
-            "bc_tab_search",
-            "M219 374.24L151 374.24 102.5 325.74L54 277.24 54 209.24L54 141.24 102.5 92.74L151 44.24 219 44.24L287 44.24 335.5 92.74L384 141.24 384 209.24L384 264.24 350 309.24L451 410.24L458 417.24 458 427.24L458 438.24 451 445.24L444 452.24 434 452.24L423 452.24 416 445.24L315 343.24L271 374.24 219 374.24Z" +
-                "M128 300.24L166 338.24 219 338.24L272 338.24 310 300.24L348 262.24 348 209.24L348 156.24 310 118.24L272 80.24 219 80.24L166 80.24 128 118.24L90 156.24 90 209.24L90 262.24 128 300.24Z",
-        )
-    }
-
-    /** A filled glyph outline in the 512-unit em box — see [TabExplore]. */
-    private fun fontGlyph(name: String, pathData: String): ImageVector =
         ImageVector.Builder(
-            name = name,
+            name = "bc_tab_library",
             defaultWidth = 24.dp, defaultHeight = 24.dp,
-            viewportWidth = 512f, viewportHeight = 512f,
-        ).addPath(pathData = addPathNodes(pathData), fill = stroke).build()
+            viewportWidth = 24f, viewportHeight = 24f,
+        ).apply {
+            path(fill = stroke) {
+                moveTo(8.4f, 3f)
+                lineTo(20f, 3f)
+                lineTo(20f, 5.9f)
+                lineTo(6.4f, 5.9f)
+                lineTo(6.4f, 4.4f)
+                close()
+            }
 
+            path(fill = stroke) {
+                moveTo(6.4f, 7.5f)
+                lineTo(20f, 7.5f)
+                lineTo(20f, 10.4f)
+                lineTo(4.6f, 10.4f)
+                lineTo(4.6f, 8.9f)
+                close()
+            }
+
+            path(fill = stroke) {
+                moveTo(9.2f, 12f)
+                lineTo(19.2f, 12f)
+                lineTo(19.2f, 20.6f)
+                lineTo(5f, 20.6f)
+                lineTo(5f, 13.4f)
+                close()
+            }
+        }.build()
+    }
+
+    /**
+     * A lens with a corner bitten out of the ring, and a square-cut handle.
+     */
+    val TabSearch: ImageVector by lazy {
+        ImageVector.Builder(
+            name = "bc_tab_search",
+            defaultWidth = 24.dp, defaultHeight = 24.dp,
+            viewportWidth = 24f, viewportHeight = 24f,
+        ).apply {
+            path(fill = stroke) {
+                moveTo(13.52f, 16.08f)
+                lineTo(19.52f, 22.08f)
+                lineTo(21.28f, 20.32f)
+                lineTo(15.28f, 14.32f)
+                close()
+            }
+
+            path(fill = stroke, pathFillType = PathFillType.EvenOdd) {
+                moveTo(16.25f, 6.84f)
+                lineTo(16.25f, 12.36f)
+                lineTo(12.36f, 16.25f)
+                lineTo(6.84f, 16.25f)
+                lineTo(2.95f, 12.36f)
+                lineTo(2.95f, 6.84f)
+                lineTo(6.84f, 2.95f)
+                lineTo(12.36f, 2.95f)
+                close()
+                moveTo(13.94f, 7.8f)
+                lineTo(13.94f, 11.4f)
+                lineTo(11.4f, 13.94f)
+                lineTo(7.8f, 13.94f)
+                lineTo(5.26f, 11.4f)
+                lineTo(5.26f, 7.8f)
+                lineTo(7.8f, 5.26f)
+                lineTo(11.4f, 5.26f)
+                close()
+                moveTo(14f, 1.9f)
+                lineTo(17.2f, 1.9f)
+                lineTo(17.2f, 5.1f)
+                lineTo(14f, 5.1f)
+                close()
+            }
+        }.build()
+    }
+
+    /**
+     * The same lens, drawn as one broken line.
+     */
     val Search: ImageVector by lazy {
         ImageVector.Builder(
             name = "bc_search",
@@ -268,20 +332,27 @@ object BitChordIcons {
             viewportWidth = 24f, viewportHeight = 24f,
         ).apply {
             path(
-                stroke = stroke,
-                strokeLineWidth = STROKE,
-                strokeLineCap = StrokeCap.Square,
-                strokeLineJoin = StrokeJoin.Miter,
+                stroke = stroke, strokeLineWidth = STROKE,
+                strokeLineCap = StrokeCap.Square, strokeLineJoin = StrokeJoin.Miter,
             ) {
-                // Octagonal lens, flat side against the handle.
-                octagon(10.7f, 10.7f, 6.6f)
-                // Handle, squared to the lens's lower-right edge.
-                moveTo(15.0f, 15.0f)
-                lineTo(20.3f, 20.3f)
+                moveTo(12.54f, 4.18f)
+                lineTo(15.51f, 7.15f)
+                lineTo(15.51f, 12.05f)
+                lineTo(12.05f, 15.51f)
+                lineTo(7.15f, 15.51f)
+                lineTo(3.69f, 12.05f)
+                lineTo(3.69f, 7.15f)
+                lineTo(7.15f, 3.69f)
+                lineTo(11.35f, 3.69f)
+                moveTo(14.7f, 14.7f)
+                lineTo(20.4f, 20.4f)
             }
         }.build()
     }
 
+    /**
+     * The compass, at header weight.
+     */
     val Explore: ImageVector by lazy {
         ImageVector.Builder(
             name = "bc_explore",
@@ -289,23 +360,47 @@ object BitChordIcons {
             viewportWidth = 24f, viewportHeight = 24f,
         ).apply {
             path(
-                stroke = stroke,
-                strokeLineWidth = STROKE,
-                strokeLineCap = StrokeCap.Square,
-                strokeLineJoin = StrokeJoin.Miter,
+                stroke = stroke, strokeLineWidth = STROKE,
+                strokeLineCap = StrokeCap.Square, strokeLineJoin = StrokeJoin.Miter,
             ) {
-                // Compass dial, octagonal
-                octagon(12f, 12f, 8.6f)
-                // Needle
-                moveTo(15.4f, 8.6f)
-                lineTo(13.6f, 13.6f)
-                lineTo(8.6f, 15.4f)
-                lineTo(10.4f, 10.4f)
+                moveTo(15.99f, 5.02f)
+                lineTo(19.76f, 8.79f)
+                lineTo(19.76f, 15.21f)
+                lineTo(15.21f, 19.76f)
+                lineTo(8.79f, 19.76f)
+                lineTo(4.24f, 15.21f)
+                lineTo(4.24f, 8.79f)
+                lineTo(8.79f, 4.24f)
+                lineTo(14.11f, 4.24f)
+            }
+
+            path(fill = stroke) {
+                moveTo(12f, 6.8f)
+                lineTo(15.2f, 12f)
+                lineTo(12f, 12f)
+                close()
+            }
+
+            path(fill = stroke) {
+                moveTo(12f, 17.2f)
+                lineTo(8.8f, 12f)
+                lineTo(12f, 12f)
+                close()
+            }
+
+            path(fill = stroke) {
+                moveTo(11.05f, 11.05f)
+                lineTo(12.95f, 11.05f)
+                lineTo(12.95f, 12.95f)
+                lineTo(11.05f, 12.95f)
                 close()
             }
         }.build()
     }
 
+    /**
+     * Two crossings at 45°, parted at the crossing, ending in chevrons.
+     */
     val Shuffle: ImageVector by lazy {
         ImageVector.Builder(
             name = "bc_shuffle",
@@ -313,54 +408,64 @@ object BitChordIcons {
             viewportWidth = 24f, viewportHeight = 24f,
         ).apply {
             path(
-                stroke = stroke,
-                strokeLineWidth = STROKE,
-                strokeLineCap = StrokeCap.Square,
-                strokeLineJoin = StrokeJoin.Miter,
+                stroke = stroke, strokeLineWidth = STROKE,
+                strokeLineCap = StrokeCap.Square, strokeLineJoin = StrokeJoin.Miter,
             ) {
-                // Strand that crosses downwards, with its arrow head
-                moveTo(3.4f, 7.4f); lineTo(7f, 7.4f); lineTo(16.6f, 16.6f); lineTo(20.6f, 16.6f)
-                moveTo(18.1f, 14.1f); lineTo(20.6f, 16.6f); lineTo(18.1f, 19.1f)
-                // Strand that crosses upwards, broken around the intersection
-                moveTo(3.4f, 16.6f); lineTo(7f, 16.6f); lineTo(9.8f, 13.9f)
-                moveTo(13.9f, 10.1f); lineTo(16.6f, 7.4f); lineTo(20.6f, 7.4f)
-                moveTo(18.1f, 4.9f); lineTo(20.6f, 7.4f); lineTo(18.1f, 9.9f)
+                moveTo(3.4f, 7f)
+                lineTo(7.2f, 7f)
+                lineTo(10.8f, 10.6f)
+                moveTo(13f, 12.8f)
+                lineTo(16.4f, 16.2f)
+                lineTo(19.2f, 16.2f)
+                moveTo(3.4f, 16.2f)
+                lineTo(7.2f, 16.2f)
+                lineTo(10.8f, 12.8f)
+                moveTo(13f, 10.6f)
+                lineTo(16.4f, 7f)
+                lineTo(19.2f, 7f)
+                moveTo(16.6f, 4.4f)
+                lineTo(19.4f, 7f)
+                lineTo(16.6f, 9.6f)
+                moveTo(16.6f, 13.6f)
+                lineTo(19.4f, 16.2f)
+                lineTo(16.6f, 18.8f)
             }
         }.build()
     }
 
-    val Repeat: ImageVector by lazy { repeatLoop("bc_repeat") }
-
     /**
-     * Two straight runs joined by semicircles, with the arrow heads lying flat
-     * at the ends of the straights. Putting them on the curves instead — as a
-     * first pass did — makes the glyph read as a refresh/sync symbol.
+     * A loop with one square corner cut away, and the arrow riding the top edge.
      */
-    private fun repeatLoop(name: String): ImageVector =
+    val Repeat: ImageVector by lazy {
         ImageVector.Builder(
-            name = name,
+            name = "bc_repeat",
             defaultWidth = 24.dp, defaultHeight = 24.dp,
             viewportWidth = 24f, viewportHeight = 24f,
         ).apply {
             path(
-                stroke = stroke,
-                strokeLineWidth = STROKE,
-                strokeLineCap = StrokeCap.Square,
-                strokeLineJoin = StrokeJoin.Miter,
+                stroke = stroke, strokeLineWidth = STROKE,
+                strokeLineCap = StrokeCap.Square, strokeLineJoin = StrokeJoin.Miter,
             ) {
-                moveTo(8.6f, 7.6f)
-                lineTo(15.4f, 7.6f)
-                arcToRelative(4.4f, 4.4f, 0f, isMoreThanHalf = false, isPositiveArc = true, 0f, 8.8f)
-                lineTo(8.6f, 16.4f)
-                arcToRelative(4.4f, 4.4f, 0f, isMoreThanHalf = false, isPositiveArc = true, 0f, -8.8f)
-                close()
-                // Direction of travel: right along the top, left along the bottom.
-                moveTo(13.5f, 5.7f); lineTo(15.4f, 7.6f); lineTo(13.5f, 9.5f)
-                moveTo(10.5f, 14.5f); lineTo(8.6f, 16.4f); lineTo(10.5f, 18.3f)
+                moveTo(7.6f, 6f)
+                lineTo(18.4f, 6f)
+                lineTo(20.8f, 8.4f)
+                lineTo(20.8f, 15.6f)
+                lineTo(18.4f, 18f)
+                lineTo(5.6f, 18f)
+                lineTo(3.2f, 15.6f)
+                lineTo(3.2f, 8.4f)
+                lineTo(5.6f, 6f)
+                lineTo(9f, 6f)
+                moveTo(13.4f, 3.4f)
+                lineTo(16f, 6f)
+                lineTo(13.4f, 8.6f)
             }
         }.build()
+    }
 
-    /** AutoPlay's lemniscate. */
+    /**
+     * Two diamonds meeting at a point — the loop without a single curve.
+     */
     val Infinity: ImageVector by lazy {
         ImageVector.Builder(
             name = "bc_infinity",
@@ -368,48 +473,70 @@ object BitChordIcons {
             viewportWidth = 24f, viewportHeight = 24f,
         ).apply {
             path(
-                stroke = stroke,
-                strokeLineWidth = STROKE,
-                strokeLineCap = StrokeCap.Square,
-                strokeLineJoin = StrokeJoin.Miter,
+                stroke = stroke, strokeLineWidth = STROKE,
+                strokeLineCap = StrokeCap.Square, strokeLineJoin = StrokeJoin.Miter,
             ) {
-                moveTo(12f, 12f)
-                curveTo(10.1f, 9.1f, 8.7f, 8f, 7.1f, 8f)
-                arcToRelative(4f, 4f, 0f, isMoreThanHalf = false, isPositiveArc = false, 0f, 8f)
-                curveTo(8.7f, 16f, 10.1f, 14.9f, 12f, 12f)
-                curveTo(13.9f, 9.1f, 15.3f, 8f, 16.9f, 8f)
-                arcToRelative(4f, 4f, 0f, isMoreThanHalf = false, isPositiveArc = true, 0f, 8f)
-                curveTo(15.3f, 16f, 13.9f, 14.9f, 12f, 12f)
+                moveTo(3.2f, 12f)
+                lineTo(7.2f, 8f)
+                lineTo(11.2f, 12f)
+                moveTo(12.8f, 12f)
+                lineTo(16.8f, 8f)
+                lineTo(20.8f, 12f)
+                lineTo(16.8f, 16f)
+                lineTo(12.8f, 12f)
+                moveTo(11.2f, 12f)
+                lineTo(7.2f, 16f)
+                lineTo(3.2f, 12f)
             }
         }.build()
     }
 
-    /** Beamed pair of notes, for instrumental stretches in the lyrics. */
+    /**
+     * A parallelogram head, a square stem, and a double flag of two blocks.
+     */
     val MusicNote: ImageVector by lazy {
         ImageVector.Builder(
             name = "bc_music_note",
             defaultWidth = 24.dp, defaultHeight = 24.dp,
             viewportWidth = 24f, viewportHeight = 24f,
         ).apply {
-            // Heads are solid blocks; stems and beam keep the family's stroke weight.
-            path(fill = stroke) {
-                block(7.1f, 17.7f, 5.8f)
-                block(17.1f, 15.9f, 5.8f)
-            }
             path(
-                stroke = stroke,
-                strokeLineWidth = STROKE,
-                strokeLineCap = StrokeCap.Square,
-                strokeLineJoin = StrokeJoin.Miter,
+                stroke = stroke, strokeLineWidth = STROKE,
+                strokeLineCap = StrokeCap.Square, strokeLineJoin = StrokeJoin.Miter,
             ) {
-                moveTo(10f, 17.7f); lineTo(10f, 6.7f)
-                moveTo(20f, 15.9f); lineTo(20f, 4.9f)
-                moveTo(10f, 6.7f); lineTo(20f, 4.9f)
+                moveTo(11.6f, 18.4f)
+                lineTo(11.6f, 5.2f)
+            }
+
+            path(fill = stroke) {
+                moveTo(6.2f, 19.6f)
+                lineTo(11.4f, 21f)
+                lineTo(11.4f, 17f)
+                lineTo(6.2f, 15.6f)
+                close()
+            }
+
+            path(fill = stroke) {
+                moveTo(11.6f, 5.2f)
+                lineTo(18.2f, 6.9f)
+                lineTo(18.2f, 8.6f)
+                lineTo(11.6f, 6.9f)
+                close()
+            }
+
+            path(fill = stroke) {
+                moveTo(11.6f, 7.9f)
+                lineTo(17.2f, 9.2f)
+                lineTo(17.2f, 10.9f)
+                lineTo(11.6f, 9.6f)
+                close()
             }
         }.build()
     }
 
-    /** Speech bubble with two lines of words. */
+    /**
+     * A finder frame around stepped lines: text as a readout.
+     */
     val Lyrics: ImageVector by lazy {
         ImageVector.Builder(
             name = "bc_lyrics",
@@ -417,30 +544,44 @@ object BitChordIcons {
             viewportWidth = 24f, viewportHeight = 24f,
         ).apply {
             path(
-                stroke = stroke,
-                strokeLineWidth = STROKE,
-                strokeLineCap = StrokeCap.Square,
-                strokeLineJoin = StrokeJoin.Miter,
+                stroke = stroke, strokeLineWidth = STROKE,
+                strokeLineCap = StrokeCap.Square, strokeLineJoin = StrokeJoin.Miter,
             ) {
-                moveTo(6.2f, 4.6f)
-                lineTo(17.8f, 4.6f)
-                lineTo(20.6f, 7.4f)
-                lineTo(20.6f, 13.6f)
-                lineTo(17.8f, 16.4f)
-                lineTo(10.6f, 16.4f)
-                lineTo(6.8f, 19.6f)
-                lineTo(6.8f, 16.4f)
-                lineTo(6.2f, 16.4f)
-                lineTo(3.4f, 13.6f)
-                lineTo(3.4f, 7.4f)
-                close()
-                moveTo(7.6f, 9f); lineTo(16.4f, 9f)
-                moveTo(7.6f, 12.1f); lineTo(13.2f, 12.1f)
+                moveTo(3.4f, 8.2f)
+                lineTo(3.4f, 4.2f)
+                lineTo(7.4f, 4.2f)
+                moveTo(16.6f, 4.2f)
+                lineTo(20.6f, 4.2f)
+                lineTo(20.6f, 8.2f)
+                moveTo(20.6f, 15.8f)
+                lineTo(20.6f, 19.8f)
+                lineTo(16.6f, 19.8f)
+                moveTo(7.4f, 19.8f)
+                lineTo(3.4f, 19.8f)
+                lineTo(3.4f, 15.8f)
+                moveTo(7f, 9f)
+                lineTo(9.5f, 9f)
+                lineTo(9.5f, 9f)
+                lineTo(12f, 9f)
+                lineTo(12f, 9f)
+                lineTo(14.5f, 9f)
+                lineTo(14.5f, 9f)
+                lineTo(17f, 9f)
+                moveTo(7f, 12.4f)
+                lineTo(9.67f, 12.4f)
+                lineTo(9.67f, 12.4f)
+                lineTo(12.33f, 12.4f)
+                lineTo(12.33f, 12.4f)
+                lineTo(15f, 12.4f)
+                moveTo(7f, 15.8f)
+                lineTo(11.8f, 15.8f)
             }
         }.build()
     }
 
-    /** Plain chevron — a disclosure hint, not a directional arrow. */
+    /**
+     * A single chevron, mitred: the smallest shape in the family.
+     */
     val ChevronRight: ImageVector by lazy {
         ImageVector.Builder(
             name = "bc_chevron_right",
@@ -448,14 +589,12 @@ object BitChordIcons {
             viewportWidth = 24f, viewportHeight = 24f,
         ).apply {
             path(
-                stroke = stroke,
-                strokeLineWidth = STROKE,
-                strokeLineCap = StrokeCap.Square,
-                strokeLineJoin = StrokeJoin.Miter,
+                stroke = stroke, strokeLineWidth = STROKE,
+                strokeLineCap = StrokeCap.Square, strokeLineJoin = StrokeJoin.Miter,
             ) {
-                moveTo(9.5f, 6.2f)
-                lineTo(15.3f, 12f)
-                lineTo(9.5f, 17.8f)
+                moveTo(9f, 4.8f)
+                lineTo(16.2f, 12f)
+                lineTo(9f, 19.2f)
             }
         }.build()
     }
@@ -466,6 +605,9 @@ object BitChordIcons {
      * Filled rather than merely tinted when set: the player draws every glyph
      * white on artwork, where a colour change alone is the one signal the
      * backdrop can swallow. A shape change survives any album cover.
+     *
+     * The one curved icon in the family, deliberately: a heart with corners is a
+     * spade, and a spade is the wrong signal next to a play button.
      */
     val Heart: ImageVector by lazy { heart("bc_heart", filled = false) }
 
@@ -494,7 +636,9 @@ object BitChordIcons {
             }
         }.build()
 
-    /** Adding something — a new playlist, on the library shelf. */
+    /**
+     * A cross whose crossbar is parted at the centre.
+     */
     val Plus: ImageVector by lazy {
         ImageVector.Builder(
             name = "bc_plus",
@@ -502,21 +646,21 @@ object BitChordIcons {
             viewportWidth = 24f, viewportHeight = 24f,
         ).apply {
             path(
-                stroke = stroke,
-                strokeLineWidth = STROKE,
-                strokeLineCap = StrokeCap.Square,
-                strokeLineJoin = StrokeJoin.Miter,
+                stroke = stroke, strokeLineWidth = STROKE,
+                strokeLineCap = StrokeCap.Square, strokeLineJoin = StrokeJoin.Miter,
             ) {
-                moveTo(12f, 5f); lineTo(12f, 19f)
-                moveTo(5f, 12f); lineTo(19f, 12f)
+                moveTo(12f, 3.6f)
+                lineTo(12f, 20.4f)
+                moveTo(3.6f, 12f)
+                lineTo(10.7f, 12f)
+                moveTo(13.3f, 12f)
+                lineTo(20.4f, 12f)
             }
         }.build()
     }
 
     /**
-     * A tick — the other half of [Plus]. Saving something to the library swaps
-     * one for the other in place, so the two are drawn on the same 14-unit span
-     * and at the same weight; a tick sized to its own bounding box would jump.
+     * The mark, with a block welded to its elbow.
      */
     val Check: ImageVector by lazy {
         ImageVector.Builder(
@@ -525,17 +669,27 @@ object BitChordIcons {
             viewportWidth = 24f, viewportHeight = 24f,
         ).apply {
             path(
-                stroke = stroke,
-                strokeLineWidth = STROKE,
-                strokeLineCap = StrokeCap.Square,
-                strokeLineJoin = StrokeJoin.Miter,
+                stroke = stroke, strokeLineWidth = STROKE,
+                strokeLineCap = StrokeCap.Square, strokeLineJoin = StrokeJoin.Miter,
             ) {
-                moveTo(5f, 12.8f); lineTo(9.6f, 17.4f); lineTo(19f, 6.9f)
+                moveTo(4.4f, 12.8f)
+                lineTo(9.4f, 17.8f)
+                lineTo(19.6f, 7.2f)
+            }
+
+            path(fill = stroke) {
+                moveTo(8.25f, 16.65f)
+                lineTo(10.55f, 16.65f)
+                lineTo(10.55f, 18.95f)
+                lineTo(8.25f, 18.95f)
+                close()
             }
         }.build()
     }
 
-    /** Arrow pointing down into a tray — offline download. */
+    /**
+     * An arrow into a tray that is two brackets, plus two alignment blocks.
+     */
     val Download: ImageVector by lazy {
         ImageVector.Builder(
             name = "bc_download",
@@ -543,29 +697,42 @@ object BitChordIcons {
             viewportWidth = 24f, viewportHeight = 24f,
         ).apply {
             path(
-                stroke = stroke,
-                strokeLineWidth = STROKE,
-                strokeLineCap = StrokeCap.Square,
-                strokeLineJoin = StrokeJoin.Miter,
+                stroke = stroke, strokeLineWidth = STROKE,
+                strokeLineCap = StrokeCap.Square, strokeLineJoin = StrokeJoin.Miter,
             ) {
-                // Vertical stem
-                moveTo(12f, 4.5f); lineTo(12f, 15.5f)
-                // Arrow head
-                moveTo(7.5f, 11f); lineTo(12f, 15.5f); lineTo(16.5f, 11f)
-                // Tray base
-                moveTo(4.5f, 18f); lineTo(19.5f, 18f)
+                moveTo(12f, 3.8f)
+                lineTo(12f, 12.4f)
+                moveTo(7.6f, 8.2f)
+                lineTo(12f, 12.6f)
+                lineTo(16.4f, 8.2f)
+                moveTo(3.8f, 15.4f)
+                lineTo(3.8f, 19.8f)
+                lineTo(11f, 19.8f)
+                moveTo(13f, 19.8f)
+                lineTo(20.2f, 19.8f)
+                lineTo(20.2f, 15.4f)
+            }
+
+            path(fill = stroke) {
+                moveTo(7.6f, 15.1f)
+                lineTo(9.2f, 15.1f)
+                lineTo(9.2f, 16.7f)
+                lineTo(7.6f, 16.7f)
+                close()
+            }
+
+            path(fill = stroke) {
+                moveTo(14.8f, 15.1f)
+                lineTo(16.4f, 15.1f)
+                lineTo(16.4f, 16.7f)
+                lineTo(14.8f, 16.7f)
+                close()
             }
         }.build()
     }
 
     /**
-     * Clock face with two hands — a download asked for but not yet on disk.
-     *
-     * The dial is the same 8.6 radius as [Explore]'s, so the two sit at the same
-     * optical weight when they appear in the same row of header buttons. The
-     * hands are one polyline through the centre rather than two strokes: the
-     * mitre is then the pivot, which is what stops the middle reading as a
-     * pair of lines that happen to cross.
+     * An octagonal case with a gap at four o'clock, stepped hands, and a pin.
      */
     val Clock: ImageVector by lazy {
         ImageVector.Builder(
@@ -574,24 +741,36 @@ object BitChordIcons {
             viewportWidth = 24f, viewportHeight = 24f,
         ).apply {
             path(
-                stroke = stroke,
-                strokeLineWidth = STROKE,
-                strokeLineCap = StrokeCap.Square,
-                strokeLineJoin = StrokeJoin.Miter,
+                stroke = stroke, strokeLineWidth = STROKE,
+                strokeLineCap = StrokeCap.Square, strokeLineJoin = StrokeJoin.Miter,
             ) {
-                // Dial, octagonal
-                octagon(12f, 12f, 8.6f)
-                // Minute hand up, hour hand down to the right
-                moveTo(12f, 7.4f); lineTo(12f, 12f); lineTo(15.4f, 13.8f)
+                moveTo(14.72f, 20.13f)
+                lineTo(8.63f, 20.13f)
+                lineTo(3.87f, 15.37f)
+                lineTo(3.87f, 8.63f)
+                lineTo(8.63f, 3.87f)
+                lineTo(15.37f, 3.87f)
+                lineTo(20.13f, 8.63f)
+                lineTo(20.13f, 15.37f)
+                lineTo(15.83f, 19.67f)
+                moveTo(12f, 7.2f)
+                lineTo(12f, 11f)
+                lineTo(13.6f, 12.6f)
+                lineTo(16.6f, 12.6f)
+            }
+
+            path(fill = stroke) {
+                moveTo(10.8f, 10.8f)
+                lineTo(13.2f, 10.8f)
+                lineTo(13.2f, 13.2f)
+                lineTo(10.8f, 13.2f)
+                close()
             }
         }.build()
     }
 
     /**
-     * A pushpin, not a map marker: an octagonal head with a straight needle
-     * kicked out to one side, the way it sits once it's stuck into something.
-     * A teardrop reads as "location" the moment it's this small — the two
-     * disjoint strokes here are what keep it read as "pinned" instead.
+     * A faceted shield with a square void where the point should be.
      */
     val Pin: ImageVector by lazy {
         ImageVector.Builder(
@@ -600,21 +779,31 @@ object BitChordIcons {
             viewportWidth = 24f, viewportHeight = 24f,
         ).apply {
             path(
-                stroke = stroke,
-                strokeLineWidth = STROKE,
-                strokeLineCap = StrokeCap.Square,
-                strokeLineJoin = StrokeJoin.Miter,
+                stroke = stroke, strokeLineWidth = STROKE,
+                strokeLineCap = StrokeCap.Square, strokeLineJoin = StrokeJoin.Miter,
             ) {
-                // Octagonal head.
-                octagon(13f, 8.4f, 3.5f)
-                // Needle, kicked out from the underside of the head to a point.
-                moveTo(10.7f, 10.7f)
-                lineTo(5.6f, 19.6f)
+                moveTo(11.58f, 20.11f)
+                lineTo(4.8f, 12.2f)
+                lineTo(4.8f, 7.4f)
+                lineTo(12f, 3.4f)
+                lineTo(19.2f, 7.4f)
+                lineTo(19.2f, 12.2f)
+                lineTo(12.42f, 20.11f)
+            }
+
+            path(fill = stroke) {
+                moveTo(9.9f, 9.6f)
+                lineTo(14.1f, 9.6f)
+                lineTo(14.1f, 13.8f)
+                lineTo(9.9f, 13.8f)
+                close()
             }
         }.build()
     }
 
-    /** Speed gauge used by high-performance display settings. */
+    /**
+     * A gauge on a stand, stepped needle, blocks at the hub and the tip.
+     */
     val Performance: ImageVector by lazy {
         ImageVector.Builder(
             name = "bc_performance",
@@ -622,30 +811,48 @@ object BitChordIcons {
             viewportWidth = 24f, viewportHeight = 24f,
         ).apply {
             path(
-                stroke = stroke,
-                strokeLineWidth = STROKE,
-                strokeLineCap = StrokeCap.Square,
-                strokeLineJoin = StrokeJoin.Miter,
+                stroke = stroke, strokeLineWidth = STROKE,
+                strokeLineCap = StrokeCap.Square, strokeLineJoin = StrokeJoin.Miter,
             ) {
-                // Arched frame with its shoulders cut, open along the bottom.
-                moveTo(4.1f, 16.8f)
-                lineTo(4.1f, 11.9f)
-                lineTo(6.2f, 9.3f)
-                lineTo(17.8f, 9.3f)
-                lineTo(19.9f, 11.9f)
-                lineTo(19.9f, 16.8f)
-                // Needle and hub.
-                moveTo(12f, 15.8f)
-                lineTo(16.7f, 9.3f)
-                block(12f, 15.8f, 2.6f)
-                // Stable baseline.
-                moveTo(5.4f, 19.5f)
-                lineTo(18.6f, 19.5f)
+                moveTo(4.4f, 16.6f)
+                lineTo(4.4f, 13.8f)
+                lineTo(7.2f, 10.2f)
+                lineTo(10.4f, 7.8f)
+                lineTo(13.6f, 7.8f)
+                lineTo(16.8f, 10.2f)
+                lineTo(19.6f, 13.8f)
+                lineTo(19.6f, 16.6f)
+                moveTo(4.4f, 16.6f)
+                lineTo(4.4f, 19.8f)
+                lineTo(9.2f, 19.8f)
+                moveTo(14.8f, 19.8f)
+                lineTo(19.6f, 19.8f)
+                lineTo(19.6f, 16.6f)
+                moveTo(12f, 16.6f)
+                lineTo(16.4f, 10.2f)
+            }
+
+            path(fill = stroke) {
+                moveTo(10.8f, 15.4f)
+                lineTo(13.2f, 15.4f)
+                lineTo(13.2f, 17.8f)
+                lineTo(10.8f, 17.8f)
+                close()
+            }
+
+            path(fill = stroke) {
+                moveTo(15.5f, 9.3f)
+                lineTo(17.3f, 9.3f)
+                lineTo(17.3f, 11.1f)
+                lineTo(15.5f, 11.1f)
+                close()
             }
         }.build()
     }
 
-    /** Four frame-time bars, used by refresh-rate selection. */
+    /**
+     * A finder frame with a stepped trace inside: frames over time.
+     */
     val FrameRate: ImageVector by lazy {
         ImageVector.Builder(
             name = "bc_frame_rate",
@@ -653,18 +860,34 @@ object BitChordIcons {
             viewportWidth = 24f, viewportHeight = 24f,
         ).apply {
             path(
-                stroke = stroke,
-                strokeLineWidth = STROKE,
-                strokeLineCap = StrokeCap.Square,
+                stroke = stroke, strokeLineWidth = STROKE,
+                strokeLineCap = StrokeCap.Square, strokeLineJoin = StrokeJoin.Miter,
             ) {
-                moveTo(5f, 15.5f); lineTo(5f, 8.5f)
-                moveTo(9.7f, 18.5f); lineTo(9.7f, 5.5f)
-                moveTo(14.3f, 16.5f); lineTo(14.3f, 7.5f)
-                moveTo(19f, 14.5f); lineTo(19f, 9.5f)
+                moveTo(3.4f, 8f)
+                lineTo(3.4f, 4f)
+                lineTo(7.4f, 4f)
+                moveTo(16.6f, 4f)
+                lineTo(20.6f, 4f)
+                lineTo(20.6f, 8f)
+                moveTo(20.6f, 16f)
+                lineTo(20.6f, 20f)
+                lineTo(16.6f, 20f)
+                moveTo(7.4f, 20f)
+                lineTo(3.4f, 20f)
+                lineTo(3.4f, 16f)
+                moveTo(6.8f, 15.2f)
+                lineTo(10f, 15.2f)
+                lineTo(10f, 9.4f)
+                lineTo(14.2f, 9.4f)
+                lineTo(14.2f, 12.8f)
+                lineTo(17.2f, 12.8f)
             }
         }.build()
     }
 
+    /**
+     * Two lids and a chamfered case, in outline.
+     */
     val Library: ImageVector by lazy {
         ImageVector.Builder(
             name = "bc_library",
@@ -672,43 +895,82 @@ object BitChordIcons {
             viewportWidth = 24f, viewportHeight = 24f,
         ).apply {
             path(
-                stroke = stroke,
-                strokeLineWidth = STROKE,
-                strokeLineCap = StrokeCap.Square,
-                strokeLineJoin = StrokeJoin.Miter,
+                stroke = stroke, strokeLineWidth = STROKE,
+                strokeLineCap = StrokeCap.Square, strokeLineJoin = StrokeJoin.Miter,
             ) {
-                // Three upright spines + one leaning — Apple Music's library glyph, thickened
-                moveTo(4.6f, 4.8f); lineTo(4.6f, 19.2f)
-                moveTo(9.2f, 4.8f); lineTo(9.2f, 19.2f)
-                moveTo(13.8f, 4.8f); lineTo(13.8f, 19.2f)
-                moveTo(17.2f, 5.6f); lineTo(20.6f, 18.9f)
+                moveTo(8.4f, 3.8f)
+                lineTo(18.8f, 3.8f)
+                lineTo(20.4f, 5.4f)
+                lineTo(6.8f, 5.4f)
+                lineTo(6.8f, 4.6f)
+                moveTo(5f, 8f)
+                lineTo(19.6f, 8f)
+                lineTo(19.6f, 9.6f)
+                lineTo(5f, 9.6f)
+                lineTo(5f, 8f)
+                moveTo(6.6f, 12.2f)
+                lineTo(18f, 12.2f)
+                lineTo(19.4f, 13.6f)
+                lineTo(19.4f, 19f)
+                lineTo(18f, 20.4f)
+                lineTo(6f, 20.4f)
+                lineTo(4.6f, 19f)
+                lineTo(4.6f, 13.6f)
+                lineTo(5.58f, 12.62f)
             }
         }.build()
     }
 
-    /** 2x2 grid icon (4 rounded squares) for switching layout to grid view. */
+    /**
+     * Four squares, each with one corner cut the other way.
+     */
     val GridView: ImageVector by lazy {
         ImageVector.Builder(
             name = "bc_grid_view",
             defaultWidth = 24.dp, defaultHeight = 24.dp,
             viewportWidth = 24f, viewportHeight = 24f,
         ).apply {
-            path(
-                stroke = stroke,
-                strokeLineWidth = STROKE,
-                strokeLineCap = StrokeCap.Square,
-                strokeLineJoin = StrokeJoin.Miter,
-            ) {
-                // Four cut squares
-                chamferedRect(4.5f, 4.5f, 6f, 6f, 1.7f)
-                chamferedRect(13.5f, 4.5f, 6f, 6f, 1.7f)
-                chamferedRect(4.5f, 13.5f, 6f, 6f, 1.7f)
-                chamferedRect(13.5f, 13.5f, 6f, 6f, 1.7f)
+            path(fill = stroke) {
+                moveTo(3.4f, 3.4f)
+                lineTo(8.6f, 3.4f)
+                lineTo(8.6f, 8.2f)
+                lineTo(8.2f, 8.6f)
+                lineTo(3.4f, 8.6f)
+                close()
+            }
+
+            path(fill = stroke) {
+                moveTo(15.4f, 3.4f)
+                lineTo(20.6f, 3.4f)
+                lineTo(20.6f, 8.6f)
+                lineTo(15.8f, 8.6f)
+                lineTo(15.4f, 8.2f)
+                close()
+            }
+
+            path(fill = stroke) {
+                moveTo(3.4f, 15.4f)
+                lineTo(8.2f, 15.4f)
+                lineTo(8.6f, 15.8f)
+                lineTo(8.6f, 20.6f)
+                lineTo(3.4f, 20.6f)
+                close()
+            }
+
+            path(fill = stroke) {
+                moveTo(15.8f, 15.4f)
+                lineTo(20.6f, 15.4f)
+                lineTo(20.6f, 20.6f)
+                lineTo(15.4f, 20.6f)
+                lineTo(15.4f, 15.8f)
+                close()
             }
         }.build()
     }
 
-    /** List view icon (horizontal rows) for switching layout to list view. */
+    /**
+     * Three rows of stepped rules, each against its block.
+     */
     val ListView: ImageVector by lazy {
         ImageVector.Builder(
             name = "bc_list_view",
@@ -716,17 +978,53 @@ object BitChordIcons {
             viewportWidth = 24f, viewportHeight = 24f,
         ).apply {
             path(
-                stroke = stroke,
-                strokeLineWidth = STROKE,
-                strokeLineCap = StrokeCap.Square,
-                strokeLineJoin = StrokeJoin.Miter,
+                stroke = stroke, strokeLineWidth = STROKE,
+                strokeLineCap = StrokeCap.Square, strokeLineJoin = StrokeJoin.Miter,
             ) {
-                // Three rows, each with its solid block in the gutter
-                for (y in listOf(6.5f, 12f, 17.5f)) {
-                    block(5.1f, y, 2.2f)
-                    moveTo(9.5f, y)
-                    lineTo(19.5f, y)
-                }
+                moveTo(8.6f, 6.2f)
+                lineTo(11.5f, 6.2f)
+                lineTo(11.5f, 6.2f)
+                lineTo(14.4f, 6.2f)
+                lineTo(14.4f, 6.2f)
+                lineTo(17.3f, 6.2f)
+                lineTo(17.3f, 6.2f)
+                lineTo(20.2f, 6.2f)
+                moveTo(8.6f, 12f)
+                lineTo(11.87f, 12f)
+                lineTo(11.87f, 12f)
+                lineTo(15.13f, 12f)
+                lineTo(15.13f, 12f)
+                lineTo(18.4f, 12f)
+                moveTo(8.6f, 17.8f)
+                lineTo(11.27f, 17.8f)
+                lineTo(11.27f, 17.8f)
+                lineTo(13.93f, 17.8f)
+                lineTo(13.93f, 17.8f)
+                lineTo(16.6f, 17.8f)
+            }
+
+            path(fill = stroke) {
+                moveTo(2.7f, 4.9f)
+                lineTo(5.3f, 4.9f)
+                lineTo(5.3f, 7.5f)
+                lineTo(2.7f, 7.5f)
+                close()
+            }
+
+            path(fill = stroke) {
+                moveTo(2.7f, 10.7f)
+                lineTo(5.3f, 10.7f)
+                lineTo(5.3f, 13.3f)
+                lineTo(2.7f, 13.3f)
+                close()
+            }
+
+            path(fill = stroke) {
+                moveTo(2.7f, 16.5f)
+                lineTo(5.3f, 16.5f)
+                lineTo(5.3f, 19.1f)
+                lineTo(2.7f, 19.1f)
+                close()
             }
         }.build()
     }
