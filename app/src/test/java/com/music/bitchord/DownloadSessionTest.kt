@@ -337,5 +337,12 @@ class DownloadSessionTest {
         assertNull(Downloads.recordIdOf("VLPL1"))
         // A prefix with nothing behind it names no record.
         assertNull(Downloads.recordIdOf(Downloads.PLAYLIST_PREFIX))
+        // A record filed under a page id — a playlist imported from Spotify,
+        // whose entry in the app's own store is the only page it has — must not
+        // have the prefix put on twice.
+        assertEquals(
+            "local:playlist:sp_local_1",
+            Downloads.pageIdFor(Downloads.pageIdFor("sp_local_1")),
+        )
     }
 }

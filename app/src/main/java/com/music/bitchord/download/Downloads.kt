@@ -434,8 +434,16 @@ object Downloads {
      */
     const val PLAYLIST_PREFIX = "local:playlist:"
 
-    /** The page id for the release recorded under [id]. */
-    fun pageIdFor(id: String): String = PLAYLIST_PREFIX + id
+    /**
+     * The page id for the release recorded under [id].
+     *
+     * Idempotent, because not every record is filed under a bare release id: a
+     * playlist imported from Spotify has no page of its own beyond its entry in
+     * the app's own store, so its record carries that page's id — and prefixing
+     * that again would build a page for a record that never named itself.
+     */
+    fun pageIdFor(id: String): String =
+        if (id.startsWith(PLAYLIST_PREFIX)) id else PLAYLIST_PREFIX + id
 
     /** The release [pageIdFor] built [browseId] from, or null if it didn't. */
     fun recordIdOf(browseId: String): String? =

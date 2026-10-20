@@ -4725,11 +4725,13 @@ private fun BitChordApp(
                     },
                 // The one place a whole release is asked for, from a card and
                 // from the release's own page alike — its header spends that
-                // spot on the search now. Nothing on this device needs
-                // fetching to be on it, so a local page is the exception.
-                // What the target carries that the tracks don't is the
-                // release's own name and cover, which is exactly what the
-                // record wants.
+                // spot on the search now. Asked of what is already on this
+                // device rather than of the `local:` prefix: an imported
+                // playlist (a Spotify one) lives here as a track list only,
+                // and its audio still streams, so it takes the download like
+                // any other release. What the target carries that the tracks
+                // don't is the release's own name and cover, which is exactly
+                // what the record wants.
                 onDownloadAll = act { songs ->
                     startDownload(
                         songs,
@@ -4745,7 +4747,7 @@ private fun BitChordApp(
                                 )
                             },
                     )
-                }.takeIf { remote },
+                }.takeIf { !target.browseId.isOnDevicePage() },
                 // The same link a share off YouTube Music's own overflow
                 // gives — built from the browse id rather than fetched,
                 // since nothing about it depends on the tracks or the
@@ -5673,6 +5675,22 @@ private fun SongSort.localizedLabel(): String = when (this) {
 private fun String?.isDeviceFolder(): Boolean =
     this != null && startsWith("local:") &&
         !startsWith(Downloads.PLAYLIST_PREFIX) && !startsWith(LocalGroups.PREFIX)
+
+/**
+ * Whether this page is a listing of audio this device already has, so that
+ * "download the whole thing" has nothing left to fetch.
+ *
+ * The device folders, an album or artist grouped out of one of them, and the
+ * page of a release already downloaded whole. Asked of the `local:` prefix
+ * alone this would also catch a playlist imported from Spotify — and that page
+ * is the one that was missing the download: the import keeps only the track
+ * list in the app, the audio still streams, so it wants the download exactly
+ * like any other release.
+ */
+private fun String?.isOnDevicePage(): Boolean {
+    val id = this ?: return true
+    return id.isDeviceFolder() || id.startsWith(LocalGroups.PREFIX) || Downloads.recordIdOf(id) != null
+}
 
 /**
  * Whether [videoId] is the track playing, and is known to be playing YouTube's
