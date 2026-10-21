@@ -1,5 +1,6 @@
 package com.music.bitchord.ui.theme
 
+import com.music.bitchord.data.settings.BackdropStyle
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
@@ -54,9 +55,18 @@ object DedSec {
  * abajo), una rejilla técnica muy tenue, scanlines de CRT y una viñeta que cierra
  * los bordes. Nada de esto sugiere funciones que la app no tenga.
  *
+ * Que texturas se pintan lo elige [style] —ver [BackdropStyle]—: los halos, la
+ * base y la vineta son fijos, porque son el color de la identidad; lo que cambia
+ * es el ruido. Las cuatro variantes se dibujan con el mismo codigo, asi que
+ * apagar la rejilla no deja el fondo a medias.
+ *
  * @param density densidad de la pantalla, para que la rejilla mida en dp y no en px.
+ * @param style que texturas lleva el fondo.
  */
-fun DrawScope.drawDefaltBackdrop(density: Float) {
+fun DrawScope.drawDefaltBackdrop(
+    density: Float,
+    style: BackdropStyle = BackdropStyle.DEDSEC,
+) {
     // Base. Un pelín más clara que el negro puro para que las scanlines se vean.
     drawRect(Color(0xFF070B12))
 
@@ -87,53 +97,60 @@ fun DrawScope.drawDefaltBackdrop(density: Float) {
         ),
     )
 
-    // Rejilla técnica. Cada cinco líneas, una algo más marcada: se lee como
-    // una cuadrícula de instrumento, no como un folio.
-    val gridStep = 36f * density
-    val gridColor = DedSec.Cyan.copy(alpha = 0.05f)
-    val gridMajor = DedSec.Cyan.copy(alpha = 0.095f)
-    var i = 0
-    var gx = 0f
-    while (gx <= size.width) {
-        drawLine(if (i % 5 == 0) gridMajor else gridColor, Offset(gx, 0f), Offset(gx, size.height), strokeWidth = 1f)
-        gx += gridStep
-        i++
-    }
-    i = 0
-    var gy = 0f
-    while (gy <= size.height) {
-        drawLine(if (i % 5 == 0) gridMajor else gridColor, Offset(0f, gy), Offset(size.width, gy), strokeWidth = 1f)
-        gy += gridStep
-        i++
+    if (style == BackdropStyle.DEDSEC || style == BackdropStyle.GRID) {
+        // Rejilla técnica. Cada cinco líneas, una algo más marcada: se lee como
+        // una cuadrícula de instrumento, no como un folio.
+        val gridStep = 36f * density
+        val gridColor = DedSec.Cyan.copy(alpha = 0.05f)
+        val gridMajor = DedSec.Cyan.copy(alpha = 0.095f)
+        var i = 0
+        var gx = 0f
+        while (gx <= size.width) {
+            drawLine(if (i % 5 == 0) gridMajor else gridColor, Offset(gx, 0f), Offset(gx, size.height), strokeWidth = 1f)
+            gx += gridStep
+            i++
+        }
+        i = 0
+        var gy = 0f
+        while (gy <= size.height) {
+            drawLine(if (i % 5 == 0) gridMajor else gridColor, Offset(0f, gy), Offset(size.width, gy), strokeWidth = 1f)
+            gy += gridStep
+            i++
+        }
     }
 
     // Marca de agua. Defalt no firma, etiqueta: el nombre que le pone a DedSec
     // pintado a tamaño de valla sobre la rejilla, en plantilla recortada —solo
     // el borde de cada letra— para que se lea sin ensuciar lo que haya encima.
     // Va debajo de las scanlines, así el CRT también la atraviesa.
-    val mark = "DEDSUC"
-    val markCells = pixelWordWidthCells(mark).toFloat()
-    val markCell = size.width * 1.05f / markCells
-    val markWidth = markCells * markCell
-    val markHeight = 7f * markCell
-    val markCenter = Offset(size.width * 0.52f, size.height * 0.46f)
-    drawPixelWord(
-        text = mark,
-        cell = markCell,
-        topLeft = Offset(markCenter.x - markWidth / 2f, markCenter.y - markHeight / 2f),
-        color = DedSec.Cyan.copy(alpha = 0.075f),
-        rotation = -13f,
-        pivot = markCenter,
-        stencil = true,
-    )
+    if (style == BackdropStyle.DEDSEC || style == BackdropStyle.TERMINAL) {
+        val mark = "DEDSUC"
+        val markCells = pixelWordWidthCells(mark).toFloat()
+        val markCell = size.width * 1.05f / markCells
+        val markWidth = markCells * markCell
+        val markHeight = 7f * markCell
+        val markCenter = Offset(size.width * 0.52f, size.height * 0.46f)
+        drawPixelWord(
+            text = mark,
+            cell = markCell,
+            topLeft = Offset(markCenter.x - markWidth / 2f, markCenter.y - markHeight / 2f),
+            color = DedSec.Cyan.copy(alpha = 0.075f),
+            rotation = -13f,
+            pivot = markCenter,
+            stencil = true,
+        )
+    }
 
     // Scanlines de CRT: claras, no oscuras, o sobre un fondo casi negro no se ven.
-    val scanStep = 4f * density
-    val scanColor = Color.White.copy(alpha = 0.018f)
-    var sy = 0f
-    while (sy <= size.height) {
-        drawLine(scanColor, Offset(0f, sy), Offset(size.width, sy), strokeWidth = 1f)
-        sy += scanStep
+    // En [BackdropStyle.PLAIN] no hay textura ninguna: solo los halos y la vineta.
+    if (style != BackdropStyle.PLAIN) {
+        val scanStep = 4f * density
+        val scanColor = Color.White.copy(alpha = 0.018f)
+        var sy = 0f
+        while (sy <= size.height) {
+            drawLine(scanColor, Offset(0f, sy), Offset(size.width, sy), strokeWidth = 1f)
+            sy += scanStep
+        }
     }
 
     // Viñeta: cierra los bordes y centra la mirada.

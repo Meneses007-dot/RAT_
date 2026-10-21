@@ -1205,6 +1205,15 @@
     <string name="wear_os_code_hint">Pairing code</string>
     <string name="wear_os_done">Done</string>
     <string name="signed_by">Signed by %1$s</string>
+    <string name="backdrop">Backdrop</string>
+    <string name="backdrop_dedsec">DEDSEC</string>
+    <string name="backdrop_grid">Grid</string>
+    <string name="backdrop_terminal">Terminal</string>
+    <string name="backdrop_plain">Plain</string>
+    <string name="backdrop_dedsec_detail">Grid, scanlines and the DEDSUC watermark</string>
+    <string name="backdrop_grid_detail">The technical grid, no watermark</string>
+    <string name="backdrop_terminal_detail">Scanlines and the watermark, no grid</string>
+    <string name="backdrop_plain_detail">No texture — just the colour</string>
     <string name="defalt_intercept_label">Transmission intercepted</string>
     <string name="defalt_intercept_dismiss">Tap to close</string>
 </resources>

@@ -77,6 +77,7 @@ import androidx.compose.material.icons.outlined.Tune
 import androidx.compose.material.icons.outlined.VolumeOff
 import androidx.compose.material.icons.outlined.WebAssetOff
 import androidx.compose.material.icons.outlined.VolumeUp
+import androidx.compose.material.icons.outlined.Wallpaper
 import androidx.compose.material.icons.outlined.Waves
 import androidx.compose.material.icons.outlined.Wifi
 import androidx.activity.compose.rememberLauncherForActivityResult
@@ -160,6 +161,7 @@ import com.music.bitchord.R
 import com.music.bitchord.data.sources.DeviceCodecs
 import com.music.bitchord.data.settings.AudioQuality
 import com.music.bitchord.data.settings.DownloadQuality
+import com.music.bitchord.data.settings.BackdropStyle
 import com.music.bitchord.data.settings.ThemeMode
 import com.music.bitchord.data.stats.Backup
 import com.music.bitchord.playback.AudioCache
@@ -229,6 +231,7 @@ fun SettingsScreen(
     val lyricsSources by AppSettings.lyricsSources.collectAsStateWithLifecycle()
     val translationLanguage by AppSettings.translationLanguage.collectAsStateWithLifecycle()
     val theme by AppSettings.themeMode.collectAsStateWithLifecycle()
+    val backdropStyle by AppSettings.backdropStyle.collectAsStateWithLifecycle()
     val sessionId by AppSettings.audioSessionId.collectAsStateWithLifecycle()
     val outputPcmMode by AppSettings.outputPcmMode.collectAsStateWithLifecycle()
     val preferUsbDac by AppSettings.preferUsbDac.collectAsStateWithLifecycle()
@@ -769,6 +772,24 @@ fun SettingsScreen(
                     options = ThemeMode.entries.map { it.localizedLabel() },
                     selectedIndex = ThemeMode.entries.indexOf(theme),
                     onSelect = { AppSettings.setThemeMode(ThemeMode.entries[it]) },
+                    modifier = Modifier.padding(start = ROW_INSET, end = ROW_INSET, bottom = 14.dp),
+                )
+            }
+            // El fondo solo existe en oscuro: en claro es el color plano del
+            // tema y no hay nada que elegir, asi que la fila se apaga en vez de
+            // mentir con opciones que no hacen nada.
+            val backdropTitle = stringResource(R.string.backdrop)
+            row(backdropTitle, "wallpaper", "watermark", "background", "fondo") {
+                SettingsRow(
+                    icon = Icons.Outlined.Wallpaper,
+                    title = backdropTitle,
+                    subtitle = backdropStyle.localizedDetail(),
+                )
+                SegmentedControl(
+                    options = BackdropStyle.entries.map { it.localizedLabel() },
+                    selectedIndex = BackdropStyle.entries.indexOf(backdropStyle),
+                    onSelect = { AppSettings.setBackdropStyle(BackdropStyle.entries[it]) },
+                    enabled = theme != ThemeMode.LIGHT,
                     modifier = Modifier.padding(start = ROW_INSET, end = ROW_INSET, bottom = 14.dp),
                 )
             }
@@ -1919,6 +1940,26 @@ private fun DownloadQuality.localizedLabel(): String = stringResource(
         DownloadQuality.STANDARD -> R.string.standard
         DownloadQuality.HIGH -> R.string.high
         DownloadQuality.LOSSLESS -> R.string.lossless
+    },
+)
+
+@Composable
+private fun BackdropStyle.localizedLabel(): String = stringResource(
+    when (this) {
+        BackdropStyle.DEDSEC -> R.string.backdrop_dedsec
+        BackdropStyle.GRID -> R.string.backdrop_grid
+        BackdropStyle.TERMINAL -> R.string.backdrop_terminal
+        BackdropStyle.PLAIN -> R.string.backdrop_plain
+    },
+)
+
+@Composable
+private fun BackdropStyle.localizedDetail(): String = stringResource(
+    when (this) {
+        BackdropStyle.DEDSEC -> R.string.backdrop_dedsec_detail
+        BackdropStyle.GRID -> R.string.backdrop_grid_detail
+        BackdropStyle.TERMINAL -> R.string.backdrop_terminal_detail
+        BackdropStyle.PLAIN -> R.string.backdrop_plain_detail
     },
 )
 

@@ -1341,6 +1341,15 @@
     <string name="wear_os_code_hint">Código de vinculación</string>
     <string name="wear_os_done">Hecho</string>
     <string name="signed_by">Firmado por %1$s</string>
+    <string name="backdrop">Fondo</string>
+    <string name="backdrop_dedsec">DEDSEC</string>
+    <string name="backdrop_grid">Rejilla</string>
+    <string name="backdrop_terminal">Terminal</string>
+    <string name="backdrop_plain">Limpio</string>
+    <string name="backdrop_dedsec_detail">Rejilla, scanlines y la marca de agua DEDSUC</string>
+    <string name="backdrop_grid_detail">La rejilla técnica, sin marca de agua</string>
+    <string name="backdrop_terminal_detail">Scanlines y marca de agua, sin rejilla</string>
+    <string name="backdrop_plain_detail">Sin textura: solo el color</string>
     <string name="defalt_intercept_label">Transmisión interceptada</string>
     <string name="defalt_intercept_dismiss">Toca para cerrar</string>
 </resources>

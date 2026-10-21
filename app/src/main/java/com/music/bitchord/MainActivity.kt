@@ -372,6 +372,7 @@ class MainActivity : AppCompatActivity() {
         setContent {
             val theme by AppSettings.themeMode.collectAsStateWithLifecycle()
             val highPerformance by AppSettings.highPerformanceMode.collectAsStateWithLifecycle()
+            val backdropStyle by AppSettings.backdropStyle.collectAsStateWithLifecycle()
             val liquidGlassEnabled by AppSettings.liquidGlass.collectAsStateWithLifecycle()
             val iosOverscrollFactory = rememberIosOverscrollFactory()
             val performanceRefreshRate by AppSettings.performanceRefreshRate.collectAsStateWithLifecycle()
@@ -398,9 +399,9 @@ class MainActivity : AppCompatActivity() {
                 // DEDSEC // DEFALT: en oscuro, el suelo no es un rectángulo negro
                 // sino el fondo terminal (rejilla + scanlines + halos). Es una sola
                 // capa para toda la app, y la misma que muestrea el cristal.
-                val paintBackdrop: ContentDrawScope.() -> Unit = remember(windowBackground, darkTheme) {
+                val paintBackdrop: ContentDrawScope.() -> Unit = remember(windowBackground, darkTheme, backdropStyle) {
                     {
-                        if (darkTheme) drawDefaltBackdrop(density) else drawRect(windowBackground)
+                        if (darkTheme) drawDefaltBackdrop(density, backdropStyle) else drawRect(windowBackground)
                         drawContent()
                     }
                 }
@@ -491,6 +492,7 @@ private fun BitChordApp(
     val context = LocalContext.current
     val clipboard = LocalClipboardManager.current
     val hazeState = remember { HazeState() }
+    val backdropStyle by AppSettings.backdropStyle.collectAsStateWithLifecycle()
     // Recording the backdrop layer costs a draw pass, so it only runs when a
     // liquid-glass surface (the nav bar or artwork-page back button) can sample it.
     val glassActive = LocalLiquidGlassEnabled.current && isGlassSupported()
@@ -2538,7 +2540,7 @@ private fun BitChordApp(
         Modifier
             .fillMaxSize()
             .drawBehind {
-                if (darkTheme) drawDefaltBackdrop(density) else drawRect(rootBackground)
+                if (darkTheme) drawDefaltBackdrop(density, backdropStyle) else drawRect(rootBackground)
             },
     ) {
         // A pushed album/artist/playlist page replaces the tab content but

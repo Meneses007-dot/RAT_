@@ -100,6 +100,28 @@ enum class ThemeMode(val label: String) {
 }
 
 /**
+ * El suelo de la app en oscuro: que texturas lleva el fondo terminal.
+ *
+ * No cambia colores ni el tema —los halos azul y rojo son la identidad y siguen
+ * ahi en las cuatro—, solo el ruido: la rejilla de instrumento, las scanlines
+ * de CRT y la marca de agua. [DEDSEC] es el conjunto completo y el que estaba
+ * antes de que esto se pudiera elegir.
+ */
+enum class BackdropStyle {
+    /** Rejilla + scanlines + marca de agua DEDSUC. */
+    DEDSEC,
+
+    /** La rejilla y las scanlines, sin marca de agua. */
+    GRID,
+
+    /** Scanlines y marca de agua, sin rejilla. */
+    TERMINAL,
+
+    /** Nada: solo los halos y la vineta. */
+    PLAIN,
+}
+
+/**
  * Which of the equaliser's two tabs is driving the sound.
  *
  * One at a time rather than both at once: they are two ways of describing the
@@ -340,6 +362,9 @@ object AppSettings {
 
     val playbackSpeed = MutableStateFlow(1.0f)
     val themeMode = MutableStateFlow(ThemeMode.DARK)
+
+    /** Que texturas lleva el fondo en oscuro. Ver [BackdropStyle]. */
+    val backdropStyle = MutableStateFlow(BackdropStyle.DEDSEC)
 
     /** Keep playing similar music once the queue runs out. */
     val autoplay = MutableStateFlow(true)
@@ -849,6 +874,11 @@ object AppSettings {
         themeMode.value = runCatching {
             ThemeMode.valueOf(prefs.getString(KEY_THEME, null) ?: "DARK")
         }.getOrDefault(ThemeMode.DARK)
+        backdropStyle.value = runCatching {
+            BackdropStyle.valueOf(
+                prefs.getString(KEY_BACKDROP, null) ?: BackdropStyle.DEDSEC.name,
+            )
+        }.getOrDefault(BackdropStyle.DEDSEC)
         autoplay.value = prefs.getBoolean(KEY_AUTOPLAY, true)
         shuffleEnabled.value = prefs.getBoolean(KEY_SHUFFLE_ENABLED, false)
         repeatMode.value = prefs.getInt(KEY_REPEAT_MODE, Player.REPEAT_MODE_OFF)
@@ -1213,6 +1243,11 @@ object AppSettings {
     fun setThemeMode(value: ThemeMode) {
         themeMode.value = value
         prefs.edit().putString(KEY_THEME, value.name).apply()
+    }
+
+    fun setBackdropStyle(value: BackdropStyle) {
+        backdropStyle.value = value
+        prefs.edit().putString(KEY_BACKDROP, value.name).apply()
     }
 
     fun setReduceAnimation(value: Boolean) {
@@ -2011,6 +2046,7 @@ object AppSettings {
     private const val KEY_EQ_BANDS = "equalizer_bands"
     private const val KEY_SPEED = "playback_speed"
     private const val KEY_THEME = "theme_mode"
+    private const val KEY_BACKDROP = "backdrop_style"
     private const val KEY_AUTOPLAY = "autoplay"
     private const val KEY_SHUFFLE_ENABLED = "shuffle_enabled"
     private const val KEY_REPEAT_MODE = "repeat_mode"
