@@ -116,7 +116,7 @@ android {
         create("dev") {
             dimension = "env"
             applicationId = "com.dev.ratplayer"
-            resValue("string", "app_name", "RAT // PLAYER")
+            resValue("string", "app_name", "RAT_")
         }
         create("prod") {
             dimension = "env"

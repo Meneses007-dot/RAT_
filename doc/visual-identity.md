@@ -1,4 +1,4 @@
-# Identidad visual — RAT // PLAYER
+# Identidad visual — RAT_
 
 Este documento explica **qué se ve** en la app y por qué está dibujado así. Es la
 referencia para añadir pantallas nuevas sin que se note que las hizo otra gente.
@@ -12,7 +12,7 @@ por culpa de esto.
 
 | Situación | Texto |
 |---|---|
-| Nombre visible en toda la app | **RAT // PLAYER** |
+| Nombre visible en toda la app | **RAT_** |
 | `applicationId` (el paquete que instala Android) | `com.dev.ratplayer` |
 | Paquete Kotlin y clases internas | intactos, sin tocar |
 
@@ -129,6 +129,12 @@ de ser suya—, guardadas en
 - `TAG` y todo lo que sale por `Log`.
 - `"Unknown Artist"` de `WebDavClient` y `USER_AGENT` de `Genius.kt` (romperían
   compatibilidad con lo que ya funciona).
+- **Identidades de red y de archivo**, que son contrato y no rótulo: la
+  `User-Agent` (`"RAT"`, `"RAT/vX"`), el `submission_client` de ListenBrainz, la
+  etiqueta `VENDOR` de los FLAC, el nombre Bluetooth del reloj y **la carpeta real
+  `Music/RAT`** (`DownloadStore.FOLDER`). La app se llama RAT_ pero sigue
+  guardando y firmando como RAT: cambiar eso haría que lo ya descargado se
+  perdiera o que los servidores dejen de aceptarla.
 
 ## 8. Licencias
 

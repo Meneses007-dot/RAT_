@@ -155,7 +155,7 @@ internal fun Modifier.defaltGrid(step: Dp = GRID_STEP): Modifier = drawBehind {
 /**
  * DEDSEC // DEFALT — la firma del visor.
  *
- * `RAT // PLAYER` apoyada en la esquina de abajo a la izquierda, dentro del
+ * `RAT_` apoyada en la esquina de abajo a la izquierda, dentro del
  * visor y en la monoespaciada de los rótulos. No lleva ningún dato: es la firma,
  * no un instrumento — la pantalla ya dice lo que tiene que decir.
  *
@@ -168,7 +168,7 @@ internal fun DefaltHudSignature(
     modifier: Modifier = Modifier,
 ) {
     Text(
-        text = "RAT // PLAYER",
+        text = "RAT_",
         modifier = modifier.graphicsLayer { this.alpha = alpha() },
         style = MaterialTheme.typography.labelSmall.copy(
             fontSize = 9.sp,

@@ -1601,7 +1601,7 @@ fun SettingsScreen(
         )
         Text(
             text = buildAnnotatedString {
-                append("RAT $version  ")
+                append("RAT_ $version  ")
                 val linkStyles = TextLinkStyles(
                     style = SpanStyle(
                         color = MaterialTheme.colorScheme.primary,

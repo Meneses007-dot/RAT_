@@ -5,7 +5,7 @@ de *cómo* está dibujado cada cosa está en [`visual-identity.md`](visual-ident
 
 ## 1. Objetivo
 
-Dar a la app una identidad propia —**RAT // PLAYER**, con la estética de Defalt
+Dar a la app una identidad propia —**RAT_**, con la estética de Defalt
 y DedSec— sin tocar ni una línea de lógica ni una función. Todo lo que se cambia
 es apariencia y textos visibles, y las formas se recrean a mano.
 
