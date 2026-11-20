@@ -1,158 +1,92 @@
 <div align="center">
 
 <br/>
-<br/>
 
-<img src="Logo.png" alt="BitChord app icon" width="200" />
+# RAT_
 
-# BitChord
+### DEDSEC // DEFALT — Custom Edition
 
-### Aesthetic YouTube Music Client
-
-<br/>
-
-[![Latest release](https://img.shields.io/github/v/release/kushagrasinghx/BitChord?style=for-the-badge&labelColor=0d1117)](https://github.com/kushagrasinghx/BitChord/releases)
-[![License](https://img.shields.io/github/license/kushagrasinghx/BitChord?style=for-the-badge&labelColor=0d1117)](https://github.com/kushagrasinghx/BitChord/blob/main/LICENSE)
-[![Downloads](https://img.shields.io/github/downloads/kushagrasinghx/BitChord/total?style=for-the-badge&labelColor=0d1117)](https://github.com/kushagrasinghx/BitChord/releases)
-[![Listening now](https://api.bitchord.kushagrasingh.in/api/stats/live/badge.svg)](https://api.bitchord.kushagrasingh.in/api/stats/live)
+Reproductor de música con una identidad visual inspirada en *Watch Dogs*.
+Fork no oficial de [BitChord](https://github.com/kushagrasinghx/BitChord).
 
 <br/>
 
-[**Download**](#download) · [**Features**](#features) · [**Contributing**](#contributing) · [**Support**](#support) · [**Disclaimer**](#disclaimer)
-
-<br/>
-
-<a href="https://fmhy.net/mobile#youtube-music" target="_blank" rel="noopener noreferrer"><img src="https://cdn.jsdelivr.net/gh/JMcrafter26/badges@main/src/assets/available/fmhy/cozy.svg" alt="Featured on FMHY" height="55"/></a>
-<a href="https://trendshift.io/repositories/177639?utm_source=trendshift-badge&utm_medium=badge&utm_campaign=badge-trendshift-177639" target="_blank" rel="noopener noreferrer"><img src="https://trendshift.io/api/badge/trendshift/repositories/177639/daily?language=Kotlin" alt="kushagrasinghx%2FBitChord | Trendshift" width="250" height="55"/></a>
-<a href="https://trendshift.io/repositories/177639?utm_source=trendshift-badge&utm_medium=badge&utm_campaign=badge-trendshift-177639" target="_blank" rel="noopener noreferrer"><img src="https://trendshift.io/api/badge/trendshift/repositories/177639/weekly?language=Kotlin" alt="kushagrasinghx%2FBitChord | Trendshift" width="250" height="55"/></a>
+[![License](https://img.shields.io/badge/license-GPLv3-blue?style=for-the-badge)](LICENSE)
+[![Upstream](https://img.shields.io/badge/upstream-BitChord-0d1117?style=for-the-badge)](https://github.com/kushagrasinghx/BitChord)
+[![Platform](https://img.shields.io/badge/android-8.0%2B-3DDC84?style=for-the-badge&logo=android&logoColor=white)](#compilar)
 
 </div>
 
 > [!IMPORTANT]
-> BitChord is not affiliated with, endorsed by, or connected to YouTube or Google in any way. Use it at your own discretion.
+> **Este repositorio es un fork personal, no oficial, de BitChord.**
+> El proyecto original es de [Kushagra Singh (@kushagrasinghx)](https://github.com/kushagrasinghx/BitChord) y todo el crédito del motor de reproducción, la arquitectura y la enorme mayoría del código es suyo. Acá solo se agrega una capa de personalización visual y de textos.
+>
+> RAT_ **no** está afiliado a BitChord, a YouTube/Google ni a Ubisoft. *Watch Dogs* y sus marcas pertenecen a Ubisoft; este es un proyecto de fan, sin recursos oficiales del juego.
 
 ---
 
-<div align="center">
+## Qué es
 
-<img src="Banner.png" alt="BitChord banner" width="100%" />
+RAT_ es BitChord con una capa de *skins* encima: mismo reproductor, misma lógica de red y de audio, otra estética. La idea es que la app se sienta como un reproductor clandestino dentro del universo de *Watch Dogs 2* —terminal DedSec, acentos Defalt, glitches y scanlines— sin romper ninguna función existente.
 
-<h1><a id="features"></a>Features</h1>
+| | |
+|---|---|
+| **Base** | [BitChord](https://github.com/kushagrasinghx/BitChord) (Kotlin Multiplatform: Android, escritorio, WearOS, Android TV y web) |
+| **App ID (flavor `dev`)** | `com.dev.ratplayer` — convive instalada junto a la original |
+| **Nombre visible** | `RAT_` |
+| **Licencia** | GPLv3 (heredada del upstream) |
+| **Estado** | Uso personal, en desarrollo |
 
-<table>
-  <tr>
-    <td width="50%" valign="top">
+## Qué cambia respecto a BitChord
 
-#### Playback
-- **Search, browse and play** anything available on YouTube Music.
-- **Hi-Res lossless audio** — FLAC/ALAC from a configured module source, with YouTube Music as fallback.
-- **Gapless playback with true crossfade**, adjustable 0–12s.
-- **Automix [Beta]** — DJ-style transitions with beat-matching and tempo-stretching.
-- **Offline downloads** — save tracks with embedded metadata.
-- **Local music library** integration.
-- **Background playback** via a proper foreground media session.
-- **Apple-like lyrics animation** — credit to [binimum](https://github.com/binimum/am-lyrics).
+- **Identidad visual DedSec // Defalt**: paleta oscura medida sobre referencias reales, fondos tipo terminal, rejillas, marcas de agua y texturas.
+- **Emblema y wordmark vectoriales**, trazados desde cero (no se usan assets oficiales del juego).
+- **Tipografía, iconografía, barra inferior y mini-reproductor** rediseñados.
+- **Pantalla de reproducción** con visor propio, velo medido según la carátula y firma del visor.
+- **Onboarding y textos** con la voz de Defalt (español e inglés, más las traducciones heredadas).
+- **Flavor `dev` renombrado a `RAT_`** para poder tener las dos builds instaladas a la vez.
 
-#### Connectivity & Accounts
-- **Sign in with your Google account** for personalized content.
-- **Spotify integration** — connect your account to play your playlists and Liked Songs.
-- **Discord Rich Presence** — in-app login, live track/artist/album and progress.
-- **Scrobbling** to Last.fm and ListenBrainz.
-- **Pluggable sources** — add, edit, test and health-check module sources.
+El detalle sesión por sesión está en [PROGRESS.md](PROGRESS.md), y la guía de estética en [DEDSEC_DEFALT_DESIGN.md](DEDSEC_DEFALT_DESIGN.md). Las imágenes de referencia están en [`DEFALT_REFERENCES/`](DEFALT_REFERENCES).
 
-    </td>
-    <td width="50%" valign="top">
+> El catálogo de funciones (búsqueda, Hi-Res, crossfade, automix, descargas offline, letras sincronizadas, Spotify, Discord RPC, scrobbling, etc.) es **el de BitChord tal cual**: no se modificó el comportamiento. Ver la lista completa en el [README del upstream](https://github.com/kushagrasinghx/BitChord#features).
 
-#### Experience
-- **Animated album canvas** — motion artwork on the now-playing screen.
-- **Word-synced lyrics** — word/syllable-level highlighting from multiple sources.
-- **Lyrics providers** — credit to [lrc.red](https://lrc.red), [BiniLyrics](https://github.com/binimum), [BetterLyrics](https://github.com/better-lyrics/better-lyrics), [PaxSenix](https://lyrics.paxsenix.org), [LyricsPlus](https://github.com/ibratabian17/YouLyPlus), [SimpMusic](https://github.com/maxrave-dev/SimpMusic), [Unison](https://unison.boidu.dev), [Megalobiz](https://www.megalobiz.com), [KuGou](https://www.kugou.com), [LRCLIB](https://lrclib.net), [Musixmatch](https://www.musixmatch.com) and [Genius](https://genius.com).
-- **Dynamic, artwork-driven theming** — Material palette extracted from album art.
-- **Frosted-glass UI** — Telegram-style translucent bars via Haze, Material 3 theming.
+## Compilar
 
-#### Controls & Tweaks
-- **Per-network audio quality** — separate quality ceilings for Wi-Fi and mobile data.
-- **Playback speed control** (0.5×–2.0×) and **skip silence**.
-- **Sleep timer** — fixed presets or "stop after this track".
-- **System equalizer** integration.
-- **Stats for nerds** — codec, bit depth, sample rate, and more on the now-playing screen.
+Requisitos: JDK 17, Android SDK con `compileSdk 37` (`minSdk 26`) y las variables de entorno habituales de Android.
 
-    </td>
-  </tr>
-</table>
+```bash
+# APK de la edición RAT_ (flavor dev, se instala como com.dev.ratplayer)
+./gradlew :app:assembleDevDebug
 
-</div>
+# APK de la build original (flavor prod, mismo appId que BitChord)
+./gradlew :app:assembleProdDebug
+```
 
----
+El APK queda en `app/build/outputs/apk/dev/debug/`. Para firmar una build de release hace falta tu propio `keystore.properties` (ver `keystore.properties.example`); sin eso, el release sale sin firmar.
 
-<div align="center">
+App de escritorio (Linux/macOS/Windows) con Java 21:
 
-<h1><a id="download"></a>Download</h1>
+```bash
+./gradlew :desktopApp:run
+```
 
-<a href="https://github.com/kushagrasinghx/BitChord/releases" target="_blank" rel="noopener noreferrer"><img src="https://cdn.jsdelivr.net/gh/JMcrafter26/badges@main/src/assets/supported/android/cozy.svg" alt="Download for Android" height="55"/></a>
-<a href="https://github.com/kushagrasinghx/BitChord/releases" target="_blank" rel="noopener noreferrer"><img src="https://cdn.jsdelivr.net/gh/JMcrafter26/badges@main/src/assets/supported/windows/cozy.svg" alt="Download for Windows" height="55"/></a>
+Más detalles en [DESKTOP.md](DESKTOP.md).
 
-Grab the latest signed APK from the [Releases](https://github.com/kushagrasinghx/BitChord/releases) page. Sideloading requires enabling "Install unknown apps" for whichever app you download it with.
+## Créditos
 
-For the Windows and Linux desktop app, see [DESKTOP.md](DESKTOP.md).
+- **[BitChord](https://github.com/kushagrasinghx/BitChord)** — Kushagra Singh y [sus contribuidores](https://github.com/kushagrasinghx/BitChord/graphs/contributors). Sin su trabajo este fork no existiría.
+- Animación de letras estilo Apple: [binimum/am-lyrics](https://github.com/binimum/am-lyrics).
+- Proveedores de letras y demás librerías de terceros: los mismos que documenta el upstream.
+- Dirección de arte DedSec // Defalt: inspirada en el trabajo de Ubisoft para *Watch Dogs* (2014) y *Watch Dogs 2* (2016). Proyecto de fan, sin afiliación.
 
-</div>
+Este repositorio **no** es el lugar para donar al proyecto original. Si querés apoyar a BitChord, hacelo en su [página de releases](https://github.com/kushagrasinghx/BitChord).
 
----
+## Licencia y aviso legal
 
-<div align="center">
+Distribuido bajo **GNU General Public License v3.0**. Ver [LICENSE](LICENSE).
 
-<h1><a id="contributing"></a>Contributing</h1>
+Al ser un derivado de BitChord, se mantiene la licencia GPLv3: si distribuís una build de este código, tenés que poner a disposición el código fuente correspondiente bajo la misma licencia.
 
-We welcome contributions to BitChord! Please review our [Contributing Guide](CONTRIBUTING.md) and [Code of Conduct](CODE_OF_CONDUCT.md) before submitting a Pull Request.
-
-[**Contributing Guide**](CONTRIBUTING.md) · [**Code of Conduct**](CODE_OF_CONDUCT.md) · [**Maintainers**](MAINTAINERS.md) · [**Additional Docs**](ADDITIONAL.md)
-
-### Thanks to all contributors ❤
-
-<a href="https://github.com/kushagrasinghx/BitChord/graphs/contributors">
-  <img src="https://raw.githubusercontent.com/kushagrasinghx/BitChord/contributors/contributors.svg" />
-</a>
-
-</div>
-
----
-
-<div align="center">
-
-<h1><a id="support"></a>Support</h1>
-
-BitChord is free and always will be — if it's earned a spot in your rotation, you can chip in here:
-
-<a href="https://ko-fi.com/kushagrasinghx" target="_blank" rel="noopener noreferrer"><img src="https://cdn.jsdelivr.net/gh/JMcrafter26/badges@main/src/assets/donate/kofi-singular-alt/cozy.svg" alt="Support me on Ko-fi" height="55"/></a>
-<a href="https://paypal.me/kuxhagrasingh" target="_blank" rel="noopener noreferrer"><img src="https://cdn.jsdelivr.net/gh/JMcrafter26/badges@main/src/assets/donate/paypal-plural/cozy.svg" alt="Support us on PayPal" height="55"/></a>
-
-<br/>
-<img src="upi_support.jpg" alt="UPI Support" width="250" />
-
-</div>
-
----
-
-<div align="center">
-
-<h1><a id="disclaimer"></a>Disclaimer & Legal Notice</h1>
-
-BitChord is an independent, community-driven third-party audio player and client. It is **not** associated with Google LLC, YouTube Music, Deezer, Telegram, or any of their parent companies.
-
-* **No Media Hosting:** BitChord does not host, upload, or store copyrighted music files. It operates strictly as an interface to scan local device storage or stream media directly from public, public-facing, or user-authenticated APIs.
-* **Fair Use & API Usage:** This software is created solely for personal research, educational, and fair-use purposes. The user is entirely responsible for ensuring their usage aligns with their local copyright laws and YouTube Terms of Service.
-* **No Ad-Blocking Guarantee:** While BitChord focuses on providing a clean listening environment, it does not guarantee permanent bypasses or modifications to commercial third-party platform conditions.
-* **Copyleft:** BitChord is free software under the GPLv3. The license does not let anyone forbid others from selling or redistributing copies, but any distribution must come with the Corresponding Source under the same license.
-
-</div>
-
----
-
-<div align="center">
-
-<h1><a id="license"></a>License</h1>
-
-This project is licensed under the **GNU General Public License v3.0 (GPLv3)**. See the [LICENSE](LICENSE) file for details.
-
-</div>
+- **Sin alojamiento de contenido:** ni BitChord ni este fork alojan, suben o almacenan música. La app es una interfaz hacia APIs públicas o autenticadas por el usuario.
+- **Sin afiliación:** RAT_ no está asociado a Google LLC, YouTube Music, BitChord, Ubisoft ni a sus empresas matrices.
+- **Uso personal:** sos responsable de que tu uso cumpla las leyes de copyright de tu país y los términos de servicio de las plataformas que uses.
